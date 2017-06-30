@@ -1,0 +1,31 @@
+--- 
+title: "Defect Prediction in Software Engineering"
+author: "Daniel Rodriguez and Javier Dolado"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [./references/SEmetrics.bib,
+    ./references/dataSources.bib,
+    ./references/RandStatistics.bib,
+    ./references/referencesFS.bib,
+    ./references/referencesIS.bib,
+    ./references/RPackages.bib,
+    ./references/evaluation.bib,
+    ./references/machinelearning.bib,
+    ./references/DefectPrediction.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: danrodgar/DefectPredictionSoftEng
+description: "Defect Prediction in Software Engineering"
+keep_tex: true
+---
+
+# Welcome {-}
+
+These notes will try to describe the state of the art in software defect prediction. 
+
+Work in progress.
+
+This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/us/) United States License. 
+

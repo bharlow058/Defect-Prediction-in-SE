@@ -1,0 +1,87 @@
+# (PART) Problems and Issues in Defect Prediction {-}
+
+# Data Mining Issues in Defect Prediction
+
+There are many challenges related to Software Mining and fault prediction such as:
+
+* fault prediction without fault data
+* limited fault data 
+* noisy data
+* cross-company vs within-company.
+
+Catal highlights some of these issues [@Catal_WIRED12].
+
+# Outliers, missing values, inconsistencies data noise
+
+Although this statistical problem is well known in the literature, it is not always properly reported as reported by Turhan [@TurhanESE12]. 
+
+For example preprocessing of the NASA datasets hosted at PROMISE as some concerns about their quality have been raised [@GrayBDSB11]. And these are by far the most used datasets.
+
+Some example of works/techniques to address noise and data quality in software engineering datasets are been proposed such as the works by [@Khoshgoftaar09].
+
+# Redundant and irrelevant attributes and instances
+
+It is also well known that the existence of irrelevant and redundant features in the datasets has a negative impact on most data mining algorithms, which assume a certain level of balance between the class attributes. 
+
+Feature Selection has been applied and studied by the software engineering community [@KhoshgoftaarGN12],
+
+However instance selection that needs further research (a few exceptions for effort estimation include [@KS02],[@CHPB05]. 
+
+For example, the JM1 dataset rom NASA's defect prediction datasets in PROMISE has 8,000 repeated instances. Defect prediction datasets tend to be are highly unbalanced.
+
+
+Futhermore, feature selection algorithms do not perform well with imbalanced datasets, resulting in a selection of metrics that are not adequate for the learning algorithms See [@WangKWN12][@RRCA07]
+
+
+# Overlapping or class separability
+
+When dealing with classification, we may also face the problem of overlapping between classes in which a region of the data space contains samples from different values for the class. 
+
+Many samples from the NASA dataset contained in the PROMISE repository are contradictory or inconsistent, many instances have the same values for all attributes with the exception of the class, making  the induction of good predictive models difficult.
+
+
+# Data shifting
+
+The data shift problem happens when the test data distribution differs from the training distribution. Turhan discusses the dataset shift problem in software engineering (effort estimation and defect prediction) [@TurhanESE12]. This can also happen when divide the data into $k$-folds for cross validation [@RaudysJ91]
+ 
+# Imbalance datasets
+
+This happens when samples of some classes vastly outnumber the cases of other classes. Under this situation, when the imbalanced data is not considered, many learning algorithms generate distorted models for which the impact of some factors can be hidden 
+and the prediction accuracy can be misleading [@He_KDE09_Imbalance]. This is due to the fact that most data mining algorithms assume balanced datasets. The imbalance problem is known to affect many machine learning algorithms such as decision tress, neural
+networks or support vectors machines.
+
+
+# Evaluation metrics and the evaluation of models
+
+Arisholm et al. [@Arisholm10] compare different data mining techniques (classification tree algorithm (C4.5), a coverage rule algorithm (PART), logistic regression, back--propagation neural work and support vector machines) over 13 releases of a Telecom middleware software developed in Java using three types metrics: (i) object oriented metrics, (ii) delta measures, amount of change between successive releases, and (iii) process measures from a configuration management system. The authors concluded that although there are no significant differences regarding the techniques used, large differences can be observed depending on the criteria used to compare them. The authors also propose a cost--effectiveness measure based on the AUC and number of statements so that larger modules are more expensive to test. The same approach of considering module size in conjunction with the AUC as evaluation measure has been explored by Mende and Koschke [@Mende10]. These can be considered as cost-sensitive classification approaches.
+
+There is also another controversy regarding the AUC measure, which is widely used to compare classifiers particularly when data is imbalanced. Hand anlysed that the AUC is not a coherent measure and  proposed the $H-measure$ [@Hand09]. 
+ 
+Another controversy concerns the use of the $t$-test for comparison of multiple algorithms and datasets. As this is a parametric test it does not seem to be the most appropriate [@Demsar2006].
+
+Also currently there is a tendency to rely less on p-values and more on confidence intervales and Equivalence Hipothesis Testing [@DOLADO2016]
+
+
+Dicussion:
+
+[@Menzies07] Data Mining Static Code Attributes to Learn Defect Predictors
+
+[@Zhang07] Comments on "Data Mining Static Code Attributes to Learn Defect Predictors"
+
+[@Menzies07b] Problems with Precision: A Response to Comments on Data Mining Static
+	Code Attributes to Learn Defect Predictors
+
+# Cross project defect prediction
+
+Most studies find classifiers in single defect prediction datasets. Some exceptions include:
+
+[@Hosseini2017] A benchmark study on the effectiveness of search-based data selection and feature selection for cross project defect prediction
+
+[@Zimmermann2009] Cross-project Defect Prediction
+
+[@Canfora2013] Multi-objective Cross-Project Defect Prediction
+
+[@Panichella2014] Cross-project defect prediction models: L'Union fait la force
+
+This paper concluded that different classifiers are not equivalent and they can complement each other. This is also confirmed by Bowes et al. [@Bowes2015]
+

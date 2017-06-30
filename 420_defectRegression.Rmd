@@ -1,0 +1,606 @@
+# Regression tecniques in Software defect prediction
+
+The purpose of this Section is to show the basic ways of estimating software defects by means of several regression models. We apply the techniques on the Equinox dataset. In what follows we use the same data points for training and testing, for the sake of clarity.
+
+##### Acknowledgments
+TIN2016-76956-C3-1-R
+TIN2015-71841-REDT
+
+## Zero Poison
+
+When estimating the number of defects but we have many zeroes, we can use different types of zero Poison regression.
+
+### Load packages
+
+```{r, loading packages, echo=FALSE}
+# - Install packages
+# 
+# pckgs_needed <- c("pscl", "boot", "ggplot")
+# install.packages(pckgs_needed, dependencies = TRUE)
+
+require(ggplot2)
+require(pscl)
+require(MASS)
+require(boot)
+
+# load pscl package  for zero inflated 
+library(pscl)
+
+# load MASS package for negative binomial
+library(MASS)
+
+library(corrgram)
+library(corrplot)
+```
+
+
+
+
+### The number of Software Defects. Count Data
+
+The number of software Defects found in a software product can be assimilated to the "count data" concept that is used in many disciplines, because the outcome,number of defects, of whatever software process is a count.
+There are several ways of analyzing count data. The classical Poisson, negative binomial regression model can be augmented with zero-inflated poisson and zero-inflated negative binomial models to cope with the excess of zeros in the count data. Zero-inflated means that the response variable -software defects- contains more zeros than expected, based on the Poisson or negative binomial distribution. A simple histogram may show the trend. 
+Count variables appear in different areas and have common properties: their range is a non-negative integer(0, 1, ....); and their values are skewed towards zero, because few values are high. 
+
+### Normal Regression
+The normal regression provided by the general linear model (glm in R) is not appropriate for count data because of the non-normality of the residuals. Usually the variance of the residuals increase with their value. 
+
+
+
+
+### Poisson Regression
+This model can be used if there is no excess in the number of zeros. The poisson model is the most common and it is a probability distribution that is controlled by a single parameter, $\lambda$
+
+```{r poisdist, echo=FALSE}
+lambda <- 1 #change this parameter
+ggplot(transform(data.frame(x=c(0:10)), y=dpois(x, lambda)), aes(x, y)) + 
+    geom_bar(stat="identity")
+
+```
+
+
+### Negative binomial
+The negative binomial takes into account overdispersion in the count outcome. When there are more high values or zeros than expected the mean and the variance of the sample data are different.  
+
+### Zero-Inflated Poisson Regression ZIP
+This is a model that can deal with the excess of zeros by explicitly modeling the part that generates the false zeros. There may be different sources for the excess of zeros. The count process is modeled by a Poisson model. 
+
+### Zero-Inflated Negative Binomial ZINB
+In this case, besides taking into account the excess of zeros the count process is modeled by a Negative Binomial model that allows for overdispersion from the non-zero counts. 
+
+
+### Read Data
+```{r, reading data}
+# setwd("~/DocProjects/zeropoisson")
+auxfile <- read.table("./datasets/defectPred/BPD/single-version-ck-oo.csv", header = TRUE, sep = ";")
+myvars <- c('bugs', 'wmc', 'rfc', 'cbo', 'lcom', 'numberOfLinesOfCode')
+
+# wmd   weighted methods per class Despite its long name, WMC is simply the method count for a class.
+# rfc   response for a class set of methods that can potentially be executed in response to a message received by an object of that class
+# cbo   coupling between objects number of classes to which a class is coupled
+# lcom  lack of cohesion
+
+equinox <- auxfile[myvars] 
+names(equinox)[names(equinox) == 'bugs'] <- 'count'
+```
+
+
+
+### Plot histogram 
+
+- The first histogram shows the high number of modules with no defects.
+- The second histogram shows the distribution of the non-zero values. 
+
+```{r histogram}
+hist(equinox$count,breaks="FD")
+
+## histogram with x axis in log10 scale
+ggplot(equinox, aes(count)) +
+  geom_histogram() +
+  scale_x_log10()
+```
+
+### Correlation among variables
+The correlation plots and the tables show a strong correlation among some variables.
+
+```{r, correlation, echo=FALSE}
+equinoxmat <- data.matrix(equinox, rownames.force = NA)
+
+equinoxmatcor <- cor(equinoxmat, use="complete.obs", method = c("pearson", "kendall", "spearman"))
+equinoxmatcor
+
+corrgram(equinoxmatcor, order=TRUE, lower.panel=panel.shade,
+  upper.panel=panel.pie, text.panel=panel.txt,
+  main="Correlation among variables")
+
+corrgram(equinoxmatcor, order=TRUE, lower.panel=panel.ellipse,
+  upper.panel=panel.pts, text.panel=panel.txt,
+  diag.panel=panel.minmax,
+  main="Correlation among variables")
+
+
+corrplot(equinoxmatcor, type = "upper", order = "hclust", 
+         tl.col = "black", tl.srt = 45)
+
+
+# zinb <- within(zinb, {
+#   nofish <- factor(nofish)
+#   livebait <- factor(livebait)
+#   camper <- factor(camper)
+# })
+
+summary(equinox)
+```
+
+
+### Classical Regression
+
+- First we fit a classical regression model using the variables `cbo`, `lcom`, `wmc`, `rfc`. Please note that the last section that compares models with different combinations of variables.
+
+- The parameters of interest are the intercept and the slope coefficients
+
+```{r normal regression, echo=FALSE}
+# Fit Regression Models
+# normal theory regression using maximum likelihood
+defects_normal <- glm(count ~ cbo + lcom + wmc + rfc ,
+                      data = equinox, family = gaussian)
+# summary of results
+summary(defects_normal)
+```
+
+
+## Poisson Regression
+
+- Regression coefficients must be interpreted with the log transformation. 
+
+```{r poisson, echo=FALSE}
+# poisson regression
+defects_pois <- glm(count ~ cbo + lcom + wmc + rfc,
+data = equinox, family = poisson)
+# summary of results
+summary(defects_pois) 
+```
+
+
+## Compare to Null Model (intercept)
+
+- The chi-squared test on the difference of log likelihoods is used to compare the poisson model to the intercept. It yields a high significant p-value; thus, the  model is statistically significant. 
+- All of the predictors in both the count and inflation portions of the model are statistically significant. This
+model fits the data significantly better than the null model, i.e., the intercept-only model. 
+- Since we have five predictor variables in the full model, the degrees of freedom for chi-squared test is 5.
+
+```{r null model}
+# five variables in the full model --> df = 5
+nullmodel <- update(defects_pois, . ~ 1)
+
+pchisq(2 * (logLik(defects_pois) - logLik(nullmodel)), df = 5, lower.tail=FALSE)
+
+```
+
+## Negative Binomial
+
+
+```{r negative binomial}
+
+# negative binomial regression
+defects_negbinom <- glm.nb(count ~ cbo + lcom + wmc + rfc,
+data = equinox)
+# summary of results
+summary(defects_negbinom)
+# overdispersion
+summary(defects_negbinom)$theta
+```
+
+
+### Zero Inflated Poisson
+
+```{r zip}
+# zero-inflated Poisson regression
+# the | seperates the count model from the logistic model
+defects_zip <- zeroinfl(count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, data =
+equinox, link = "logit", dist = "poisson", trace = FALSE)
+# summary of results
+summary(defects_zip)
+```
+
+
+### Zero Inflated Negative Binomial
+
+```{r zinb}
+# zero-inflated negative binomial regression
+# the | seperates the count model from the logistic model
+defects_zinb <- zeroinfl(count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, data =
+equinox, link = "logit", dist = "negbin", trace = FALSE, EM = FALSE)
+# summary of results
+summary(defects_zinb)
+```
+
+
+### Comparing models with Vuong test
+
+- The Vuong test compares the zero-inflated model with an ordinary Poisson regression model.
+
+- The result of the test statistic is significant, indicating that the zero-inflated model is superior to the standard Poisson model.
+
+```{r vuong}
+vuong(defects_zip, defects_pois)
+
+vuong(defects_zip, defects_negbinom)
+```
+
+### Compute Confidence Intervals for intercept and variables. ZIP version
+
+- We may confidence intervals for all the parameters and the exponentiated parameters using bootstrapping.
+- We may compare these results with the regular confidence intervals based on the standard errors.
+
+```{r coefficients}
+dput(round(coef(defects_zip, "count"), 4))
+
+dput(round(coef(defects_zip, "zero"), 4))
+```
+
+
+```{r}
+# change list of parameters 1, 3, 5 etc
+
+### FINAL MODEL SELECTED ZERO INFLATED POISSON
+f <- function(data, i) {
+  require(pscl)
+  m <- zeroinfl(count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode,
+    data = data[i, ], dist = "poisson",
+    start = list(count = c(-0.8642, 0.0434, 2e-04, 0.0097, -0.0052), zero = c(1.6749, -0.1657)))
+  as.vector(t(do.call(rbind, coef(summary(m)))[, 1:2]))
+}
+
+set.seed(10)
+(res <- boot(equinox, f, R = 1200, parallel = "snow", ncpus = 4))
+## basic parameter estimates with percentile and bias adjusted CIs
+parms <- t(sapply(c(1, 3, 5, 7, 9, 11, 13), function(i) {
+  out <- boot.ci(res, index = c(i, i + 1), type = c("perc", "bca"))
+  with(out, c(Est = t0, pLL = percent[4], pUL = percent[5],
+    bcaLL = bca[4], bcaUL = bca[5]))
+}))
+
+print("Confidence intervals for ZIP, BOOTED")
+## add row names
+names(coef(defects_zip))
+nrow(parms)
+row.names(parms) <- names(coef(defects_zip))
+## print results
+parms
+
+print("Confidence intervals for ZIP , NORMAL BASED APPROXIMATION")
+## compare with normal based approximation
+confint(defects_zip)
+```
+
+- Estimate the incident risk ratio (IRR) for the Poisson model and odds ratio (OR) for the logistic (zero inflation) model.
+
+```{r expparams}
+
+## exponentiated parameter estimates with percentile and bias adjusted CIs
+expparms <- t(sapply(c(1, 3, 5, 7, 9, 11, 13), function(i) {
+  out <- boot.ci(res, index = c(i, i + 1), type = c("perc", "bca"), h = exp)
+  with(out, c(Est = t0, pLL = percent[4], pUL = percent[5],
+    bcaLL = bca[4], bcaUL = bca[5]))
+}))
+
+## add row names
+row.names(expparms) <- names(coef(defects_zip))
+## print results
+expparms
+
+```
+
+
+## Compare Models Fit. AIC and BIC
+
+- There are several measures that can be used to assess model fit. Here we use information-based measures. 
+- The traditional Akaike's information criterion (AIC) selects the model that has the smallest AIC value. 
+- The Schwartz's Bayesian Information criterion (BIC) also minimizes model complexity. 
+
+
+```{r model fit}
+#Model Fit
+# AIC values
+AIC(defects_normal)
+AIC(defects_pois)
+AIC(defects_negbinom)
+AIC(defects_zip)
+AIC(defects_zinb)
+# AIC weights
+compare_models <- list( )
+compare_models[[1]] <- defects_normal
+compare_models[[2]] <- defects_pois
+compare_models[[3]] <- defects_negbinom
+compare_models[[4]] <- defects_zip
+compare_models[[5]] <- defects_zinb
+compare_names <- c("Typical", "Poisson", "NB", "ZIP", "ZINB")
+names(compare_models) <- compare_names
+compare_results <- data.frame(models = compare_names)
+compare_results$aic.val <- unlist(lapply(compare_models, AIC))
+compare_results$aic.delta <- compare_results$aic.val-min(compare_results$aic.val)
+compare_results$aic.likelihood <- exp(-0.5* compare_results$aic.delta)
+compare_results$aic.weight <-
+compare_results$aic.likelihood/sum(compare_results$aic.likelihood)
+
+# BIC values
+print("Schwarz's Bayesian criterion")
+AIC(defects_normal, k = log(nrow(equinox)))
+AIC(defects_pois, k = log(nrow(equinox)))
+AIC(defects_negbinom, k = log(nrow(equinox)))
+AIC(defects_zip, k = log(nrow(equinox)))
+AIC(defects_zinb, k = log(nrow(equinox)))
+```
+
+
+
+
+
+## Compare prediction of Defects
+
+
+```{r zero counts}
+# observed zero counts
+# actual
+sum(equinox$count < 1)
+# typical
+sum(dnorm(0, fitted(defects_normal)))
+# poisson
+sum(dpois(0, fitted(defects_pois)))
+# nb
+sum(dnbinom(0, mu = fitted(defects_negbinom), size = defects_negbinom$theta))
+# zip
+sum(predict(defects_zip, type = "prob")[,1])
+# zinb
+sum(predict(defects_zinb, type = "prob")[,1])
+```
+
+## Plot predictions 
+
+```{r histopreds}
+
+# histogram plot with fitted probabilities
+# predicted values for typical regression 
+normal.y.hat <- predict(defects_normal, type = "response")
+normal.y <- defects_normal$y
+normal.yUnique <- 0:max(normal.y)
+normal.nUnique <- length(normal.yUnique)
+phat.normal <- matrix(NA, length(normal.y.hat), normal.nUnique)
+dimnames(phat.normal) <- list(NULL, normal.yUnique)
+for (i in 1:normal.nUnique) {
+phat.normal[, i] <- dnorm(mean = normal.y.hat, sd = sd(residuals(defects_normal)),x =
+normal.yUnique[i])
+}
+# mean of the normal predicted probabilities for each value of the outcome
+phat.normal.mn <- apply(phat.normal, 2, mean)
+# probability of observing each value and mean predicted probabilities for
+#count regression models
+phat.pois <- predprob(defects_pois)
+phat.pois.mn <- apply(phat.pois, 2, mean)
+phat.nb <- predprob(defects_negbinom)
+phat.nb.mn <- apply(phat.nb, 2, mean)
+phat.zip <- predprob(defects_zip)
+phat.zip.mn <- apply(phat.zip, 2, mean)
+phat.zinb <- predprob(defects_zinb)
+phat.zinb.mn <- apply(phat.zinb, 2, mean)
+```
+
+
+
+```{r finalhistograms}
+
+# histogram 1
+hist(equinox$count, prob = TRUE, col = "gray90", breaks=seq(min(equinox$count)-0.5,
+max(equinox$count)+.5, 1), xlab = "Skips Category", ylim=c(0,.8))
+rangex <- length(phat.normal.mn)-1
+# overlay predicted values
+lines(x = seq(0, rangex, 1), y = phat.normal.mn, type = "b", lwd=2, lty=1, col="black")
+lines(x = seq(0, rangex, 1), y = phat.pois.mn, type = "b", lwd=2, lty=2, col="gray20")
+lines(x = seq(0, rangex, 1), y = phat.nb.mn, type = "b", lwd=2, lty=3, col="gray40")
+
+# legend
+legend(5, 0.7, c("Typical (Normal)","Poisson", "Negative Binomial"), lty=seq(1:3), col =
+c("black","gray20","gray40"), lwd=2)
+
+# histogram 2
+hist(equinox$count, prob = TRUE, col = "gray90", breaks=seq(min(equinox$count)-0.5,
+max(equinox$count)+.5, 1), xlab = "Skips Category", ylim=c(0,.8))
+rangex <- length(phat.normal.mn)-1
+# overlay predicted values
+
+lines(x = seq(0, rangex, 1), y = phat.pois.mn, type = "b", lwd=2, lty=2, col="gray20")
+lines(x = seq(0, rangex, 1), y = phat.zip.mn, type = "b", lwd=2, lty=4, col="gray60")
+lines(x = seq(0, rangex, 1), y = phat.zinb.mn, type = "b", lwd=2, lty=5, col="gray80")
+# legend
+legend(5, 0.7, c("Poisson",  "Zero-Inflated
+Poisson", "Zero-Inflated Negative Binomial"), lty=seq(1:3), col =
+c("gray20","gray60","gray80"), lwd=2)
+```
+
+
+
+## Regression diagnostics 
+- Residual plots for the models
+
+```{r diagnostics}
+# Diagnostics
+# normal residuals density plot
+plot(density(residuals(defects_normal)))
+```
+
+
+```{r residual plots}
+# predicted vs. residual plots
+# typical
+plot(predict(defects_normal, type="response"), residuals(defects_normal), main="Typical
+Regression", ylab="Residuals", xlab="Predicted", ylim=c(-2,5))
+abline(h=0,lty=1,col="gray")
+lines(lowess(predict(defects_normal,type="response"),residuals(defects_normal)), lwd=2, lty=2)
+# poisson
+plot(predict(defects_pois,type="response"),residuals(defects_pois), main="Poisson Regression",
+ylab="Residuals", xlab="Predicted", ylim=c(-2,5))
+abline(h=0,lty=1,col="gray")
+lines(lowess(predict(defects_pois,type="response"),residuals(defects_pois)),lwd=2, lty=2)
+# negative binomial
+plot(predict(defects_negbinom,type="response"),residuals(defects_negbinom), main="Negative Binomial
+Regression", ylab="Residuals", xlab="Predicted", ylim=c(-2,5))
+abline(h=0,lty=1,col="gray")
+lines(lowess(predict(defects_negbinom,type="response"),residuals(defects_negbinom)), lwd=2, lty=2)
+# ZIP
+plot(predict(defects_zip,type="response"),residuals(defects_zip), main="ZIP Regression",
+ylab="Residuals", xlab="Predicted", ylim=c(-2,5))
+abline(h=0,lty=1,col="gray")
+lines(lowess(predict(defects_zip,type="response"),residuals(defects_zip)),lwd=2, lty=2)
+# ZINB
+plot(predict(defects_zinb,type="response"),residuals(defects_zinb), main="ZINB Regression",
+ylab="Residuals", xlab="Predicted", ylim=c(-2,5))
+abline(h=0,lty=1,col="gray") 
+lines(lowess(predict(defects_zinb,type="response"),residuals(defects_zinb)),lwd=2, lty=2)
+```
+
+### Cook's D for the ZIP
+[Cook's D](https://en.wikipedia.org/wiki/Cook%27s_distance)
+Cook's distance or Cook's D is a commonly used for detecting highly influential observations. 
+
+```{r CooksD, echo=FALSE}
+# A Cook’s D computation function is built into R for the typical, Poisson, and negative binomial regression models,
+# but not zero-inflated models. Consequently, we wrote an iterative function to compute the D values for each case in
+# the zero-inflated models.
+# plot Cook's D for the typical regression
+plot(cooks.distance(defects_normal), main="Cook's D Estimates", ylab="Cook's D",
+xlab="Observation")
+abline(h=(4/nrow(equinox)), col="red", lwd=2)
+# plot Cook's D for the Poisson model
+plot(cooks.distance(defects_pois), main="Cook's D Estimates", ylab="Cook's D",
+xlab="Observation")
+# plot Cook's D for the negative binomial model
+plot(cooks.distance(defects_negbinom), main="Cook's D Estimates", ylab="Cook's D",
+xlab="Observation")
+abline(h=(4/nrow(equinox)), col="red", lwd=2)
+# compute generalized Cook's D for zero-inflated models
+g.cooks.zi<-function(model){
+  n <- nrow(equinox)
+  cooks <- as.matrix(rep(0,nrow(equinox)))
+  for (i in 1:n){
+    if(model=="ZIP"){
+      defects_zip.red <- zeroinfl(count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, data = equinox[-i,],
+                                  link = "logit", dist = "poisson", trace = FALSE)
+      cooks[i]<-t(rbind(as.matrix(defects_zip.red$coefficients$count),
+                        as.matrix(defects_zip.red$coefficients$zero))-
+                    rbind(as.matrix(defects_zip$coefficients$count),
+                          as.matrix(defects_zip$coefficients$zero)))%*%
+        (-(defects_zip$optim$hessian))%*%(rbind(
+          as.matrix(defects_zip.red$coefficients$count),
+          as.matrix(defects_zip.red$coefficients$zero))-
+            rbind(as.matrix(defects_zip$coefficients$count),
+                  as.matrix(defects_zip$coefficients$zero)))
+    }
+    if(model=="NB"){
+      defects_zinb.red <- zeroinfl(count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, data = equinox[-i,], link = "logit", dist = "negbin", trace = FALSE, EM
+                                   = FALSE)
+      cooks[i]<-t(rbind(as.matrix(defects_zinb.red$coefficients$count),
+                        as.matrix(defects_zinb.red$coefficients$zero),
+                        as.matrix(defects_zinb.red$theta))-
+                    rbind(as.matrix(defects_zinb$coefficients$count),
+                          as.matrix(defects_zinb$coefficients$zero),
+                          as.matrix(defects_zinb$theta)))%*%
+        (-(defects_zinb$optim$hessian))%*%(rbind(
+          as.matrix(defects_zinb.red$coefficients$count),
+          as.matrix(defects_zinb.red$coefficients$zero),
+          as.matrix(defects_zinb.red$theta))-
+            rbind(as.matrix(defects_zinb$coefficients$count),
+                  as.matrix(defects_zinb$coefficients$zero),
+                  as.matrix(defects_zinb$theta)))
+    } } 
+  return(cooks)
+}
+
+
+# generate and plot Cook's D for the zero-inflated Poisson model
+cooks.out<-g.cooks.zi(model="ZIP")
+plot(cooks.out ,xlab="Case Number", ylab="Cook's D")
+abline(h=(4/nrow(equinox)), col="red")
+
+
+# generate and plot Cook's D for the zero-inflated negative binomial model
+# cooks.out <- g.cooks.zi(model="ZINB")
+# plot(cooks.out ,xlab="Case Number", ylab="Cook's D")
+# abline(h=(4/nrow(equinox)), col="red")
+
+# linearity plots for negative binomial model
+# plot(as.factor(zinb$male),resid(defects_negbinom),xlab="Sex (0 = Female, 1 = Male)",
+# ylab="Residuals")
+# plot(zinb$race,resid(defects_negbinom),xlab="Defects",ylab="Residuals")
+# plot(zinb$self.con1.m,resid(defects_negbinom),xlab="Self-concept", ylab="Residuals")
+# plot(zinb$ses.m,resid(defects_negbinom),xlab="SES", ylab="Residuals")
+# plot(as.factor(zinb$college),resid(defects_negbinom),xlab="Plan on Going to College (0 = No,
+# 1 = Yes)", ylab="Residuals")
+# plot(zinb$achievement.m,resid(defects_negbinom),xlab="Academic Achievement",
+# ylab="Residuals")
+```
+
+### ZIP Model variable selection for the Equinox using AIC and BIC
+
+```{r build models, echo=FALSE}
+# Select Final Model
+# define the ZIP models to compare
+cand.models <- list( )
+cand.models[[1]] <- zeroinfl(count ~ numberOfLinesOfCode | numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[2]] <- zeroinfl(count ~ numberOfLinesOfCode + cbo | numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[3]] <- zeroinfl(count ~ numberOfLinesOfCode + cbo + lcom | numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[4]] <- zeroinfl(count ~ numberOfLinesOfCode + cbo + lcom + wmc| numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[5]] <- zeroinfl(count ~ numberOfLinesOfCode + cbo + lcom + wmc + rfc| numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[6]] <- zeroinfl(count ~ cbo + lcom + wmc + rfc| numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[7]] <- zeroinfl(count ~ lcom + wmc + rfc| numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[8]] <- zeroinfl(count ~ wmc + rfc| numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[9]] <- zeroinfl(count ~ wmc | numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+cand.models[[10]] <- zeroinfl(count ~ rfc | numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+
+# # name the models
+model.names <- c("LOC", "LOC+cbo", "LOC+cbo+lcom", "LOC+cbo+lcom+wmc", "LOC+cbo+lcom+wmc+rfc", "cbo_lcom_wmc_rfc", "lcom_wmc_rfc",
+"wmc_rfc","wmc", "rfc")
+names(cand.models) <- model.names
+```
+
+
+
+```{r compute AIC BIC}
+
+# calculate and combine AIC, AIC weights, and BIC
+results <- data.frame(models = model.names)
+kpar <- log(nrow(equinox))
+results$bic.val <- unlist(lapply(cand.models, AIC, k = kpar))
+results$bic.rank <- rank(results$bic.val)
+results$aic.val <- unlist(lapply(cand.models, AIC))
+results$aic.delta <- results$aic.val-min(results$aic.val)
+results$aic.likelihood <- exp(-0.5* results$aic.delta)
+results$aic.weight <- results$aic.likelihood/sum(results$aic.likelihood)
+# sort models by AIC weight
+results <- results[rev(order(results[, "aic.weight"])),]
+results$cum.aic.weight <- cumsum(results[, "aic.weight"])
+results
+# # final model
+defects_final_zip <- zeroinfl(count ~ cbo + lcom + wmc + rfc| numberOfLinesOfCode, data = equinox, link = "logit", dist = "poisson", trace = FALSE)
+defects_final_zip
+```
+
+
+
+
+
+## References and R code used 
+1. A. Alexander Beaujean, Grant B. Morgan, Tutorial on Using Regression Models with Count Outcomes using R. Practical Assessment, Research & Evaluation, Volume 21, Number 2, February 2016
+
+1. Achim Zeileis, Christian Kleiber and Simon Jackman, Regression Models for Count Data in R
+
+1. ZERO-INFLATED POISSON REGRESSION | R DATA ANALYSIS EXAMPLES. UCLA: Statistical Consulting Group, from  http://stats.idre.ucla.edu/r/dae/zinb/ (accessed May 20, 2017)
+
+1. Taghi M. Khoshgoftaar , Kehan Gao & Robert M. Szabo, (2005) Comparing software fault predictions of pure and zero-inflated Poisson regression models, International Journal of Systems Science, 36:11, 705-715, http://dx.doi.org/10.1080/00207720500159995
+
+1. Taghi M. Khoshgoftaar , Kehan Gao & Robert M. Szabo, An Application of Zero-Inflated Poisson Regression for Software Fault Prediction, 2001
+
+1. Marco D’Ambros, Michele Lanza, Romain Robbes.Evaluating defect prediction approaches: a benchmark and an extensive comparison, Empir Software Eng (2012) 17:531–577 DOI 10.1007/s10664-011-9173-9
+
+1. A.F. Zuur et al., Chapter 11 Zero-Truncated and Zero-Inflated Models for Count Data in Mixed Effects Models and Extensions in Ecology with R, Springer, 2009
+

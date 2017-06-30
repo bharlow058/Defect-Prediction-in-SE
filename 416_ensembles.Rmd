@@ -1,0 +1,32 @@
+
+## Ensembles
+
+Ensembles or meta-learners combine multiple models to obtain better predictions. They are typically classified as Bagging, Boosting and Stacking (Stacked generalization). 
+
++ Bagging [@Breiman96] (also known as Bootstrap aggregating) is an ensemble technique in which a base learner is applied to multiple equal size datasets created from the original data using bootstraping. Predictions are based on voting of the individual predictions. An advantage of bagging is that it does not require any modification to the learning algorithm and takes advantage of the instability of the base classifier to create diversity among individual ensembles so that individual members of the ensemble perform well in different regions of the data. Bagging does _not_ perform well with classifiers if their output is robust to perturbation of the data such as nearest-neighbour (NN) classifiers.
+
++ Boosting techniques generate multiple models that complement each other inducing models that improve regions of the data where previous induced models preformed poorly. This is achieved by increasing the weights of instances wrongly classified, so new learners focus on those instances. Finally, classification is based on a weighted voted among all members of the ensemble. In particular, AdaBoost (Adaptive Boosting) is a popular boosting algorithm for classification [@freund1999short]. The set of training examples is assigned an equal weight at the beginning and the weight of instances is either increased or decreased depending on whether the learner classified that instance incorrectly or not. The following iterations focus on those instances with higher weights. AdaBoost can be applied to any base learner.
+
++ _Stacking_ (Stacked generalisation) which combines different types of models
+
+
+
+An very propular ensemble is Rotation Forests [40] combine randomly chosen subsets of attributes (random subspaces) and bagging approaches with principal components feature generation to construct an ensemble of decision trees. Principal Component Analysis is used as a feature selection technique combining subsets of attributes which are used with a bootstrapped subset of the training data by the base classifier.
+
+```{r randomForest, warning=FALSE, message=FALSE}
+# Load library
+library(randomForest)
+library(foreign) # To load arff file
+#library(party) # Build a decision tree
+#library(caret) 
+
+kc1 <- read.arff("./datasets/defectPred/D1/KC1.arff")
+
+kc1.rf <- randomForest(kc1$Defective ~ . ,data = kc1, na.action=na.omit)
+print(kc1.rf) 
+plot(kc1.rf)
+```
+
+
+A problem with ensembles is that their models are difficult to interpret (they behave as blackboxes) in comparison to decision trees or rules which provide an explanation of their
+decision making process.

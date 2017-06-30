@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Defect Prediction in Software Engineering</title>
+  <meta name="description" content="Defect Prediction in Software Engineering">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Defect Prediction in Software Engineering" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Defect Prediction in Software Engineering" />
+  <meta name="github-repo" content="danrodgar/DefectPredictionSoftEng" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Defect Prediction in Software Engineering" />
+  
+  <meta name="twitter:description" content="Defect Prediction in Software Engineering" />
+  
+
+<meta name="author" content="Daniel Rodriguez and Javier Dolado">
+
+
+<meta name="date" content="2017-06-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="metrics-in-software-enginering-prediction.html">
+<link rel="next" href="regression-tecniques-in-software-defect-prediction.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in Software Engineering with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Introduction to Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>II Data Sources and Metrics and Standards in Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="2" data-path="data-sources-in-software-engineering.html"><a href="data-sources-in-software-engineering.html"><i class="fa fa-check"></i><b>2</b> Data Sources in Software Engineering</a></li>
+<li class="chapter" data-level="3" data-path="repositories.html"><a href="repositories.html"><i class="fa fa-check"></i><b>3</b> Repositories</a></li>
+<li class="chapter" data-level="4" data-path="open-toolsdashboards-to-extract-data.html"><a href="open-toolsdashboards-to-extract-data.html"><i class="fa fa-check"></i><b>4</b> Open Tools/Dashboards to extract data</a><ul>
+<li class="chapter" data-level="4.1" data-path="open-toolsdashboards-to-extract-data.html"><a href="open-toolsdashboards-to-extract-data.html#issues"><i class="fa fa-check"></i><b>4.1</b> Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html"><i class="fa fa-check"></i><b>5</b> Metrics in Software Enginering Prediction</a><ul>
+<li class="chapter" data-level="5.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#complexity-metrics"><i class="fa fa-check"></i><b>5.1</b> Complexity Metrics</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#mccabes-complexity-measures"><i class="fa fa-check"></i><b>5.1.1</b> McCabe’s Complexity Measures</a></li>
+<li class="chapter" data-level="5.1.2" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#halstead-s-software-science"><i class="fa fa-check"></i><b>5.1.2</b> Halstead-s Software Science</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#object-oriented-metrics"><i class="fa fa-check"></i><b>5.2</b> Object-Oriented Metrics</a></li>
+<li class="chapter" data-level="5.3" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#churn-and-process-metrics"><i class="fa fa-check"></i><b>5.3</b> Churn and Process Metrics</a></li>
+<li class="chapter" data-level="5.4" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#defect-standards"><i class="fa fa-check"></i><b>5.4</b> Defect Standards</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
+<li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
+<li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
+<li class="chapter" data-level="6.3" data-path="supervised-classification.html"><a href="supervised-classification.html#distanced-based-methods"><i class="fa fa-check"></i><b>6.3</b> Distanced-based Methods</a></li>
+<li class="chapter" data-level="6.4" data-path="supervised-classification.html"><a href="supervised-classification.html#neural-networks"><i class="fa fa-check"></i><b>6.4</b> Neural Networks</a></li>
+<li class="chapter" data-level="6.5" data-path="supervised-classification.html"><a href="supervised-classification.html#support-vector-machine"><i class="fa fa-check"></i><b>6.5</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="6.6" data-path="supervised-classification.html"><a href="supervised-classification.html#probabilistic-methods"><i class="fa fa-check"></i><b>6.6</b> Probabilistic Methods</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#naive-bayes"><i class="fa fa-check"></i><b>6.6.1</b> Naive Bayes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="supervised-classification.html"><a href="supervised-classification.html#linear-discriminant-analysis-lda"><i class="fa fa-check"></i><b>6.7</b> Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="supervised-classification.html"><a href="supervised-classification.html#predicting-the-number-of-defects-numerical-class"><i class="fa fa-check"></i><b>6.7.1</b> Predicting the number of defects (numerical class)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="supervised-classification.html"><a href="supervised-classification.html#binary-logistic-regression-blr"><i class="fa fa-check"></i><b>6.8</b> Binary Logistic Regression (BLR)</a></li>
+<li class="chapter" data-level="6.9" data-path="supervised-classification.html"><a href="supervised-classification.html#the-caret-package"><i class="fa fa-check"></i><b>6.9</b> The caret package</a></li>
+<li class="chapter" data-level="6.10" data-path="supervised-classification.html"><a href="supervised-classification.html#ensembles"><i class="fa fa-check"></i><b>6.10</b> Ensembles</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html"><i class="fa fa-check"></i><b>7</b> Regression tecniques in Software defect prediction</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-poison"><i class="fa fa-check"></i><b>7.1</b> Zero Poison</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#load-packages"><i class="fa fa-check"></i><b>7.1.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#the-number-of-software-defects.-count-data"><i class="fa fa-check"></i><b>7.1.2</b> The number of Software Defects. Count Data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#normal-regression"><i class="fa fa-check"></i><b>7.1.3</b> Normal Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#poisson-regression"><i class="fa fa-check"></i><b>7.1.4</b> Poisson Regression</a></li>
+<li class="chapter" data-level="7.1.5" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#negative-binomial"><i class="fa fa-check"></i><b>7.1.5</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.1.6" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-poisson-regression-zip"><i class="fa fa-check"></i><b>7.1.6</b> Zero-Inflated Poisson Regression ZIP</a></li>
+<li class="chapter" data-level="7.1.7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-negative-binomial-zinb"><i class="fa fa-check"></i><b>7.1.7</b> Zero-Inflated Negative Binomial ZINB</a></li>
+<li class="chapter" data-level="7.1.8" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#read-data"><i class="fa fa-check"></i><b>7.1.8</b> Read Data</a></li>
+<li class="chapter" data-level="7.1.9" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#plot-histogram"><i class="fa fa-check"></i><b>7.1.9</b> Plot histogram</a></li>
+<li class="chapter" data-level="7.1.10" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#correlation-among-variables"><i class="fa fa-check"></i><b>7.1.10</b> Correlation among variables</a></li>
+<li class="chapter" data-level="7.1.11" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#classical-regression"><i class="fa fa-check"></i><b>7.1.11</b> Classical Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#poisson-regression-1"><i class="fa fa-check"></i><b>7.2</b> Poisson Regression</a></li>
+<li class="chapter" data-level="7.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-to-null-model-intercept"><i class="fa fa-check"></i><b>7.3</b> Compare to Null Model (intercept)</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#negative-binomial-1"><i class="fa fa-check"></i><b>7.4</b> Negative Binomial</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-poisson"><i class="fa fa-check"></i><b>7.4.1</b> Zero Inflated Poisson</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-negative-binomial"><i class="fa fa-check"></i><b>7.4.2</b> Zero Inflated Negative Binomial</a></li>
+<li class="chapter" data-level="7.4.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#comparing-models-with-vuong-test"><i class="fa fa-check"></i><b>7.4.3</b> Comparing models with Vuong test</a></li>
+<li class="chapter" data-level="7.4.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compute-confidence-intervals-for-intercept-and-variables.-zip-version"><i class="fa fa-check"></i><b>7.4.4</b> Compute Confidence Intervals for intercept and variables. ZIP version</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-models-fit.-aic-and-bic"><i class="fa fa-check"></i><b>7.5</b> Compare Models Fit. AIC and BIC</a></li>
+<li class="chapter" data-level="7.6" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-prediction-of-defects"><i class="fa fa-check"></i><b>7.6</b> Compare prediction of Defects</a></li>
+<li class="chapter" data-level="7.7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#plot-predictions"><i class="fa fa-check"></i><b>7.7</b> Plot predictions</a></li>
+<li class="chapter" data-level="7.8" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.8</b> Regression diagnostics</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#cooks-d-for-the-zip"><i class="fa fa-check"></i><b>7.8.1</b> Cook’s D for the ZIP</a></li>
+<li class="chapter" data-level="7.8.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zip-model-variable-selection-for-the-equinox-using-aic-and-bic"><i class="fa fa-check"></i><b>7.8.2</b> ZIP Model variable selection for the Equinox using AIC and BIC</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#references-and-r-code-used"><i class="fa fa-check"></i><b>7.9</b> References and R code used</a></li>
+</ul></li>
+<li class="part"><span><b>IV Evaluation</b></span></li>
+<li class="chapter" data-level="8" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html"><i class="fa fa-check"></i><b>8</b> Evaluation of Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#building-and-validating-a-model"><i class="fa fa-check"></i><b>8.1</b> Building and Validating a Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#holdout-approach"><i class="fa fa-check"></i><b>8.1.1</b> Holdout approach</a></li>
+<li class="chapter" data-level="8.1.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cross-validation-cv"><i class="fa fa-check"></i><b>8.1.2</b> Cross Validation (CV)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#evaluation-of-classification-models"><i class="fa fa-check"></i><b>8.2</b> Evaluation of Classification Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#prediction-in-probabilistic-classifiers"><i class="fa fa-check"></i><b>8.2.1</b> Prediction in probabilistic classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#other-metrics-used-in-software-engineering-with-classification"><i class="fa fa-check"></i><b>8.3</b> Other Metrics used in Software Engineering with Classification</a></li>
+<li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
+<li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
+</ul></li>
+<li class="part"><span><b>V Problems and Issues in Defect Prediction</b></span></li>
+<li class="chapter" data-level="9" data-path="data-mining-issues-in-defect-prediction.html"><a href="data-mining-issues-in-defect-prediction.html"><i class="fa fa-check"></i><b>9</b> Data Mining Issues in Defect Prediction</a></li>
+<li class="chapter" data-level="10" data-path="outliers-missing-values-inconsistencies-data-noise.html"><a href="outliers-missing-values-inconsistencies-data-noise.html"><i class="fa fa-check"></i><b>10</b> Outliers, missing values, inconsistencies data noise</a></li>
+<li class="chapter" data-level="11" data-path="redundant-and-irrelevant-attributes-and-instances.html"><a href="redundant-and-irrelevant-attributes-and-instances.html"><i class="fa fa-check"></i><b>11</b> Redundant and irrelevant attributes and instances</a></li>
+<li class="chapter" data-level="12" data-path="overlapping-or-class-separability.html"><a href="overlapping-or-class-separability.html"><i class="fa fa-check"></i><b>12</b> Overlapping or class separability</a></li>
+<li class="chapter" data-level="13" data-path="data-shifting.html"><a href="data-shifting.html"><i class="fa fa-check"></i><b>13</b> Data shifting</a></li>
+<li class="chapter" data-level="14" data-path="imbalance-datasets.html"><a href="imbalance-datasets.html"><i class="fa fa-check"></i><b>14</b> Imbalance datasets</a></li>
+<li class="chapter" data-level="15" data-path="evaluation-metrics-and-the-evaluation-of-models.html"><a href="evaluation-metrics-and-the-evaluation-of-models.html"><i class="fa fa-check"></i><b>15</b> Evaluation metrics and the evaluation of models</a></li>
+<li class="chapter" data-level="16" data-path="cross-project-defect-prediction.html"><a href="cross-project-defect-prediction.html"><i class="fa fa-check"></i><b>16</b> Cross project defect prediction</a></li>
+<li class="part"><span><b>VI Examples</b></span></li>
+<li class="chapter" data-level="17" data-path="feature-subsect-selection-in-defect-prediction.html"><a href="feature-subsect-selection-in-defect-prediction.html"><i class="fa fa-check"></i><b>17</b> Feature Subsect Selection in Defect Prediction</a></li>
+<li class="chapter" data-level="18" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>18</b> Imbalanced data</a></li>
+<li class="chapter" data-level="19" data-path="subgroup-discovery.html"><a href="subgroup-discovery.html"><i class="fa fa-check"></i><b>19</b> Subgroup Discovery</a></li>
+<li class="chapter" data-level="20" data-path="semi-supervised-learning.html"><a href="semi-supervised-learning.html"><i class="fa fa-check"></i><b>20</b> Semi-supervised learning</a></li>
+<li class="chapter" data-level="21" data-path="learning-from-crowds.html"><a href="learning-from-crowds.html"><i class="fa fa-check"></i><b>21</b> Learning from Crowds</a></li>
+<li class="chapter" data-level="22" data-path="multi-objective-rules-for-defect-prediction.html"><a href="multi-objective-rules-for-defect-prediction.html"><i class="fa fa-check"></i><b>22</b> Multi-objective Rules for defect prediction</a></li>
+<li class="chapter" data-level="23" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html"><i class="fa fa-check"></i><b>23</b> Settings Thresholds for Defect Prediction</a><ul>
+<li class="chapter" data-level="23.1" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-mean-and-standard-deviation"><i class="fa fa-check"></i><b>23.1</b> Use of Mean and Standard Deviation</a></li>
+<li class="chapter" data-level="23.2" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-weighted-benchmark-data"><i class="fa fa-check"></i><b>23.2</b> Use of Weighted Benchmark Data</a></li>
+<li class="chapter" data-level="23.3" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-quantiles"><i class="fa fa-check"></i><b>23.3</b> Use of Quantiles</a></li>
+<li class="chapter" data-level="23.4" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#some-further-literature"><i class="fa fa-check"></i><b>23.4</b> Some further literature</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Defect Prediction in Software Engineering</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="supervised-classification" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Supervised Classification</h1>
+<p>A classification problem can be defined as the induction, from a dataset <span class="math inline">\(\cal D\)</span>, of a classification function <span class="math inline">\(\psi\)</span> that, given the attribute vector of an instance/example, returns a class <span class="math inline">\({c}\)</span>. A regression problem, on the other hand, returns an numeric value.</p>
+<p>Dataset, <span class="math inline">\(\cal D\)</span>, is typically composed of <span class="math inline">\(n\)</span> attributes and a class attribute <span class="math inline">\(C\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(Att_1\)</span></th>
+<th>…</th>
+<th><span class="math inline">\(Att_n\)</span></th>
+<th><span class="math inline">\(Class\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(a_{11}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(a_{1n}\)</span></td>
+<td><span class="math inline">\(c_1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{21}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(a_{2n}\)</span></td>
+<td><span class="math inline">\(c_2\)</span></td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{m1}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(a_{mn}\)</span></td>
+<td><span class="math inline">\(c_m\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Columns are usually called <em>attributes</em> or <em>features</em>. Typically, there is a <em>class</em> attribute, which can be numeric or discrete. When the class is numeric, it is a regression problem. With discrete values, we can talk about binary classification or multiclass (multinomial classification) when we have more than three values.</p>
+<div class="figure">
+<img src="figures/supervClass1.png" alt="Supervised Classification" />
+<p class="caption">Supervised Classification</p>
+</div>
+<p>We have multiple types of models such as <em>classification trees</em>, <em>rules</em>, <em>neural networks</em>, and <em>probabilistic classifiers</em> that can be used to classify instances.</p>
+<p>Fernandez et al provide an extensive comparison of 176 classifiers using the UCI dataset <span class="citation">(Fernández-Delgado et al. <a href="#ref-FernandezCBA14">2014</a>)</span>.</p>
+<p>We will show the use of different classification techniques in the problem of defect prediction as running example. In this example,the different datasets are composed of classical metrics (<em>Halstead</em> or <em>McCabe</em> metrics) based on counts of operators/operands and like or object-oriented metrics (e.g. Chidamber and Kemerer) and the class attribute indicating whether the module or class was defective.</p>
+<p>Most works in defect predicition have compare and analysed different classifiers with different datasets. Some relevant works include:</p>
+<div id="classification-trees" class="section level2">
+<h2><span class="header-section-number">6.1</span> Classification Trees</h2>
+<p>There are several packages for inducing classification trees, for example with the <a href="https://cran.r-project.org/web/packages/party/index.html">party package</a> (recursive partitioning):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign) <span class="co"># To load arff file</span>
+<span class="kw">library</span>(party) <span class="co"># Build a decision tree</span>
+<span class="kw">library</span>(caret) 
+
+kc1 &lt;-<span class="st"> </span><span class="kw">read.arff</span>(<span class="st">&quot;./datasets/defectPred/D1/KC1.arff&quot;</span>)
+<span class="kw">str</span>(kc1)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    2096 obs. of  22 variables:
+##  $ LOC_BLANK            : num  0 0 0 0 2 0 0 0 0 2 ...
+##  $ BRANCH_COUNT         : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ LOC_CODE_AND_COMMENT : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ LOC_COMMENTS         : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ CYCLOMATIC_COMPLEXITY: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ DESIGN_COMPLEXITY    : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ ESSENTIAL_COMPLEXITY : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ LOC_EXECUTABLE       : num  3 1 1 1 8 3 1 1 1 9 ...
+##  $ HALSTEAD_CONTENT     : num  11.6 0 0 0 18 ...
+##  $ HALSTEAD_DIFFICULTY  : num  2.67 0 0 0 3.5 2.67 0 0 0 3.75 ...
+##  $ HALSTEAD_EFFORT      : num  82.3 0 0 0 220.9 ...
+##  $ HALSTEAD_ERROR_EST   : num  0.01 0 0 0 0.02 0.01 0 0 0 0.04 ...
+##  $ HALSTEAD_LENGTH      : num  11 1 1 1 19 11 1 1 1 29 ...
+##  $ HALSTEAD_LEVEL       : num  0.38 0 0 0 0.29 0.38 0 0 0 0.27 ...
+##  $ HALSTEAD_PROG_TIME   : num  4.57 0 0 0 12.27 ...
+##  $ HALSTEAD_VOLUME      : num  30.9 0 0 0 63.1 ...
+##  $ NUM_OPERANDS         : num  4 0 0 0 7 4 0 0 0 10 ...
+##  $ NUM_OPERATORS        : num  7 1 1 1 12 7 1 1 1 19 ...
+##  $ NUM_UNIQUE_OPERANDS  : num  3 0 0 0 5 3 0 0 0 8 ...
+##  $ NUM_UNIQUE_OPERATORS : num  4 1 1 1 5 4 1 1 1 6 ...
+##  $ LOC_TOTAL            : num  5 3 3 3 12 5 3 3 3 13 ...
+##  $ Defective            : Factor w/ 2 levels &quot;N&quot;,&quot;Y&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stratified partition (training and test sets)</span>
+<span class="kw">set.seed</span>(<span class="dv">1234</span>)
+inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>kc1$Defective,<span class="dt">p=</span>.<span class="dv">60</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
+kc1.train &lt;-<span class="st"> </span>kc1[inTrain,]
+kc1.test &lt;-<span class="st"> </span>kc1[-inTrain,]
+
+kc1.formula &lt;-<span class="st"> </span>kc1$Defective ~<span class="st"> </span>. <span class="co"># formula approach: defect as dependent variable and the rest as independent variables</span>
+kc1.ctree &lt;-<span class="st"> </span><span class="kw">ctree</span>(kc1.formula, <span class="dt">data =</span> kc1.train)
+
+<span class="co"># predict on test data</span>
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(kc1.ctree, <span class="dt">newdata =</span> kc1.test)
+<span class="co"># check prediction result</span>
+<span class="kw">table</span>(pred, kc1.test$Defective)</code></pre></div>
+<pre><code>##     
+## pred   N   Y
+##    N 708 130
+##    Y   0   0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kc1.ctree)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Using the C50 package, there are two ways, specifying train and testing</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C50)
+c50t &lt;-<span class="st"> </span><span class="kw">C5.0</span>(kc1.train[,-<span class="kw">ncol</span>(kc1.train)], kc1.train[,<span class="kw">ncol</span>(kc1.train)])
+<span class="kw">summary</span>(c50t)
+<span class="kw">plot</span>(c50t)
+<span class="co"># c50tPred &lt;- predict.C5.0(c50t, kc1.train)</span>
+<span class="co"># table(c50tPred, kc1.train$Defective)</span></code></pre></div>
+<p>or using the formula approach:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the formula notation</span>
+<span class="co"># c50t2 &lt;- C5.0(Defective ~ ., kc1.train)</span>
+<span class="co"># c50tPred2 &lt;- predict(c50t2, kc1.train)</span>
+<span class="co"># table(c50tPred2, kc1.train$Defective)</span></code></pre></div>
+<p>Using the <a href="https://cran.r-project.org/web/packages/rpart/index.html">‘rpart’ package</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the &#39;rpart&#39; package</span>
+<span class="kw">library</span>(rpart)
+kc1.rpart &lt;-<span class="st"> </span><span class="kw">rpart</span>(Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train)
+<span class="kw">plot</span>(kc1.rpart)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
+<span class="co">#asRules(kc1.rpart)</span>
+<span class="co">#fancyRpartPlot(kc1.rpart)</span></code></pre></div>
+</div>
+<div id="rules" class="section level2">
+<h2><span class="header-section-number">6.2</span> Rules</h2>
+<p>C5 Rules</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C50)
+c50r &lt;-<span class="st"> </span><span class="kw">C5.0</span>(kc1.train[,-<span class="kw">ncol</span>(kc1.train)], kc1.train[,<span class="kw">ncol</span>(kc1.train)], <span class="dt">rules =</span> <span class="ot">TRUE</span>)
+<span class="kw">summary</span>(c50r)</code></pre></div>
+<pre><code>## 
+## Call:
+## C5.0.default(x = kc1.train[, -ncol(kc1.train)], y =
+##  kc1.train[, ncol(kc1.train)], rules = TRUE)
+## 
+## 
+## C5.0 [Release 2.07 GPL Edition]      Fri Jun 30 09:26:09 2017
+## -------------------------------
+## 
+## Class specified by attribute `outcome&#39;
+## 
+## Read 1258 cases (22 attributes) from undefined.data
+## 
+## Rules:
+## 
+## Rule 1: (1173/142, lift 1.0)
+##  NUM_OPERANDS &lt;= 67
+##  -&gt;  class N  [0.878]
+## 
+## Rule 2: (7, lift 5.7)
+##  LOC_COMMENTS &lt;= 0
+##  DESIGN_COMPLEXITY &gt; 2
+##  DESIGN_COMPLEXITY &lt;= 4
+##  HALSTEAD_DIFFICULTY &gt; 10.6
+##  NUM_UNIQUE_OPERATORS &lt;= 12
+##  LOC_TOTAL &lt;= 37
+##  -&gt;  class Y  [0.889]
+## 
+## Rule 3: (7, lift 5.7)
+##  DESIGN_COMPLEXITY &gt; 4
+##  LOC_EXECUTABLE &lt;= 47
+##  NUM_OPERANDS &gt; 50
+##  NUM_UNIQUE_OPERATORS &lt;= 17
+##  -&gt;  class Y  [0.889]
+## 
+## Rule 4: (15/1, lift 5.7)
+##  LOC_CODE_AND_COMMENT &lt;= 0
+##  LOC_EXECUTABLE &lt;= 47
+##  HALSTEAD_LEVEL &gt; 0.04
+##  NUM_UNIQUE_OPERATORS &gt; 17
+##  -&gt;  class Y  [0.882]
+## 
+## Rule 5: (85/32, lift 4.0)
+##  NUM_OPERANDS &gt; 67
+##  -&gt;  class Y  [0.621]
+## 
+## Default class: N
+## 
+## 
+## Evaluation on training data (1258 cases):
+## 
+##          Rules     
+##    ----------------
+##      No      Errors
+## 
+##       5  149(11.8%)   &lt;&lt;
+## 
+## 
+##     (a)   (b)    &lt;-classified as
+##    ----  ----
+##    1030    33    (a): class N
+##     116    79    (b): class Y
+## 
+## 
+##  Attribute usage:
+## 
+##  100.00% NUM_OPERANDS
+##    2.31% NUM_UNIQUE_OPERATORS
+##    1.75% LOC_EXECUTABLE
+##    1.19% LOC_CODE_AND_COMMENT
+##    1.19% HALSTEAD_LEVEL
+##    1.11% DESIGN_COMPLEXITY
+##    0.56% LOC_COMMENTS
+##    0.56% HALSTEAD_DIFFICULTY
+##    0.56% LOC_TOTAL
+## 
+## 
+## Time: 0.0 secs</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c50rPred &lt;- predict(c50r, kc1.train)</span>
+<span class="co"># table(c50rPred, kc1.train$Defective)</span></code></pre></div>
+</div>
+<div id="distanced-based-methods" class="section level2">
+<h2><span class="header-section-number">6.3</span> Distanced-based Methods</h2>
+<p>In this case, there is no model as such. Given a new instance to classify, this approach finds the closest <span class="math inline">\(k\)</span>-neighbours to the given instance.</p>
+<p><img src="figures/279px-KnnClassification.svg.png" alt="k-NN Classification" /> (Source: Wikipedia - <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" class="uri">https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm</a>)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(class)
+
+ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">2</span>, <span class="kw">nrow</span>(iris), <span class="dt">replace=</span>T, <span class="dt">prob=</span><span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))
+kc1.train &lt;-<span class="st"> </span>kc1[ind==<span class="dv">1</span>, ]
+kc1.test &lt;-<span class="st"> </span>kc1[ind==<span class="dv">2</span>, ]
+
+m1 &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>kc1.train[,-<span class="dv">22</span>], <span class="dt">test=</span>kc1.test[,-<span class="dv">22</span>], <span class="dt">cl=</span>kc1.train[,<span class="dv">22</span>], <span class="dt">k=</span><span class="dv">3</span>)
+
+<span class="kw">table</span>(kc1.test[,<span class="dv">22</span>],m1)</code></pre></div>
+<pre><code>##    m1
+##       N   Y
+##   N 449  28
+##   Y  63  19</code></pre>
+</div>
+<div id="neural-networks" class="section level2">
+<h2><span class="header-section-number">6.4</span> Neural Networks</h2>
+<div class="figure">
+<img src="figures/neuralnet.png" alt="Neural Networks" />
+<p class="caption">Neural Networks</p>
+</div>
+<div class="figure">
+<img src="figures/neuralnet2.png" alt="Neural Networks" />
+<p class="caption">Neural Networks</p>
+</div>
+</div>
+<div id="support-vector-machine" class="section level2">
+<h2><span class="header-section-number">6.5</span> Support Vector Machine</h2>
+<p><img src="figures/Kernel_Machine.svg.png" alt="SVM" /> (Source: wikipedia <a href="https://en.wikipedia.org/wiki/Support_vector_machine" class="uri">https://en.wikipedia.org/wiki/Support_vector_machine</a>)</p>
+</div>
+<div id="probabilistic-methods" class="section level2">
+<h2><span class="header-section-number">6.6</span> Probabilistic Methods</h2>
+<div id="naive-bayes" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Naive Bayes</h3>
+<p>Probabilistic graphical model assigning a probability to each possible outcome <span class="math inline">\(p(C_k, x_1,\ldots,x_n)\)</span></p>
+<div class="figure">
+<img src="figures/classifier_NB.png" alt="Naive Bayes" />
+<p class="caption">Naive Bayes</p>
+</div>
+<p>Using the <code>klaR</code> package with <code>caret</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
+<span class="kw">library</span>(klaR)</code></pre></div>
+<pre><code>## Loading required package: MASS</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">NaiveBayes</span>(Defective ~<span class="st"> </span>., <span class="dt">data =</span> kc1.train)
+predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(model, kc1.test[,-<span class="dv">22</span>])
+<span class="kw">confusionMatrix</span>(predictions$class, kc1.test$Defective)</code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   N   Y
+##          N 428  57
+##          Y  49  25
+##                                           
+##                Accuracy : 0.8104          
+##                  95% CI : (0.7754, 0.8421)
+##     No Information Rate : 0.8533          
+##     P-Value [Acc &gt; NIR] : 0.9977          
+##                                           
+##                   Kappa : 0.2107          
+##  Mcnemar&#39;s Test P-Value : 0.4966          
+##                                           
+##             Sensitivity : 0.8973          
+##             Specificity : 0.3049          
+##          Pos Pred Value : 0.8825          
+##          Neg Pred Value : 0.3378          
+##              Prevalence : 0.8533          
+##          Detection Rate : 0.7657          
+##    Detection Prevalence : 0.8676          
+##       Balanced Accuracy : 0.6011          
+##                                           
+##        &#39;Positive&#39; Class : N               
+## </code></pre>
+<p>Using the <code>e1071</code> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span> (e1071)
+n1 &lt;-<span class="kw">naiveBayes</span>(kc1.train$Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train)
+
+<span class="co"># Show first 3 results using &#39;class&#39;</span>
+<span class="kw">head</span>(<span class="kw">predict</span>(n1,kc1.test, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;class&quot;</span>)),<span class="dv">3</span>) <span class="co"># class by default</span></code></pre></div>
+<pre><code>## [1] N N N
+## Levels: N Y</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show first 3 results using &#39;raw&#39;</span>
+<span class="kw">head</span>(<span class="kw">predict</span>(n1,kc1.test, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;raw&quot;</span>)),<span class="dv">3</span>)</code></pre></div>
+<pre><code>##      N            Y
+## [1,] 1 2.623259e-09
+## [2,] 1 2.623259e-09
+## [3,] 1 6.435114e-09</code></pre>
+<p>There are other variants such as TAN and KDB that do not assume the independece condition allowin us more complex structures.</p>
+<div class="figure">
+<img src="figures/classifier_TAN.png" alt="Naive Bayes" />
+<p class="caption">Naive Bayes</p>
+</div>
+<div class="figure">
+<img src="figures/classifier_KDB.png" alt="Naive Bayes" />
+<p class="caption">Naive Bayes</p>
+</div>
+<p>A comprehensice comparison of</p>
+</div>
+</div>
+<div id="linear-discriminant-analysis-lda" class="section level2">
+<h2><span class="header-section-number">6.7</span> Linear Discriminant Analysis (LDA)</h2>
+<p>One classical approach to classification is Linear Discriminant Analysis (LDA), a generalization of Fisher’s linear discriminant, as a method used to find a linear combination of features to separate two or more classes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ldaModel &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+ldaModel</code></pre></div>
+<pre><code>## Linear Discriminant Analysis 
+## 
+## 1537 samples
+##   21 predictors
+##    2 classes: &#39;N&#39;, &#39;Y&#39; 
+## 
+## Pre-processing: centered (21), scaled (21) 
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 1537, 1537, 1537, 1537, 1537, 1537, ... 
+## Resampling results:
+## 
+##   Accuracy   Kappa    
+##   0.8551284  0.3280731</code></pre>
+<p>We can observe that we are training our model using <code>Defective ~ .</code> as a formula were <code>Defective</code> is the class variable separed by <code>~</code> and the ´.´ means the rest of the variables. Also, we are using a filter for the training data to (preProc) to center and scale.</p>
+<p>Also, as stated in the documentation about the <code>train</code> method : &gt; <a href="http://topepo.github.io/caret/training.html" class="uri">http://topepo.github.io/caret/training.html</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,<span class="dt">repeats=</span><span class="dv">3</span>)
+ldaModel &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+
+ldaModel</code></pre></div>
+<pre><code>## Linear Discriminant Analysis 
+## 
+## 1537 samples
+##   21 predictors
+##    2 classes: &#39;N&#39;, &#39;Y&#39; 
+## 
+## Pre-processing: centered (21), scaled (21) 
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 1384, 1384, 1382, 1383, 1383, 1383, ... 
+## Resampling results:
+## 
+##   Accuracy   Kappa    
+##   0.8594727  0.3551627</code></pre>
+<p>Instead of accuracy we can activate other metrics using <code>summaryFunction=twoClassSummary</code> such as <code>ROC</code>, <code>sensitivity</code> and <code>specificity</code>. To do so, we also need to speficy <code>classProbs=TRUE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,<span class="dt">repeats=</span><span class="dv">3</span>, <span class="dt">classProbs=</span><span class="ot">TRUE</span>, <span class="dt">summaryFunction=</span>twoClassSummary)
+ldaModel3xcv10 &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+
+ldaModel3xcv10</code></pre></div>
+<pre><code>## Linear Discriminant Analysis 
+## 
+## 1537 samples
+##   21 predictors
+##    2 classes: &#39;N&#39;, &#39;Y&#39; 
+## 
+## Pre-processing: centered (21), scaled (21) 
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 1384, 1384, 1383, 1383, 1382, 1384, ... 
+## Resampling results:
+## 
+##   ROC        Sens       Spec     
+##   0.8062856  0.9585212  0.3349444</code></pre>
+<p>Most methods have parameters that need to be optimised and that is one of the</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsFit3x10cv &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;pls&quot;</span>, <span class="dt">trControl=</span><span class="kw">trainControl</span>(<span class="dt">classProbs=</span><span class="ot">TRUE</span>), <span class="dt">metric=</span><span class="st">&quot;ROC&quot;</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+
+plsFit3x10cv</code></pre></div>
+<pre><code>## Partial Least Squares 
+## 
+## 1537 samples
+##   21 predictors
+##    2 classes: &#39;N&#39;, &#39;Y&#39; 
+## 
+## Pre-processing: centered (21), scaled (21) 
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 1537, 1537, 1537, 1537, 1537, 1537, ... 
+## Resampling results across tuning parameters:
+## 
+##   ncomp  Accuracy   Kappa    
+##   1      0.8448983  0.1507835
+##   2      0.8572696  0.2578249
+##   3      0.8600026  0.2810041
+## 
+## Accuracy was used to select the optimal model using  the largest value.
+## The final value used for the model was ncomp = 3.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(plsFit3x10cv)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The parameter <code>tuneLength</code> allow us to specify the number values per parameter to consider.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsFit3x10cv &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;pls&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">metric=</span><span class="st">&quot;ROC&quot;</span>, <span class="dt">tuneLength=</span><span class="dv">5</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+
+plsFit3x10cv</code></pre></div>
+<pre><code>## Partial Least Squares 
+## 
+## 1537 samples
+##   21 predictors
+##    2 classes: &#39;N&#39;, &#39;Y&#39; 
+## 
+## Pre-processing: centered (21), scaled (21) 
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 1384, 1383, 1383, 1383, 1383, 1384, ... 
+## Resampling results across tuning parameters:
+## 
+##   ncomp  ROC        Sens       Spec     
+##   1      0.8035487  0.9812085  0.1250000
+##   2      0.8134917  0.9829934  0.2100556
+##   3      0.8086396  0.9835142  0.2266667
+##   4      0.8058229  0.9837806  0.2281111
+##   5      0.8070816  0.9827430  0.2198333
+## 
+## ROC was used to select the optimal model using  the largest value.
+## The final value used for the model was ncomp = 2.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(plsFit3x10cv)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Finally to predict new cases, <code>caret</code> will use the best classfier obtained for prediction.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsProbs &lt;-<span class="st"> </span><span class="kw">predict</span>(plsFit3x10cv, <span class="dt">newdata =</span> kc1.test, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsClasses &lt;-<span class="st"> </span><span class="kw">predict</span>(plsFit3x10cv, <span class="dt">newdata =</span> kc1.test, <span class="dt">type =</span> <span class="st">&quot;raw&quot;</span>)
+<span class="kw">confusionMatrix</span>(<span class="dt">data=</span>plsClasses,kc1.test$Defective)</code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   N   Y
+##          N 463  72
+##          Y  14  10
+##                                           
+##                Accuracy : 0.8462          
+##                  95% CI : (0.8135, 0.8751)
+##     No Information Rate : 0.8533          
+##     P-Value [Acc &gt; NIR] : 0.7081          
+##                                           
+##                   Kappa : 0.131           
+##  Mcnemar&#39;s Test P-Value : 7.923e-10       
+##                                           
+##             Sensitivity : 0.9706          
+##             Specificity : 0.1220          
+##          Pos Pred Value : 0.8654          
+##          Neg Pred Value : 0.4167          
+##              Prevalence : 0.8533          
+##          Detection Rate : 0.8283          
+##    Detection Prevalence : 0.9571          
+##       Balanced Accuracy : 0.5463          
+##                                           
+##        &#39;Positive&#39; Class : N               
+## </code></pre>
+<div id="predicting-the-number-of-defects-numerical-class" class="section level3">
+<h3><span class="header-section-number">6.7.1</span> Predicting the number of defects (numerical class)</h3>
+<p>From the Bug Predictiono Repository <a href="http://bug.inf.usi.ch/download.php" class="uri">http://bug.inf.usi.ch/download.php</a></p>
+<p>Some datasets contain CK and other 11 object oriented metrics for the last version of the system plus categorized (with severity and priority) post-release defects. Using such dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jdt &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./datasets/defectPred/BPD/single-version-ck-oo-EclipseJDTCore.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>)
+
+<span class="co"># We just use the number of bugs, so we removed others</span>
+jdt$classname &lt;-<span class="st"> </span><span class="ot">NULL</span>
+jdt$nonTrivialBugs &lt;-<span class="st"> </span><span class="ot">NULL</span>
+jdt$majorBugs &lt;-<span class="st"> </span><span class="ot">NULL</span>
+jdt$minorBugs &lt;-<span class="st"> </span><span class="ot">NULL</span>
+jdt$criticalBugs &lt;-<span class="st"> </span><span class="ot">NULL</span>
+jdt$highPriorityBugs &lt;-<span class="st"> </span><span class="ot">NULL</span>
+jdt$X &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+<span class="co"># Caret</span>
+<span class="kw">library</span>(caret)
+
+<span class="co"># Split data into training and test datasets</span>
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>jdt$bugs,<span class="dt">p=</span>.<span class="dv">8</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
+jdt.train &lt;-<span class="st"> </span>jdt[inTrain,]
+jdt.test &lt;-<span class="st"> </span>jdt[-inTrain,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,<span class="dt">repeats=</span><span class="dv">3</span>)
+glmModel &lt;-<span class="st"> </span><span class="kw">train</span> (bugs ~<span class="st"> </span>., <span class="dt">data=</span>jdt.train, <span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+glmModel</code></pre></div>
+<pre><code>## Generalized Linear Model 
+## 
+## 798 samples
+##  17 predictors
+## 
+## Pre-processing: centered (17), scaled (17) 
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 718, 718, 718, 718, 719, 718, ... 
+## Resampling results:
+## 
+##   RMSE       Rsquared 
+##   0.8411011  0.3855316</code></pre>
+<p>Others such as Elasticnet:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glmnetModel &lt;-<span class="st"> </span><span class="kw">train</span> (bugs ~<span class="st"> </span>., <span class="dt">data=</span>jdt.train, <span class="dt">method=</span><span class="st">&quot;glmnet&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))</code></pre></div>
+<pre><code>## Loading required package: glmnet</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loaded glmnet 2.0-10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glmnetModel</code></pre></div>
+<pre><code>## glmnet 
+## 
+## 798 samples
+##  17 predictors
+## 
+## Pre-processing: centered (17), scaled (17) 
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 718, 718, 718, 718, 718, 718, ... 
+## Resampling results across tuning parameters:
+## 
+##   alpha  lambda       RMSE       Rsquared 
+##   0.10   0.001202348  0.8127568  0.3411090
+##   0.10   0.012023480  0.8183111  0.3344713
+##   0.10   0.120234797  0.8077544  0.3396316
+##   0.55   0.001202348  0.8119513  0.3412175
+##   0.55   0.012023480  0.8227484  0.3268770
+##   0.55   0.120234797  0.8117291  0.3473930
+##   1.00   0.001202348  0.8116078  0.3407650
+##   1.00   0.012023480  0.8189354  0.3309040
+##   1.00   0.120234797  0.8167381  0.3445179
+## 
+## RMSE was used to select the optimal model using  the smallest value.
+## The final values used for the model were alpha = 0.1 and lambda
+##  = 0.1202348.</code></pre>
+</div>
+</div>
+<div id="binary-logistic-regression-blr" class="section level2">
+<h2><span class="header-section-number">6.8</span> Binary Logistic Regression (BLR)</h2>
+<p>Binary Logistic Regression (BLR) can models fault-proneness as follows</p>
+<p><span class="math display">\[fp(X) = \frac{e^{logit()}}{1 + e^{logit(X)}}\]</span></p>
+<p>where the simplest form for logit is:</p>
+<p><span class="math inline">\(logit(X) = c_{0} + c_{1}X\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jdt &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./datasets/defectPred/BPD/single-version-ck-oo-EclipseJDTCore.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>)
+
+<span class="co"># Caret</span>
+<span class="kw">library</span>(caret)
+
+<span class="co"># Convert the response variable into a boolean variable (0/1)</span>
+jdt$bugs[jdt$bugs&gt;=<span class="dv">1</span>]&lt;-<span class="dv">1</span>
+
+cbo &lt;-<span class="st"> </span>jdt$cbo
+bugs &lt;-<span class="st"> </span>jdt$bugs
+
+<span class="co"># Split data into training and test datasets</span>
+jdt2 =<span class="st"> </span><span class="kw">data.frame</span>(cbo, bugs)
+inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>jdt2$bugs,<span class="dt">p=</span>.<span class="dv">8</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
+jdtTrain &lt;-<span class="st"> </span>jdt2[inTrain,]
+jdtTest &lt;-<span class="st"> </span>jdt2[-inTrain,]</code></pre></div>
+<p>BLR models fault-proneness are as follows</p>
+<p><span class="math display">\[fp(X) = \frac{e^{logit()}}{1 + e^{logit(X)}}\]</span></p>
+<p>where the simplest form for logit is:</p>
+<p><span class="math inline">\(logit(X) = c_{0} + c_{1}X\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># logit regression</span>
+<span class="co"># glmLogit &lt;- train (bugs ~ ., data=jdt.train, method=&quot;glm&quot;, family=binomial(link = logit))       </span>
+
+glmLogit &lt;-<span class="st"> </span><span class="kw">glm</span> (bugs ~<span class="st"> </span>., <span class="dt">data=</span>jdtTrain, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link =</span> logit))
+<span class="kw">summary</span>(glmLogit)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = bugs ~ ., family = binomial(link = logit), data = jdtTrain)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.5734  -0.6125  -0.5378  -0.4968   2.0992  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -2.086378   0.134620 -15.498  &lt; 2e-16 ***
+## cbo          0.056462   0.007045   8.014 1.11e-15 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 831.84  on 797  degrees of freedom
+## Residual deviance: 725.93  on 796  degrees of freedom
+## AIC: 729.93
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>Predict a single point:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newData =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">cbo =</span> <span class="dv">3</span>)
+<span class="kw">predict</span>(glmLogit, newData, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</code></pre></div>
+<pre><code>##         1 
+## 0.1281974</code></pre>
+<p>Draw the results, modified from: <a href="http://www.shizukalab.com/toolkits/plotting-logistic-regression-in-r" class="uri">http://www.shizukalab.com/toolkits/plotting-logistic-regression-in-r</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results &lt;-<span class="st"> </span><span class="kw">predict</span>(glmLogit, jdtTest, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+
+<span class="kw">range</span>(jdtTrain$cbo)</code></pre></div>
+<pre><code>## [1]   0 156</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(results)</code></pre></div>
+<pre><code>## [1] 0.1104278 0.9840854</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(jdt2$cbo,jdt2$bugs)
+<span class="kw">curve</span>(<span class="kw">predict</span>(glmLogit, <span class="kw">data.frame</span>(<span class="dt">cbo=</span>x), <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>),<span class="dt">add=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># points(jdtTrain$cbo,fitted(glmLogit))</span></code></pre></div>
+<p>Another type of graph:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(popbio)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;popbio&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:caret&#39;:
+## 
+##     sensitivity</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">logi.hist.plot</span>(jdt2$cbo,jdt2$bugs,<span class="dt">boxp=</span><span class="ot">FALSE</span>,<span class="dt">type=</span><span class="st">&quot;hist&quot;</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="the-caret-package" class="section level2">
+<h2><span class="header-section-number">6.9</span> The caret package</h2>
+<p>There are hundreds of packages to perform classification task in R, but many of those can be used throught the ‘caret’ package which helps with many of the data mining process task as described next.</p>
+<p>The [caret (Classification And REgression Training) package][<a href="http://topepo.github.io/caret/" class="uri">http://topepo.github.io/caret/</a>](<a href="http://topepo.github.io/caret/" class="uri">http://topepo.github.io/caret/</a>) provides a unified interface for modeling and prediction with around 150 different models with tools for:</p>
+<pre><code>+ data splitting
++ pre-processing
++ feature selection
++ model tuning using resampling
++ variable importance estimation, etc.</code></pre>
+<p>Website: <a href="http://caret.r-forge.r-project.org" class="uri">http://caret.r-forge.r-project.org</a></p>
+<p>JSS Paper: <a href="www.jstatsoft.org/v28/i05/paper" class="uri">www.jstatsoft.org/v28/i05/paper</a></p>
+<p>Book: <a href="http://AppliedPredictiveModeling.com/">Applied Predictive Modeling</a></p>
+<p>For example, using one of the NASA datasets used extensively in defect prediction:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
+<span class="kw">library</span>(foreign)
+
+kc1 &lt;-<span class="st"> </span><span class="kw">read.arff</span>(<span class="st">&quot;./datasets/defectPred/D1/KC1.arff&quot;</span>)
+<span class="kw">str</span>(kc1)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    2096 obs. of  22 variables:
+##  $ LOC_BLANK            : num  0 0 0 0 2 0 0 0 0 2 ...
+##  $ BRANCH_COUNT         : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ LOC_CODE_AND_COMMENT : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ LOC_COMMENTS         : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ CYCLOMATIC_COMPLEXITY: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ DESIGN_COMPLEXITY    : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ ESSENTIAL_COMPLEXITY : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ LOC_EXECUTABLE       : num  3 1 1 1 8 3 1 1 1 9 ...
+##  $ HALSTEAD_CONTENT     : num  11.6 0 0 0 18 ...
+##  $ HALSTEAD_DIFFICULTY  : num  2.67 0 0 0 3.5 2.67 0 0 0 3.75 ...
+##  $ HALSTEAD_EFFORT      : num  82.3 0 0 0 220.9 ...
+##  $ HALSTEAD_ERROR_EST   : num  0.01 0 0 0 0.02 0.01 0 0 0 0.04 ...
+##  $ HALSTEAD_LENGTH      : num  11 1 1 1 19 11 1 1 1 29 ...
+##  $ HALSTEAD_LEVEL       : num  0.38 0 0 0 0.29 0.38 0 0 0 0.27 ...
+##  $ HALSTEAD_PROG_TIME   : num  4.57 0 0 0 12.27 ...
+##  $ HALSTEAD_VOLUME      : num  30.9 0 0 0 63.1 ...
+##  $ NUM_OPERANDS         : num  4 0 0 0 7 4 0 0 0 10 ...
+##  $ NUM_OPERATORS        : num  7 1 1 1 12 7 1 1 1 19 ...
+##  $ NUM_UNIQUE_OPERANDS  : num  3 0 0 0 5 3 0 0 0 8 ...
+##  $ NUM_UNIQUE_OPERATORS : num  4 1 1 1 5 4 1 1 1 6 ...
+##  $ LOC_TOTAL            : num  5 3 3 3 12 5 3 3 3 13 ...
+##  $ Defective            : Factor w/ 2 levels &quot;N&quot;,&quot;Y&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>Then we need to divide the data into training and testing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Split data into training and test datasets</span>
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>kc1$Defective,<span class="dt">p=</span>.<span class="dv">75</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
+kc1.train &lt;-<span class="st"> </span>kc1[inTrain,]
+kc1.test &lt;-<span class="st"> </span>kc1[-inTrain,]</code></pre></div>
+<p>Another approach to dividing the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Split data into training and test datasets</span>
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">2</span>, <span class="kw">nrow</span>(kc1), <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.25</span>))
+kc1.train &lt;-<span class="st"> </span>kc1[ind==<span class="dv">1</span>, ]
+kc1.test &lt;-<span class="st"> </span>kc1[ind==<span class="dv">2</span>, ]</code></pre></div>
+
+</div>
+<div id="ensembles" class="section level2">
+<h2><span class="header-section-number">6.10</span> Ensembles</h2>
+<p>Ensembles or meta-learners combine multiple models to obtain better predictions. They are typically classified as Bagging, Boosting and Stacking (Stacked generalization).</p>
+<ul>
+<li><p>Bagging <span class="citation">(Breiman <a href="#ref-Breiman96">1996</a>)</span> (also known as Bootstrap aggregating) is an ensemble technique in which a base learner is applied to multiple equal size datasets created from the original data using bootstraping. Predictions are based on voting of the individual predictions. An advantage of bagging is that it does not require any modification to the learning algorithm and takes advantage of the instability of the base classifier to create diversity among individual ensembles so that individual members of the ensemble perform well in different regions of the data. Bagging does <em>not</em> perform well with classifiers if their output is robust to perturbation of the data such as nearest-neighbour (NN) classifiers.</p></li>
+<li><p>Boosting techniques generate multiple models that complement each other inducing models that improve regions of the data where previous induced models preformed poorly. This is achieved by increasing the weights of instances wrongly classified, so new learners focus on those instances. Finally, classification is based on a weighted voted among all members of the ensemble. In particular, AdaBoost (Adaptive Boosting) is a popular boosting algorithm for classification <span class="citation">(Freund, Schapire, and Abe <a href="#ref-freund1999short">1999</a>)</span>. The set of training examples is assigned an equal weight at the beginning and the weight of instances is either increased or decreased depending on whether the learner classified that instance incorrectly or not. The following iterations focus on those instances with higher weights. AdaBoost can be applied to any base learner.</p></li>
+<li><p><em>Stacking</em> (Stacked generalisation) which combines different types of models</p></li>
+</ul>
+<p>An very propular ensemble is Rotation Forests [40] combine randomly chosen subsets of attributes (random subspaces) and bagging approaches with principal components feature generation to construct an ensemble of decision trees. Principal Component Analysis is used as a feature selection technique combining subsets of attributes which are used with a bootstrapped subset of the training data by the base classifier.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load library</span>
+<span class="kw">library</span>(randomForest)
+<span class="kw">library</span>(foreign) <span class="co"># To load arff file</span>
+<span class="co">#library(party) # Build a decision tree</span>
+<span class="co">#library(caret) </span>
+
+kc1 &lt;-<span class="st"> </span><span class="kw">read.arff</span>(<span class="st">&quot;./datasets/defectPred/D1/KC1.arff&quot;</span>)
+
+kc1.rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(kc1$Defective ~<span class="st"> </span>. ,<span class="dt">data =</span> kc1, <span class="dt">na.action=</span>na.omit)
+<span class="kw">print</span>(kc1.rf) </code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = kc1$Defective ~ ., data = kc1, na.action = na.omit) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 4
+## 
+##         OOB estimate of  error rate: 13.74%
+## Confusion matrix:
+##      N   Y class.error
+## N 1704  67  0.03783173
+## Y  221 104  0.68000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kc1.rf)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/randomForest-1.png" width="672" /></p>
+<p>A problem with ensembles is that their models are difficult to interpret (they behave as blackboxes) in comparison to decision trees or rules which provide an explanation of their decision making process.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-FernandezCBA14">
+<p>Fernández-Delgado, Manuel, Eva Cernadas, Senén Barro, and Dinani Amorim. 2014. “Do We Need Hundreds of Classifiers to Solve Real World Classification Problems?” <em>Journal of Machine Learning Research</em> 15: 3133–81. <a href="http://jmlr.org/papers/v15/delgado14a.html" class="uri">http://jmlr.org/papers/v15/delgado14a.html</a>.</p>
+</div>
+<div id="ref-Breiman96">
+<p>Breiman, Leo. 1996. “Bagging Predictors.” <em>Machine Learning</em> 24 (2). Kluwer Academic Publishers: 123–40. doi:<a href="https://doi.org/10.1007/BF00058655">10.1007/BF00058655</a>.</p>
+</div>
+<div id="ref-freund1999short">
+<p>Freund, Yoav, Robert Schapire, and Naoki Abe. 1999. “A Short Introduction to Boosting.” <em>Journal-Japanese Society For Artificial Intelligence</em> 14 (771-780). JAPANESE SOC ARTIFICIAL INTELL: 1612.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="metrics-in-software-enginering-prediction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-tecniques-in-software-defect-prediction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/danrodgar/dasedown/edit/master/415_basicModelBuildingSupervised.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

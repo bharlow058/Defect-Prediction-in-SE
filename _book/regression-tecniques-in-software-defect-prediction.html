@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Defect Prediction in Software Engineering</title>
+  <meta name="description" content="Defect Prediction in Software Engineering">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Defect Prediction in Software Engineering" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Defect Prediction in Software Engineering" />
+  <meta name="github-repo" content="danrodgar/DefectPredictionSoftEng" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Defect Prediction in Software Engineering" />
+  
+  <meta name="twitter:description" content="Defect Prediction in Software Engineering" />
+  
+
+<meta name="author" content="Daniel Rodriguez and Javier Dolado">
+
+
+<meta name="date" content="2017-06-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="supervised-classification.html">
+<link rel="next" href="evaluation-of-models.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in Software Engineering with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Introduction to Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>II Data Sources and Metrics and Standards in Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="2" data-path="data-sources-in-software-engineering.html"><a href="data-sources-in-software-engineering.html"><i class="fa fa-check"></i><b>2</b> Data Sources in Software Engineering</a></li>
+<li class="chapter" data-level="3" data-path="repositories.html"><a href="repositories.html"><i class="fa fa-check"></i><b>3</b> Repositories</a></li>
+<li class="chapter" data-level="4" data-path="open-toolsdashboards-to-extract-data.html"><a href="open-toolsdashboards-to-extract-data.html"><i class="fa fa-check"></i><b>4</b> Open Tools/Dashboards to extract data</a><ul>
+<li class="chapter" data-level="4.1" data-path="open-toolsdashboards-to-extract-data.html"><a href="open-toolsdashboards-to-extract-data.html#issues"><i class="fa fa-check"></i><b>4.1</b> Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html"><i class="fa fa-check"></i><b>5</b> Metrics in Software Enginering Prediction</a><ul>
+<li class="chapter" data-level="5.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#complexity-metrics"><i class="fa fa-check"></i><b>5.1</b> Complexity Metrics</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#mccabes-complexity-measures"><i class="fa fa-check"></i><b>5.1.1</b> McCabe’s Complexity Measures</a></li>
+<li class="chapter" data-level="5.1.2" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#halstead-s-software-science"><i class="fa fa-check"></i><b>5.1.2</b> Halstead-s Software Science</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#object-oriented-metrics"><i class="fa fa-check"></i><b>5.2</b> Object-Oriented Metrics</a></li>
+<li class="chapter" data-level="5.3" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#churn-and-process-metrics"><i class="fa fa-check"></i><b>5.3</b> Churn and Process Metrics</a></li>
+<li class="chapter" data-level="5.4" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#defect-standards"><i class="fa fa-check"></i><b>5.4</b> Defect Standards</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
+<li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
+<li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
+<li class="chapter" data-level="6.3" data-path="supervised-classification.html"><a href="supervised-classification.html#distanced-based-methods"><i class="fa fa-check"></i><b>6.3</b> Distanced-based Methods</a></li>
+<li class="chapter" data-level="6.4" data-path="supervised-classification.html"><a href="supervised-classification.html#neural-networks"><i class="fa fa-check"></i><b>6.4</b> Neural Networks</a></li>
+<li class="chapter" data-level="6.5" data-path="supervised-classification.html"><a href="supervised-classification.html#support-vector-machine"><i class="fa fa-check"></i><b>6.5</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="6.6" data-path="supervised-classification.html"><a href="supervised-classification.html#probabilistic-methods"><i class="fa fa-check"></i><b>6.6</b> Probabilistic Methods</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#naive-bayes"><i class="fa fa-check"></i><b>6.6.1</b> Naive Bayes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="supervised-classification.html"><a href="supervised-classification.html#linear-discriminant-analysis-lda"><i class="fa fa-check"></i><b>6.7</b> Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="supervised-classification.html"><a href="supervised-classification.html#predicting-the-number-of-defects-numerical-class"><i class="fa fa-check"></i><b>6.7.1</b> Predicting the number of defects (numerical class)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="supervised-classification.html"><a href="supervised-classification.html#binary-logistic-regression-blr"><i class="fa fa-check"></i><b>6.8</b> Binary Logistic Regression (BLR)</a></li>
+<li class="chapter" data-level="6.9" data-path="supervised-classification.html"><a href="supervised-classification.html#the-caret-package"><i class="fa fa-check"></i><b>6.9</b> The caret package</a></li>
+<li class="chapter" data-level="6.10" data-path="supervised-classification.html"><a href="supervised-classification.html#ensembles"><i class="fa fa-check"></i><b>6.10</b> Ensembles</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html"><i class="fa fa-check"></i><b>7</b> Regression tecniques in Software defect prediction</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-poison"><i class="fa fa-check"></i><b>7.1</b> Zero Poison</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#load-packages"><i class="fa fa-check"></i><b>7.1.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#the-number-of-software-defects.-count-data"><i class="fa fa-check"></i><b>7.1.2</b> The number of Software Defects. Count Data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#normal-regression"><i class="fa fa-check"></i><b>7.1.3</b> Normal Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#poisson-regression"><i class="fa fa-check"></i><b>7.1.4</b> Poisson Regression</a></li>
+<li class="chapter" data-level="7.1.5" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#negative-binomial"><i class="fa fa-check"></i><b>7.1.5</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.1.6" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-poisson-regression-zip"><i class="fa fa-check"></i><b>7.1.6</b> Zero-Inflated Poisson Regression ZIP</a></li>
+<li class="chapter" data-level="7.1.7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-negative-binomial-zinb"><i class="fa fa-check"></i><b>7.1.7</b> Zero-Inflated Negative Binomial ZINB</a></li>
+<li class="chapter" data-level="7.1.8" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#read-data"><i class="fa fa-check"></i><b>7.1.8</b> Read Data</a></li>
+<li class="chapter" data-level="7.1.9" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#plot-histogram"><i class="fa fa-check"></i><b>7.1.9</b> Plot histogram</a></li>
+<li class="chapter" data-level="7.1.10" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#correlation-among-variables"><i class="fa fa-check"></i><b>7.1.10</b> Correlation among variables</a></li>
+<li class="chapter" data-level="7.1.11" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#classical-regression"><i class="fa fa-check"></i><b>7.1.11</b> Classical Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#poisson-regression-1"><i class="fa fa-check"></i><b>7.2</b> Poisson Regression</a></li>
+<li class="chapter" data-level="7.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-to-null-model-intercept"><i class="fa fa-check"></i><b>7.3</b> Compare to Null Model (intercept)</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#negative-binomial-1"><i class="fa fa-check"></i><b>7.4</b> Negative Binomial</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-poisson"><i class="fa fa-check"></i><b>7.4.1</b> Zero Inflated Poisson</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-negative-binomial"><i class="fa fa-check"></i><b>7.4.2</b> Zero Inflated Negative Binomial</a></li>
+<li class="chapter" data-level="7.4.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#comparing-models-with-vuong-test"><i class="fa fa-check"></i><b>7.4.3</b> Comparing models with Vuong test</a></li>
+<li class="chapter" data-level="7.4.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compute-confidence-intervals-for-intercept-and-variables.-zip-version"><i class="fa fa-check"></i><b>7.4.4</b> Compute Confidence Intervals for intercept and variables. ZIP version</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-models-fit.-aic-and-bic"><i class="fa fa-check"></i><b>7.5</b> Compare Models Fit. AIC and BIC</a></li>
+<li class="chapter" data-level="7.6" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-prediction-of-defects"><i class="fa fa-check"></i><b>7.6</b> Compare prediction of Defects</a></li>
+<li class="chapter" data-level="7.7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#plot-predictions"><i class="fa fa-check"></i><b>7.7</b> Plot predictions</a></li>
+<li class="chapter" data-level="7.8" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.8</b> Regression diagnostics</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#cooks-d-for-the-zip"><i class="fa fa-check"></i><b>7.8.1</b> Cook’s D for the ZIP</a></li>
+<li class="chapter" data-level="7.8.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zip-model-variable-selection-for-the-equinox-using-aic-and-bic"><i class="fa fa-check"></i><b>7.8.2</b> ZIP Model variable selection for the Equinox using AIC and BIC</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#references-and-r-code-used"><i class="fa fa-check"></i><b>7.9</b> References and R code used</a></li>
+</ul></li>
+<li class="part"><span><b>IV Evaluation</b></span></li>
+<li class="chapter" data-level="8" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html"><i class="fa fa-check"></i><b>8</b> Evaluation of Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#building-and-validating-a-model"><i class="fa fa-check"></i><b>8.1</b> Building and Validating a Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#holdout-approach"><i class="fa fa-check"></i><b>8.1.1</b> Holdout approach</a></li>
+<li class="chapter" data-level="8.1.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cross-validation-cv"><i class="fa fa-check"></i><b>8.1.2</b> Cross Validation (CV)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#evaluation-of-classification-models"><i class="fa fa-check"></i><b>8.2</b> Evaluation of Classification Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#prediction-in-probabilistic-classifiers"><i class="fa fa-check"></i><b>8.2.1</b> Prediction in probabilistic classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#other-metrics-used-in-software-engineering-with-classification"><i class="fa fa-check"></i><b>8.3</b> Other Metrics used in Software Engineering with Classification</a></li>
+<li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
+<li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
+</ul></li>
+<li class="part"><span><b>V Problems and Issues in Defect Prediction</b></span></li>
+<li class="chapter" data-level="9" data-path="data-mining-issues-in-defect-prediction.html"><a href="data-mining-issues-in-defect-prediction.html"><i class="fa fa-check"></i><b>9</b> Data Mining Issues in Defect Prediction</a></li>
+<li class="chapter" data-level="10" data-path="outliers-missing-values-inconsistencies-data-noise.html"><a href="outliers-missing-values-inconsistencies-data-noise.html"><i class="fa fa-check"></i><b>10</b> Outliers, missing values, inconsistencies data noise</a></li>
+<li class="chapter" data-level="11" data-path="redundant-and-irrelevant-attributes-and-instances.html"><a href="redundant-and-irrelevant-attributes-and-instances.html"><i class="fa fa-check"></i><b>11</b> Redundant and irrelevant attributes and instances</a></li>
+<li class="chapter" data-level="12" data-path="overlapping-or-class-separability.html"><a href="overlapping-or-class-separability.html"><i class="fa fa-check"></i><b>12</b> Overlapping or class separability</a></li>
+<li class="chapter" data-level="13" data-path="data-shifting.html"><a href="data-shifting.html"><i class="fa fa-check"></i><b>13</b> Data shifting</a></li>
+<li class="chapter" data-level="14" data-path="imbalance-datasets.html"><a href="imbalance-datasets.html"><i class="fa fa-check"></i><b>14</b> Imbalance datasets</a></li>
+<li class="chapter" data-level="15" data-path="evaluation-metrics-and-the-evaluation-of-models.html"><a href="evaluation-metrics-and-the-evaluation-of-models.html"><i class="fa fa-check"></i><b>15</b> Evaluation metrics and the evaluation of models</a></li>
+<li class="chapter" data-level="16" data-path="cross-project-defect-prediction.html"><a href="cross-project-defect-prediction.html"><i class="fa fa-check"></i><b>16</b> Cross project defect prediction</a></li>
+<li class="part"><span><b>VI Examples</b></span></li>
+<li class="chapter" data-level="17" data-path="feature-subsect-selection-in-defect-prediction.html"><a href="feature-subsect-selection-in-defect-prediction.html"><i class="fa fa-check"></i><b>17</b> Feature Subsect Selection in Defect Prediction</a></li>
+<li class="chapter" data-level="18" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>18</b> Imbalanced data</a></li>
+<li class="chapter" data-level="19" data-path="subgroup-discovery.html"><a href="subgroup-discovery.html"><i class="fa fa-check"></i><b>19</b> Subgroup Discovery</a></li>
+<li class="chapter" data-level="20" data-path="semi-supervised-learning.html"><a href="semi-supervised-learning.html"><i class="fa fa-check"></i><b>20</b> Semi-supervised learning</a></li>
+<li class="chapter" data-level="21" data-path="learning-from-crowds.html"><a href="learning-from-crowds.html"><i class="fa fa-check"></i><b>21</b> Learning from Crowds</a></li>
+<li class="chapter" data-level="22" data-path="multi-objective-rules-for-defect-prediction.html"><a href="multi-objective-rules-for-defect-prediction.html"><i class="fa fa-check"></i><b>22</b> Multi-objective Rules for defect prediction</a></li>
+<li class="chapter" data-level="23" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html"><i class="fa fa-check"></i><b>23</b> Settings Thresholds for Defect Prediction</a><ul>
+<li class="chapter" data-level="23.1" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-mean-and-standard-deviation"><i class="fa fa-check"></i><b>23.1</b> Use of Mean and Standard Deviation</a></li>
+<li class="chapter" data-level="23.2" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-weighted-benchmark-data"><i class="fa fa-check"></i><b>23.2</b> Use of Weighted Benchmark Data</a></li>
+<li class="chapter" data-level="23.3" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-quantiles"><i class="fa fa-check"></i><b>23.3</b> Use of Quantiles</a></li>
+<li class="chapter" data-level="23.4" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#some-further-literature"><i class="fa fa-check"></i><b>23.4</b> Some further literature</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Defect Prediction in Software Engineering</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression-tecniques-in-software-defect-prediction" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Regression tecniques in Software defect prediction</h1>
+<p>The purpose of this Section is to show the basic ways of estimating software defects by means of several regression models. We apply the techniques on the Equinox dataset. In what follows we use the same data points for training and testing, for the sake of clarity.</p>
+<div id="acknowledgments" class="section level5">
+<h5><span class="header-section-number">7.0.0.0.1</span> Acknowledgments</h5>
+<p>TIN2016-76956-C3-1-R TIN2015-71841-REDT</p>
+</div>
+<div id="zero-poison" class="section level2">
+<h2><span class="header-section-number">7.1</span> Zero Poison</h2>
+<p>When estimating the number of defects but we have many zeroes, we can use different types of zero Poison regression.</p>
+<div id="load-packages" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Load packages</h3>
+<pre><code>## Loading required package: pscl</code></pre>
+<pre><code>## Classes and Methods for R developed in the</code></pre>
+<pre><code>## Political Science Computational Laboratory</code></pre>
+<pre><code>## Department of Political Science</code></pre>
+<pre><code>## Stanford University</code></pre>
+<pre><code>## Simon Jackman</code></pre>
+<pre><code>## hurdle and zeroinfl functions by Achim Zeileis</code></pre>
+<pre><code>## Loading required package: boot</code></pre>
+<pre><code>## 
+## Attaching package: &#39;boot&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:lattice&#39;:
+## 
+##     melanoma</code></pre>
+<pre><code>## 
+## Attaching package: &#39;corrplot&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:pls&#39;:
+## 
+##     corrplot</code></pre>
+</div>
+<div id="the-number-of-software-defects.-count-data" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> The number of Software Defects. Count Data</h3>
+<p>The number of software Defects found in a software product can be assimilated to the “count data” concept that is used in many disciplines, because the outcome,number of defects, of whatever software process is a count. There are several ways of analyzing count data. The classical Poisson, negative binomial regression model can be augmented with zero-inflated poisson and zero-inflated negative binomial models to cope with the excess of zeros in the count data. Zero-inflated means that the response variable -software defects- contains more zeros than expected, based on the Poisson or negative binomial distribution. A simple histogram may show the trend. Count variables appear in different areas and have common properties: their range is a non-negative integer(0, 1, ….); and their values are skewed towards zero, because few values are high.</p>
+</div>
+<div id="normal-regression" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Normal Regression</h3>
+<p>The normal regression provided by the general linear model (glm in R) is not appropriate for count data because of the non-normality of the residuals. Usually the variance of the residuals increase with their value.</p>
+</div>
+<div id="poisson-regression" class="section level3">
+<h3><span class="header-section-number">7.1.4</span> Poisson Regression</h3>
+<p>This model can be used if there is no excess in the number of zeros. The poisson model is the most common and it is a probability distribution that is controlled by a single parameter, <span class="math inline">\(\lambda\)</span></p>
+<p><img src="DefectPredictionSoftEng_files/figure-html/poisdist-1.png" width="672" /></p>
+</div>
+<div id="negative-binomial" class="section level3">
+<h3><span class="header-section-number">7.1.5</span> Negative binomial</h3>
+<p>The negative binomial takes into account overdispersion in the count outcome. When there are more high values or zeros than expected the mean and the variance of the sample data are different.</p>
+</div>
+<div id="zero-inflated-poisson-regression-zip" class="section level3">
+<h3><span class="header-section-number">7.1.6</span> Zero-Inflated Poisson Regression ZIP</h3>
+<p>This is a model that can deal with the excess of zeros by explicitly modeling the part that generates the false zeros. There may be different sources for the excess of zeros. The count process is modeled by a Poisson model.</p>
+</div>
+<div id="zero-inflated-negative-binomial-zinb" class="section level3">
+<h3><span class="header-section-number">7.1.7</span> Zero-Inflated Negative Binomial ZINB</h3>
+<p>In this case, besides taking into account the excess of zeros the count process is modeled by a Negative Binomial model that allows for overdispersion from the non-zero counts.</p>
+</div>
+<div id="read-data" class="section level3">
+<h3><span class="header-section-number">7.1.8</span> Read Data</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># setwd(&quot;~/DocProjects/zeropoisson&quot;)</span>
+auxfile &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./datasets/defectPred/BPD/single-version-ck-oo.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
+myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;bugs&#39;</span>, <span class="st">&#39;wmc&#39;</span>, <span class="st">&#39;rfc&#39;</span>, <span class="st">&#39;cbo&#39;</span>, <span class="st">&#39;lcom&#39;</span>, <span class="st">&#39;numberOfLinesOfCode&#39;</span>)
+
+<span class="co"># wmd   weighted methods per class Despite its long name, WMC is simply the method count for a class.</span>
+<span class="co"># rfc   response for a class set of methods that can potentially be executed in response to a message received by an object of that class</span>
+<span class="co"># cbo   coupling between objects number of classes to which a class is coupled</span>
+<span class="co"># lcom  lack of cohesion</span>
+
+equinox &lt;-<span class="st"> </span>auxfile[myvars] 
+<span class="kw">names</span>(equinox)[<span class="kw">names</span>(equinox) ==<span class="st"> &#39;bugs&#39;</span>] &lt;-<span class="st"> &#39;count&#39;</span></code></pre></div>
+</div>
+<div id="plot-histogram" class="section level3">
+<h3><span class="header-section-number">7.1.9</span> Plot histogram</h3>
+<ul>
+<li>The first histogram shows the high number of modules with no defects.</li>
+<li>The second histogram shows the distribution of the non-zero values.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(equinox$count,<span class="dt">breaks=</span><span class="st">&quot;FD&quot;</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/histogram-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## histogram with x axis in log10 scale
+<span class="kw">ggplot</span>(equinox, <span class="kw">aes</span>(count)) +
+<span class="st">  </span><span class="kw">geom_histogram</span>() +
+<span class="st">  </span><span class="kw">scale_x_log10</span>()</code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 195 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="DefectPredictionSoftEng_files/figure-html/histogram-2.png" width="672" /></p>
+</div>
+<div id="correlation-among-variables" class="section level3">
+<h3><span class="header-section-number">7.1.10</span> Correlation among variables</h3>
+<p>The correlation plots and the tables show a strong correlation among some variables.</p>
+<pre><code>##                         count       wmc       rfc       cbo      lcom
+## count               1.0000000 0.6151012 0.5786541 0.7065440 0.6327475
+## wmc                 0.6151012 1.0000000 0.9656904 0.7647778 0.8208613
+## rfc                 0.5786541 0.9656904 1.0000000 0.7804111 0.8283116
+## cbo                 0.7065440 0.7647778 0.7804111 1.0000000 0.7208646
+## lcom                0.6327475 0.8208613 0.8283116 0.7208646 1.0000000
+## numberOfLinesOfCode 0.6404813 0.9725794 0.9683453 0.7932072 0.8263641
+##                     numberOfLinesOfCode
+## count                         0.6404813
+## wmc                           0.9725794
+## rfc                           0.9683453
+## cbo                           0.7932072
+## lcom                          0.8263641
+## numberOfLinesOfCode           1.0000000</code></pre>
+<p><img src="DefectPredictionSoftEng_files/figure-html/correlation-1.png" width="672" /><img src="DefectPredictionSoftEng_files/figure-html/correlation-2.png" width="672" /><img src="DefectPredictionSoftEng_files/figure-html/correlation-3.png" width="672" /></p>
+<pre><code>##      count              wmc              rfc               cbo        
+##  Min.   : 0.0000   Min.   :  0.00   Min.   :   0.00   Min.   : 0.000  
+##  1st Qu.: 0.0000   1st Qu.:  2.00   1st Qu.:   5.00   1st Qu.: 2.000  
+##  Median : 0.0000   Median : 12.00   Median :  18.00   Median : 6.000  
+##  Mean   : 0.7531   Mean   : 32.64   Mean   :  58.34   Mean   : 9.673  
+##  3rd Qu.: 1.0000   3rd Qu.: 36.00   3rd Qu.:  61.50   3rd Qu.:13.250  
+##  Max.   :13.0000   Max.   :534.00   Max.   :1009.00   Max.   :77.000  
+##       lcom        numberOfLinesOfCode
+##  Min.   :   0.0   Min.   :   0.00    
+##  1st Qu.:   1.0   1st Qu.:   7.75    
+##  Median :  15.0   Median :  45.00    
+##  Mean   : 124.2   Mean   : 122.02    
+##  3rd Qu.:  66.0   3rd Qu.: 130.00    
+##  Max.   :2775.0   Max.   :1805.00</code></pre>
+</div>
+<div id="classical-regression" class="section level3">
+<h3><span class="header-section-number">7.1.11</span> Classical Regression</h3>
+<ul>
+<li><p>First we fit a classical regression model using the variables <code>cbo</code>, <code>lcom</code>, <code>wmc</code>, <code>rfc</code>. Please note that the last section that compares models with different combinations of variables.</p></li>
+<li><p>The parameters of interest are the intercept and the slope coefficients</p></li>
+</ul>
+<pre><code>## 
+## Call:
+## glm(formula = count ~ cbo + lcom + wmc + rfc, family = gaussian, 
+##     data = equinox)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.5540  -0.4498  -0.0248   0.3129   6.2884  
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.0816095  0.0749013  -1.090    0.277    
+## cbo          0.0750713  0.0078977   9.505  &lt; 2e-16 ***
+## lcom         0.0012674  0.0002786   4.549 7.68e-06 ***
+## wmc          0.0154600  0.0034539   4.476 1.06e-05 ***
+## rfc         -0.0094888  0.0018973  -5.001 9.42e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 0.9355133)
+## 
+##     Null deviance: 686.25  on 323  degrees of freedom
+## Residual deviance: 298.43  on 319  degrees of freedom
+## AIC: 904.84
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+</div>
+<div id="poisson-regression-1" class="section level2">
+<h2><span class="header-section-number">7.2</span> Poisson Regression</h2>
+<ul>
+<li>Regression coefficients must be interpreted with the log transformation.</li>
+</ul>
+<pre><code>## 
+## Call:
+## glm(formula = count ~ cbo + lcom + wmc + rfc, family = poisson, 
+##     data = equinox)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.0940  -0.8936  -0.7937   0.5785   2.7547  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.1797490  0.1011751 -11.660  &lt; 2e-16 ***
+## cbo          0.0518008  0.0056195   9.218  &lt; 2e-16 ***
+## lcom         0.0001574  0.0001744   0.903    0.367    
+## wmc          0.0114261  0.0018959   6.027 1.67e-09 ***
+## rfc         -0.0060023  0.0011625  -5.163 2.43e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for poisson family taken to be 1)
+## 
+##     Null deviance: 588.43  on 323  degrees of freedom
+## Residual deviance: 316.67  on 319  degrees of freedom
+## AIC: 632.15
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+<div id="compare-to-null-model-intercept" class="section level2">
+<h2><span class="header-section-number">7.3</span> Compare to Null Model (intercept)</h2>
+<ul>
+<li>The chi-squared test on the difference of log likelihoods is used to compare the poisson model to the intercept. It yields a high significant p-value; thus, the model is statistically significant.</li>
+<li>All of the predictors in both the count and inflation portions of the model are statistically significant. This model fits the data significantly better than the null model, i.e., the intercept-only model.</li>
+<li>Since we have five predictor variables in the full model, the degrees of freedom for chi-squared test is 5.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># five variables in the full model --&gt; df = 5</span>
+nullmodel &lt;-<span class="st"> </span><span class="kw">update</span>(defects_pois, . ~<span class="st"> </span><span class="dv">1</span>)
+
+<span class="kw">pchisq</span>(<span class="dv">2</span> *<span class="st"> </span>(<span class="kw">logLik</span>(defects_pois) -<span class="st"> </span><span class="kw">logLik</span>(nullmodel)), <span class="dt">df =</span> <span class="dv">5</span>, <span class="dt">lower.tail=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## &#39;log Lik.&#39; 1.171544e-56 (df=5)</code></pre>
+</div>
+<div id="negative-binomial-1" class="section level2">
+<h2><span class="header-section-number">7.4</span> Negative Binomial</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># negative binomial regression</span>
+defects_negbinom &lt;-<span class="st"> </span><span class="kw">glm.nb</span>(count ~<span class="st"> </span>cbo +<span class="st"> </span>lcom +<span class="st"> </span>wmc +<span class="st"> </span>rfc,
+<span class="dt">data =</span> equinox)</code></pre></div>
+<pre><code>## Warning in glm.nb(count ~ cbo + lcom + wmc + rfc, data = equinox):
+## alternation limit reached</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># summary of results</span>
+<span class="kw">summary</span>(defects_negbinom)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm.nb(formula = count ~ cbo + lcom + wmc + rfc, data = equinox, 
+##     init.theta = 6.219388589, link = log)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4508  -0.8535  -0.7505   0.5116   2.5068  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.2780140  0.1140133 -11.209  &lt; 2e-16 ***
+## cbo          0.0583198  0.0071047   8.209 2.24e-16 ***
+## lcom         0.0001011  0.0002150   0.470    0.638    
+## wmc          0.0118841  0.0024655   4.820 1.43e-06 ***
+## rfc         -0.0061535  0.0014455  -4.257 2.07e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Negative Binomial(6.2194) family taken to be 1)
+## 
+##     Null deviance: 507.19  on 323  degrees of freedom
+## Residual deviance: 278.33  on 319  degrees of freedom
+## AIC: 628.55
+## 
+## Number of Fisher Scoring iterations: 1
+## 
+## 
+##               Theta:  6.22 
+##           Std. Err.:  3.14 
+## Warning while fitting theta: alternation limit reached 
+## 
+##  2 x log-likelihood:  -616.551</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># overdispersion</span>
+<span class="kw">summary</span>(defects_negbinom)$theta</code></pre></div>
+<pre><code>## [1] 6.219389</code></pre>
+<div id="zero-inflated-poisson" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Zero Inflated Poisson</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># zero-inflated Poisson regression</span>
+<span class="co"># the | seperates the count model from the logistic model</span>
+defects_zip &lt;-<span class="st"> </span><span class="kw">zeroinfl</span>(count ~<span class="st"> </span>cbo +<span class="st"> </span>lcom +<span class="st"> </span>wmc +<span class="st"> </span>rfc |<span class="st"> </span>numberOfLinesOfCode, <span class="dt">data =</span>
+equinox, <span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>, <span class="dt">dist =</span> <span class="st">&quot;poisson&quot;</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>)
+<span class="co"># summary of results</span>
+<span class="kw">summary</span>(defects_zip)</code></pre></div>
+<pre><code>## 
+## Call:
+## zeroinfl(formula = count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, 
+##     data = equinox, dist = &quot;poisson&quot;, link = &quot;logit&quot;, trace = FALSE)
+## 
+## Pearson residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3683 -0.6880 -0.2784  0.4692  3.8402 
+## 
+## Count model coefficients (poisson with log link):
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.8641763  0.1240264  -6.968 3.22e-12 ***
+## cbo          0.0433784  0.0055946   7.754 8.93e-15 ***
+## lcom         0.0002456  0.0001123   2.188   0.0287 *  
+## wmc          0.0097291  0.0019739   4.929 8.27e-07 ***
+## rfc         -0.0051994  0.0010795  -4.816 1.46e-06 ***
+## 
+## Zero-inflation model coefficients (binomial with logit link):
+##                     Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)           1.6749     0.6869   2.438   0.0147 *
+## numberOfLinesOfCode  -0.1657     0.1118  -1.483   0.1380  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
+## 
+## Number of iterations in BFGS optimization: 28 
+## Log-likelihood: -296.5 on 7 Df</code></pre>
+</div>
+<div id="zero-inflated-negative-binomial" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Zero Inflated Negative Binomial</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># zero-inflated negative binomial regression</span>
+<span class="co"># the | seperates the count model from the logistic model</span>
+defects_zinb &lt;-<span class="st"> </span><span class="kw">zeroinfl</span>(count ~<span class="st"> </span>cbo +<span class="st"> </span>lcom +<span class="st"> </span>wmc +<span class="st"> </span>rfc |<span class="st"> </span>numberOfLinesOfCode, <span class="dt">data =</span>
+equinox, <span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>, <span class="dt">dist =</span> <span class="st">&quot;negbin&quot;</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>, <span class="dt">EM =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## Warning in sqrt(diag(vc)[np]): NaNs produced</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># summary of results</span>
+<span class="kw">summary</span>(defects_zinb)</code></pre></div>
+<pre><code>## Warning in sqrt(diag(object$vcov)): NaNs produced</code></pre>
+<pre><code>## 
+## Call:
+## zeroinfl(formula = count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, 
+##     data = equinox, dist = &quot;negbin&quot;, link = &quot;logit&quot;, trace = FALSE, 
+##     EM = FALSE)
+## 
+## Pearson residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.8809 -0.6721 -0.2745  0.4487  3.7922 
+## 
+## Count model coefficients (negbin with log link):
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.9088131  0.1282227  -7.088 1.36e-12 ***
+## cbo          0.0450277  0.0059527   7.564 3.90e-14 ***
+## lcom         0.0002357         NA      NA       NA    
+## wmc          0.0100136  0.0022232   4.504 6.67e-06 ***
+## rfc         -0.0052856  0.0013063  -4.046 5.20e-05 ***
+## Log(theta)   2.6591002         NA      NA       NA    
+## 
+## Zero-inflation model coefficients (binomial with logit link):
+##                     Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)           1.7143     0.7618   2.250   0.0244 *
+## numberOfLinesOfCode  -0.1894     0.1332  -1.422   0.1551  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
+## 
+## Theta = 14.2834 
+## Number of iterations in BFGS optimization: 42 
+## Log-likelihood: -295.8 on 8 Df</code></pre>
+</div>
+<div id="comparing-models-with-vuong-test" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> Comparing models with Vuong test</h3>
+<ul>
+<li><p>The Vuong test compares the zero-inflated model with an ordinary Poisson regression model.</p></li>
+<li><p>The result of the test statistic is significant, indicating that the zero-inflated model is superior to the standard Poisson model.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vuong</span>(defects_zip, defects_pois)</code></pre></div>
+<pre><code>## Vuong Non-Nested Hypothesis Test-Statistic: 
+## (test-statistic is asymptotically distributed N(0,1) under the
+##  null that the models are indistinguishible)
+## -------------------------------------------------------------
+##               Vuong z-statistic             H_A    p-value
+## Raw                    3.143494 model1 &gt; model2 0.00083472
+## AIC-corrected          2.713456 model1 &gt; model2 0.00332927
+## BIC-corrected          1.900524 model1 &gt; model2 0.02868219</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vuong</span>(defects_zip, defects_negbinom)</code></pre></div>
+<pre><code>## Vuong Non-Nested Hypothesis Test-Statistic: 
+## (test-statistic is asymptotically distributed N(0,1) under the
+##  null that the models are indistinguishible)
+## -------------------------------------------------------------
+##               Vuong z-statistic             H_A   p-value
+## Raw                    2.468425 model1 &gt; model2 0.0067854
+## AIC-corrected          2.050671 model1 &gt; model2 0.0201495
+## BIC-corrected          1.260961 model1 &gt; model2 0.1036615</code></pre>
+</div>
+<div id="compute-confidence-intervals-for-intercept-and-variables.-zip-version" class="section level3">
+<h3><span class="header-section-number">7.4.4</span> Compute Confidence Intervals for intercept and variables. ZIP version</h3>
+<ul>
+<li>We may confidence intervals for all the parameters and the exponentiated parameters using bootstrapping.</li>
+<li>We may compare these results with the regular confidence intervals based on the standard errors.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">round</span>(<span class="kw">coef</span>(defects_zip, <span class="st">&quot;count&quot;</span>), <span class="dv">4</span>))</code></pre></div>
+<pre><code>## structure(c(-0.8642, 0.0434, 2e-04, 0.0097, -0.0052), .Names = c(&quot;(Intercept)&quot;, 
+## &quot;cbo&quot;, &quot;lcom&quot;, &quot;wmc&quot;, &quot;rfc&quot;))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">round</span>(<span class="kw">coef</span>(defects_zip, <span class="st">&quot;zero&quot;</span>), <span class="dv">4</span>))</code></pre></div>
+<pre><code>## structure(c(1.6749, -0.1657), .Names = c(&quot;(Intercept)&quot;, &quot;numberOfLinesOfCode&quot;
+## ))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># change list of parameters 1, 3, 5 etc</span>
+
+### FINAL MODEL SELECTED ZERO INFLATED POISSON
+f &lt;-<span class="st"> </span>function(data, i) {
+  <span class="kw">require</span>(pscl)
+  m &lt;-<span class="st"> </span><span class="kw">zeroinfl</span>(count ~<span class="st"> </span>cbo +<span class="st"> </span>lcom +<span class="st"> </span>wmc +<span class="st"> </span>rfc |<span class="st"> </span>numberOfLinesOfCode,
+    <span class="dt">data =</span> data[i, ], <span class="dt">dist =</span> <span class="st">&quot;poisson&quot;</span>,
+    <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">count =</span> <span class="kw">c</span>(-<span class="fl">0.8642</span>, <span class="fl">0.0434</span>, <span class="fl">2e-04</span>, <span class="fl">0.0097</span>, -<span class="fl">0.0052</span>), <span class="dt">zero =</span> <span class="kw">c</span>(<span class="fl">1.6749</span>, -<span class="fl">0.1657</span>)))
+  <span class="kw">as.vector</span>(<span class="kw">t</span>(<span class="kw">do.call</span>(rbind, <span class="kw">coef</span>(<span class="kw">summary</span>(m)))[, <span class="dv">1</span>:<span class="dv">2</span>]))
+}
+
+<span class="kw">set.seed</span>(<span class="dv">10</span>)
+(res &lt;-<span class="st"> </span><span class="kw">boot</span>(equinox, f, <span class="dt">R =</span> <span class="dv">1200</span>, <span class="dt">parallel =</span> <span class="st">&quot;snow&quot;</span>, <span class="dt">ncpus =</span> <span class="dv">4</span>))</code></pre></div>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = equinox, statistic = f, R = 1200, parallel = &quot;snow&quot;, 
+##     ncpus = 4)
+## 
+## 
+## Bootstrap Statistics :
+##           original        bias     std. error
+## t1*  -0.8641784331 -2.303129e-02 1.316306e-01
+## t2*   0.1240279149  1.058718e-02 3.483776e-02
+## t3*   0.0433783993  5.727146e-04 7.267716e-03
+## t4*   0.0055945857  1.619122e-03 2.941890e-03
+## t5*   0.0002456421 -1.532408e-05 2.769170e-04
+## t6*   0.0001122920  6.739868e-05 1.380387e-04
+## t7*   0.0097291337  4.351203e-04 2.957174e-03
+## t8*   0.0019739001  5.735321e-04 1.386695e-03
+## t9*  -0.0051993761 -1.748856e-04 1.561095e-03
+## t10*  0.0010795051  3.518046e-04 5.972876e-04
+## t11*  1.6750251424  6.975388e-01 5.261811e+00
+## t12*  0.6869578264  9.237353e-01 2.058666e+01
+## t13* -0.1657573309 -9.363010e-02 5.468317e-01
+## t14*  0.1117748277  6.984320e-02 2.075220e+00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## basic parameter estimates with percentile and bias adjusted CIs
+parms &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">13</span>), function(i) {
+  out &lt;-<span class="st"> </span><span class="kw">boot.ci</span>(res, <span class="dt">index =</span> <span class="kw">c</span>(i, i +<span class="st"> </span><span class="dv">1</span>), <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;perc&quot;</span>, <span class="st">&quot;bca&quot;</span>))
+  <span class="kw">with</span>(out, <span class="kw">c</span>(<span class="dt">Est =</span> t0, <span class="dt">pLL =</span> percent[<span class="dv">4</span>], <span class="dt">pUL =</span> percent[<span class="dv">5</span>],
+    <span class="dt">bcaLL =</span> bca[<span class="dv">4</span>], <span class="dt">bcaUL =</span> bca[<span class="dv">5</span>]))
+}))
+
+<span class="kw">print</span>(<span class="st">&quot;Confidence intervals for ZIP, BOOTED&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Confidence intervals for ZIP, BOOTED&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## add row names
+<span class="kw">names</span>(<span class="kw">coef</span>(defects_zip))</code></pre></div>
+<pre><code>## [1] &quot;count_(Intercept)&quot;        &quot;count_cbo&quot;               
+## [3] &quot;count_lcom&quot;               &quot;count_wmc&quot;               
+## [5] &quot;count_rfc&quot;                &quot;zero_(Intercept)&quot;        
+## [7] &quot;zero_numberOfLinesOfCode&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(parms)</code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">row.names</span>(parms) &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">coef</span>(defects_zip))
+## print results
+parms</code></pre></div>
+<pre><code>##                                    Est          pLL           pUL
+## count_(Intercept)        -0.8641784331 -1.155311776 -0.6405252226
+## count_cbo                 0.0433783993  0.030104286  0.0594077144
+## count_lcom                0.0002456421 -0.000363527  0.0007406458
+## count_wmc                 0.0097291337  0.005179901  0.0187585385
+## count_rfc                -0.0051993761 -0.009329260 -0.0028504289
+## zero_(Intercept)          1.6750251424  0.712867236  5.0130270331
+## zero_numberOfLinesOfCode -0.1657573309 -0.594861582 -0.0682408298
+##                                 bcaLL        bcaUL
+## count_(Intercept)        -1.105649479 -0.565552024
+## count_cbo                 0.026293665  0.058188886
+## count_lcom               -0.000324895  0.000781505
+## count_wmc                 0.005126268  0.018329267
+## count_rfc                -0.009010388 -0.002658944
+## zero_(Intercept)          0.377152297  3.928757887
+## zero_numberOfLinesOfCode -0.547781601 -0.058402161</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;Confidence intervals for ZIP , NORMAL BASED APPROXIMATION&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Confidence intervals for ZIP , NORMAL BASED APPROXIMATION&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## compare with normal based approximation
+<span class="kw">confint</span>(defects_zip)</code></pre></div>
+<pre><code>##                                  2.5 %        97.5 %
+## count_(Intercept)        -1.107264e+00 -0.6210889471
+## count_cbo                 3.241321e-02  0.0543435607
+## count_lcom                2.555382e-05  0.0004657304
+## count_wmc                 5.860348e-03  0.0135978860
+## count_rfc                -7.315162e-03 -0.0030835806
+## zero_(Intercept)          3.286748e-01  3.0212006348
+## zero_numberOfLinesOfCode -3.847732e-01  0.0532838577</code></pre>
+<ul>
+<li>Estimate the incident risk ratio (IRR) for the Poisson model and odds ratio (OR) for the logistic (zero inflation) model.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## exponentiated parameter estimates with percentile and bias adjusted CIs
+expparms &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">13</span>), function(i) {
+  out &lt;-<span class="st"> </span><span class="kw">boot.ci</span>(res, <span class="dt">index =</span> <span class="kw">c</span>(i, i +<span class="st"> </span><span class="dv">1</span>), <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;perc&quot;</span>, <span class="st">&quot;bca&quot;</span>), <span class="dt">h =</span> exp)
+  <span class="kw">with</span>(out, <span class="kw">c</span>(<span class="dt">Est =</span> t0, <span class="dt">pLL =</span> percent[<span class="dv">4</span>], <span class="dt">pUL =</span> percent[<span class="dv">5</span>],
+    <span class="dt">bcaLL =</span> bca[<span class="dv">4</span>], <span class="dt">bcaUL =</span> bca[<span class="dv">5</span>]))
+}))
+
+## add row names
+<span class="kw">row.names</span>(expparms) &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">coef</span>(defects_zip))
+## print results
+expparms</code></pre></div>
+<pre><code>##                                Est       pLL         pUL     bcaLL
+## count_(Intercept)        0.4213976 0.3149594   0.5270156 0.3309958
+## count_cbo                1.0443330 1.0305620   1.0612078 1.0266424
+## count_lcom               1.0002457 0.9996365   1.0007409 0.9996752
+## count_wmc                1.0097766 1.0051933   1.0189356 1.0051394
+## count_rfc                0.9948141 0.9907141   0.9971536 0.9910301
+## zero_(Intercept)         5.3389294 2.0398324 150.3599485 1.4581264
+## zero_numberOfLinesOfCode 0.8472518 0.5516390   0.9340355 0.5782311
+##                               bcaUL
+## count_(Intercept)         0.5680465
+## count_cbo                 1.0599152
+## count_lcom                1.0007818
+## count_wmc                 1.0184983
+## count_rfc                 0.9973446
+## zero_(Intercept)         50.8437847
+## zero_numberOfLinesOfCode  0.9432705</code></pre>
+</div>
+</div>
+<div id="compare-models-fit.-aic-and-bic" class="section level2">
+<h2><span class="header-section-number">7.5</span> Compare Models Fit. AIC and BIC</h2>
+<ul>
+<li>There are several measures that can be used to assess model fit. Here we use information-based measures.</li>
+<li>The traditional Akaike’s information criterion (AIC) selects the model that has the smallest AIC value.</li>
+<li>The Schwartz’s Bayesian Information criterion (BIC) also minimizes model complexity.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Model Fit</span>
+<span class="co"># AIC values</span>
+<span class="kw">AIC</span>(defects_normal)</code></pre></div>
+<pre><code>## [1] 904.8354</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_pois)</code></pre></div>
+<pre><code>## [1] 632.1547</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_negbinom)</code></pre></div>
+<pre><code>## [1] 628.5507</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_zip)</code></pre></div>
+<pre><code>## [1] 606.9155</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_zinb)</code></pre></div>
+<pre><code>## [1] 607.5639</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># AIC weights</span>
+compare_models &lt;-<span class="st"> </span><span class="kw">list</span>( )
+compare_models[[<span class="dv">1</span>]] &lt;-<span class="st"> </span>defects_normal
+compare_models[[<span class="dv">2</span>]] &lt;-<span class="st"> </span>defects_pois
+compare_models[[<span class="dv">3</span>]] &lt;-<span class="st"> </span>defects_negbinom
+compare_models[[<span class="dv">4</span>]] &lt;-<span class="st"> </span>defects_zip
+compare_models[[<span class="dv">5</span>]] &lt;-<span class="st"> </span>defects_zinb
+compare_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Typical&quot;</span>, <span class="st">&quot;Poisson&quot;</span>, <span class="st">&quot;NB&quot;</span>, <span class="st">&quot;ZIP&quot;</span>, <span class="st">&quot;ZINB&quot;</span>)
+<span class="kw">names</span>(compare_models) &lt;-<span class="st"> </span>compare_names
+compare_results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">models =</span> compare_names)
+compare_results$aic.val &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(compare_models, AIC))
+compare_results$aic.delta &lt;-<span class="st"> </span>compare_results$aic.val-<span class="kw">min</span>(compare_results$aic.val)
+compare_results$aic.likelihood &lt;-<span class="st"> </span><span class="kw">exp</span>(-<span class="fl">0.5</span>*<span class="st"> </span>compare_results$aic.delta)
+compare_results$aic.weight &lt;-
+compare_results$aic.likelihood/<span class="kw">sum</span>(compare_results$aic.likelihood)
+
+<span class="co"># BIC values</span>
+<span class="kw">print</span>(<span class="st">&quot;Schwarz&#39;s Bayesian criterion&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Schwarz&#39;s Bayesian criterion&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_normal, <span class="dt">k =</span> <span class="kw">log</span>(<span class="kw">nrow</span>(equinox)))</code></pre></div>
+<pre><code>## [1] 927.5198</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_pois, <span class="dt">k =</span> <span class="kw">log</span>(<span class="kw">nrow</span>(equinox)))</code></pre></div>
+<pre><code>## [1] 651.0584</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_negbinom, <span class="dt">k =</span> <span class="kw">log</span>(<span class="kw">nrow</span>(equinox)))</code></pre></div>
+<pre><code>## [1] 651.2352</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_zip, <span class="dt">k =</span> <span class="kw">log</span>(<span class="kw">nrow</span>(equinox)))</code></pre></div>
+<pre><code>## [1] 633.3807</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(defects_zinb, <span class="dt">k =</span> <span class="kw">log</span>(<span class="kw">nrow</span>(equinox)))</code></pre></div>
+<pre><code>## [1] 637.8098</code></pre>
+</div>
+<div id="compare-prediction-of-defects" class="section level2">
+<h2><span class="header-section-number">7.6</span> Compare prediction of Defects</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># observed zero counts</span>
+<span class="co"># actual</span>
+<span class="kw">sum</span>(equinox$count &lt;<span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 195</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># typical</span>
+<span class="kw">sum</span>(<span class="kw">dnorm</span>(<span class="dv">0</span>, <span class="kw">fitted</span>(defects_normal)))</code></pre></div>
+<pre><code>## [1] 97.76806</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># poisson</span>
+<span class="kw">sum</span>(<span class="kw">dpois</span>(<span class="dv">0</span>, <span class="kw">fitted</span>(defects_pois)))</code></pre></div>
+<pre><code>## [1] 188.7356</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nb</span>
+<span class="kw">sum</span>(<span class="kw">dnbinom</span>(<span class="dv">0</span>, <span class="dt">mu =</span> <span class="kw">fitted</span>(defects_negbinom), <span class="dt">size =</span> defects_negbinom$theta))</code></pre></div>
+<pre><code>## [1] 195.8165</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># zip</span>
+<span class="kw">sum</span>(<span class="kw">predict</span>(defects_zip, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)[,<span class="dv">1</span>])</code></pre></div>
+<pre><code>## [1] 195.7924</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># zinb</span>
+<span class="kw">sum</span>(<span class="kw">predict</span>(defects_zinb, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)[,<span class="dv">1</span>])</code></pre></div>
+<pre><code>## [1] 198.2048</code></pre>
+</div>
+<div id="plot-predictions" class="section level2">
+<h2><span class="header-section-number">7.7</span> Plot predictions</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># histogram plot with fitted probabilities</span>
+<span class="co"># predicted values for typical regression </span>
+normal.y.hat &lt;-<span class="st"> </span><span class="kw">predict</span>(defects_normal, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+normal.y &lt;-<span class="st"> </span>defects_normal$y
+normal.yUnique &lt;-<span class="st"> </span><span class="dv">0</span>:<span class="kw">max</span>(normal.y)
+normal.nUnique &lt;-<span class="st"> </span><span class="kw">length</span>(normal.yUnique)
+phat.normal &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="kw">length</span>(normal.y.hat), normal.nUnique)
+<span class="kw">dimnames</span>(phat.normal) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="ot">NULL</span>, normal.yUnique)
+for (i in <span class="dv">1</span>:normal.nUnique) {
+phat.normal[, i] &lt;-<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">mean =</span> normal.y.hat, <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">residuals</span>(defects_normal)),<span class="dt">x =</span>
+normal.yUnique[i])
+}
+<span class="co"># mean of the normal predicted probabilities for each value of the outcome</span>
+phat.normal.mn &lt;-<span class="st"> </span><span class="kw">apply</span>(phat.normal, <span class="dv">2</span>, mean)
+<span class="co"># probability of observing each value and mean predicted probabilities for</span>
+<span class="co">#count regression models</span>
+phat.pois &lt;-<span class="st"> </span><span class="kw">predprob</span>(defects_pois)
+phat.pois.mn &lt;-<span class="st"> </span><span class="kw">apply</span>(phat.pois, <span class="dv">2</span>, mean)
+phat.nb &lt;-<span class="st"> </span><span class="kw">predprob</span>(defects_negbinom)
+phat.nb.mn &lt;-<span class="st"> </span><span class="kw">apply</span>(phat.nb, <span class="dv">2</span>, mean)
+phat.zip &lt;-<span class="st"> </span><span class="kw">predprob</span>(defects_zip)
+phat.zip.mn &lt;-<span class="st"> </span><span class="kw">apply</span>(phat.zip, <span class="dv">2</span>, mean)
+phat.zinb &lt;-<span class="st"> </span><span class="kw">predprob</span>(defects_zinb)
+phat.zinb.mn &lt;-<span class="st"> </span><span class="kw">apply</span>(phat.zinb, <span class="dv">2</span>, mean)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># histogram 1</span>
+<span class="kw">hist</span>(equinox$count, <span class="dt">prob =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray90&quot;</span>, <span class="dt">breaks=</span><span class="kw">seq</span>(<span class="kw">min</span>(equinox$count)-<span class="fl">0.5</span>,
+<span class="kw">max</span>(equinox$count)+.<span class="dv">5</span>, <span class="dv">1</span>), <span class="dt">xlab =</span> <span class="st">&quot;Skips Category&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">8</span>))
+rangex &lt;-<span class="st"> </span><span class="kw">length</span>(phat.normal.mn)-<span class="dv">1</span>
+<span class="co"># overlay predicted values</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, rangex, <span class="dv">1</span>), <span class="dt">y =</span> phat.normal.mn, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, rangex, <span class="dv">1</span>), <span class="dt">y =</span> phat.pois.mn, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;gray20&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, rangex, <span class="dv">1</span>), <span class="dt">y =</span> phat.nb.mn, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">col=</span><span class="st">&quot;gray40&quot;</span>)
+
+<span class="co"># legend</span>
+<span class="kw">legend</span>(<span class="dv">5</span>, <span class="fl">0.7</span>, <span class="kw">c</span>(<span class="st">&quot;Typical (Normal)&quot;</span>,<span class="st">&quot;Poisson&quot;</span>, <span class="st">&quot;Negative Binomial&quot;</span>), <span class="dt">lty=</span><span class="kw">seq</span>(<span class="dv">1</span>:<span class="dv">3</span>), <span class="dt">col =</span>
+<span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;gray20&quot;</span>,<span class="st">&quot;gray40&quot;</span>), <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/finalhistograms-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># histogram 2</span>
+<span class="kw">hist</span>(equinox$count, <span class="dt">prob =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray90&quot;</span>, <span class="dt">breaks=</span><span class="kw">seq</span>(<span class="kw">min</span>(equinox$count)-<span class="fl">0.5</span>,
+<span class="kw">max</span>(equinox$count)+.<span class="dv">5</span>, <span class="dv">1</span>), <span class="dt">xlab =</span> <span class="st">&quot;Skips Category&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">8</span>))
+rangex &lt;-<span class="st"> </span><span class="kw">length</span>(phat.normal.mn)-<span class="dv">1</span>
+<span class="co"># overlay predicted values</span>
+
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, rangex, <span class="dv">1</span>), <span class="dt">y =</span> phat.pois.mn, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;gray20&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, rangex, <span class="dv">1</span>), <span class="dt">y =</span> phat.zip.mn, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">4</span>, <span class="dt">col=</span><span class="st">&quot;gray60&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, rangex, <span class="dv">1</span>), <span class="dt">y =</span> phat.zinb.mn, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;gray80&quot;</span>)
+<span class="co"># legend</span>
+<span class="kw">legend</span>(<span class="dv">5</span>, <span class="fl">0.7</span>, <span class="kw">c</span>(<span class="st">&quot;Poisson&quot;</span>,  <span class="st">&quot;Zero-Inflated</span>
+<span class="st">Poisson&quot;</span>, <span class="st">&quot;Zero-Inflated Negative Binomial&quot;</span>), <span class="dt">lty=</span><span class="kw">seq</span>(<span class="dv">1</span>:<span class="dv">3</span>), <span class="dt">col =</span>
+<span class="kw">c</span>(<span class="st">&quot;gray20&quot;</span>,<span class="st">&quot;gray60&quot;</span>,<span class="st">&quot;gray80&quot;</span>), <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/finalhistograms-2.png" width="672" /></p>
+</div>
+<div id="regression-diagnostics" class="section level2">
+<h2><span class="header-section-number">7.8</span> Regression diagnostics</h2>
+<ul>
+<li>Residual plots for the models</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Diagnostics</span>
+<span class="co"># normal residuals density plot</span>
+<span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">residuals</span>(defects_normal)))</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/diagnostics-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predicted vs. residual plots</span>
+<span class="co"># typical</span>
+<span class="kw">plot</span>(<span class="kw">predict</span>(defects_normal, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>), <span class="kw">residuals</span>(defects_normal), <span class="dt">main=</span><span class="st">&quot;Typical</span>
+<span class="st">Regression&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Residuals&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Predicted&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(-<span class="dv">2</span>,<span class="dv">5</span>))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">lowess</span>(<span class="kw">predict</span>(defects_normal,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_normal)), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/residual%20plots-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># poisson</span>
+<span class="kw">plot</span>(<span class="kw">predict</span>(defects_pois,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_pois), <span class="dt">main=</span><span class="st">&quot;Poisson Regression&quot;</span>,
+<span class="dt">ylab=</span><span class="st">&quot;Residuals&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Predicted&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(-<span class="dv">2</span>,<span class="dv">5</span>))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">lowess</span>(<span class="kw">predict</span>(defects_pois,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_pois)),<span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/residual%20plots-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># negative binomial</span>
+<span class="kw">plot</span>(<span class="kw">predict</span>(defects_negbinom,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_negbinom), <span class="dt">main=</span><span class="st">&quot;Negative Binomial</span>
+<span class="st">Regression&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Residuals&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Predicted&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(-<span class="dv">2</span>,<span class="dv">5</span>))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">lowess</span>(<span class="kw">predict</span>(defects_negbinom,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_negbinom)), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/residual%20plots-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ZIP</span>
+<span class="kw">plot</span>(<span class="kw">predict</span>(defects_zip,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_zip), <span class="dt">main=</span><span class="st">&quot;ZIP Regression&quot;</span>,
+<span class="dt">ylab=</span><span class="st">&quot;Residuals&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Predicted&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(-<span class="dv">2</span>,<span class="dv">5</span>))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">lowess</span>(<span class="kw">predict</span>(defects_zip,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_zip)),<span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/residual%20plots-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ZINB</span>
+<span class="kw">plot</span>(<span class="kw">predict</span>(defects_zinb,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_zinb), <span class="dt">main=</span><span class="st">&quot;ZINB Regression&quot;</span>,
+<span class="dt">ylab=</span><span class="st">&quot;Residuals&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Predicted&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(-<span class="dv">2</span>,<span class="dv">5</span>))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>) 
+<span class="kw">lines</span>(<span class="kw">lowess</span>(<span class="kw">predict</span>(defects_zinb,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>),<span class="kw">residuals</span>(defects_zinb)),<span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/residual%20plots-5.png" width="672" /></p>
+<div id="cooks-d-for-the-zip" class="section level3">
+<h3><span class="header-section-number">7.8.1</span> Cook’s D for the ZIP</h3>
+<p><a href="https://en.wikipedia.org/wiki/Cook%27s_distance">Cook’s D</a> Cook’s distance or Cook’s D is a commonly used for detecting highly influential observations.</p>
+<p><img src="DefectPredictionSoftEng_files/figure-html/CooksD-1.png" width="672" /><img src="DefectPredictionSoftEng_files/figure-html/CooksD-2.png" width="672" /><img src="DefectPredictionSoftEng_files/figure-html/CooksD-3.png" width="672" /><img src="DefectPredictionSoftEng_files/figure-html/CooksD-4.png" width="672" /></p>
+</div>
+<div id="zip-model-variable-selection-for-the-equinox-using-aic-and-bic" class="section level3">
+<h3><span class="header-section-number">7.8.2</span> ZIP Model variable selection for the Equinox using AIC and BIC</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate and combine AIC, AIC weights, and BIC</span>
+results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">models =</span> model.names)
+kpar &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="kw">nrow</span>(equinox))
+results$bic.val &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(cand.models, AIC, <span class="dt">k =</span> kpar))
+results$bic.rank &lt;-<span class="st"> </span><span class="kw">rank</span>(results$bic.val)
+results$aic.val &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(cand.models, AIC))
+results$aic.delta &lt;-<span class="st"> </span>results$aic.val-<span class="kw">min</span>(results$aic.val)
+results$aic.likelihood &lt;-<span class="st"> </span><span class="kw">exp</span>(-<span class="fl">0.5</span>*<span class="st"> </span>results$aic.delta)
+results$aic.weight &lt;-<span class="st"> </span>results$aic.likelihood/<span class="kw">sum</span>(results$aic.likelihood)
+<span class="co"># sort models by AIC weight</span>
+results &lt;-<span class="st"> </span>results[<span class="kw">rev</span>(<span class="kw">order</span>(results[, <span class="st">&quot;aic.weight&quot;</span>])),]
+results$cum.aic.weight &lt;-<span class="st"> </span><span class="kw">cumsum</span>(results[, <span class="st">&quot;aic.weight&quot;</span>])
+results</code></pre></div>
+<pre><code>##                  models  bic.val bic.rank  aic.val aic.delta
+## 6      cbo_lcom_wmc_rfc 633.3807        1 606.9155  0.000000
+## 5  LOC+cbo+lcom+wmc+rfc 638.6139        2 608.3680  1.452498
+## 2               LOC+cbo 641.6528        3 622.7491 15.833574
+## 3          LOC+cbo+lcom 646.0690        4 623.3845 16.468999
+## 4      LOC+cbo+lcom+wmc 650.0853        5 623.6201 16.704643
+## 7          lcom_wmc_rfc 683.1122        6 660.4278 53.512284
+## 1                   LOC 686.4209        7 671.2979 64.382419
+## 9                   wmc 697.7706        8 682.6476 75.732128
+## 8               wmc_rfc 701.9812        9 683.0775 76.162002
+## 10                  rfc 709.0393       10 693.9163 87.000801
+##    aic.likelihood   aic.weight cum.aic.weight
+## 6    1.000000e+00 6.735886e-01      0.6735886
+## 5    4.837200e-01 3.258282e-01      0.9994168
+## 2    3.645717e-04 2.455714e-04      0.9996624
+## 3    2.653397e-04 1.787298e-04      0.9998411
+## 4    2.358484e-04 1.588648e-04      1.0000000
+## 7    2.398585e-12 1.615659e-12      1.0000000
+## 1    1.046009e-14 7.045794e-15      1.0000000
+## 9    3.589033e-17 2.417531e-17      1.0000000
+## 8    2.894885e-17 1.949962e-17      1.0000000
+## 10   1.282378e-19 8.637951e-20      1.0000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># # final model</span>
+defects_final_zip &lt;-<span class="st"> </span><span class="kw">zeroinfl</span>(count ~<span class="st"> </span>cbo +<span class="st"> </span>lcom +<span class="st"> </span>wmc +<span class="st"> </span>rfc|<span class="st"> </span>numberOfLinesOfCode, <span class="dt">data =</span> equinox, <span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>, <span class="dt">dist =</span> <span class="st">&quot;poisson&quot;</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>)
+defects_final_zip</code></pre></div>
+<pre><code>## 
+## Call:
+## zeroinfl(formula = count ~ cbo + lcom + wmc + rfc | numberOfLinesOfCode, 
+##     data = equinox, dist = &quot;poisson&quot;, link = &quot;logit&quot;, trace = FALSE)
+## 
+## Count model coefficients (poisson with log link):
+## (Intercept)          cbo         lcom          wmc          rfc  
+##  -0.8641763    0.0433784    0.0002456    0.0097291   -0.0051994  
+## 
+## Zero-inflation model coefficients (binomial with logit link):
+##         (Intercept)  numberOfLinesOfCode  
+##              1.6749              -0.1657</code></pre>
+</div>
+</div>
+<div id="references-and-r-code-used" class="section level2">
+<h2><span class="header-section-number">7.9</span> References and R code used</h2>
+<ol style="list-style-type: decimal">
+<li><p>A. Alexander Beaujean, Grant B. Morgan, Tutorial on Using Regression Models with Count Outcomes using R. Practical Assessment, Research &amp; Evaluation, Volume 21, Number 2, February 2016</p></li>
+<li><p>Achim Zeileis, Christian Kleiber and Simon Jackman, Regression Models for Count Data in R</p></li>
+<li><p>ZERO-INFLATED POISSON REGRESSION | R DATA ANALYSIS EXAMPLES. UCLA: Statistical Consulting Group, from <a href="http://stats.idre.ucla.edu/r/dae/zinb/" class="uri">http://stats.idre.ucla.edu/r/dae/zinb/</a> (accessed May 20, 2017)</p></li>
+<li><p>Taghi M. Khoshgoftaar , Kehan Gao &amp; Robert M. Szabo, (2005) Comparing software fault predictions of pure and zero-inflated Poisson regression models, International Journal of Systems Science, 36:11, 705-715, <a href="http://dx.doi.org/10.1080/00207720500159995" class="uri">http://dx.doi.org/10.1080/00207720500159995</a></p></li>
+<li><p>Taghi M. Khoshgoftaar , Kehan Gao &amp; Robert M. Szabo, An Application of Zero-Inflated Poisson Regression for Software Fault Prediction, 2001</p></li>
+<li><p>Marco D’Ambros, Michele Lanza, Romain Robbes.Evaluating defect prediction approaches: a benchmark and an extensive comparison, Empir Software Eng (2012) 17:531–577 DOI 10.1007/s10664-011-9173-9</p></li>
+<li><p>A.F. Zuur et al., Chapter 11 Zero-Truncated and Zero-Inflated Models for Count Data in Mixed Effects Models and Extensions in Ecology with R, Springer, 2009</p></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="supervised-classification.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="evaluation-of-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/danrodgar/dasedown/edit/master/420_defectRegression.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

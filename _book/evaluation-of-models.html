@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Defect Prediction in Software Engineering</title>
+  <meta name="description" content="Defect Prediction in Software Engineering">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Defect Prediction in Software Engineering" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Defect Prediction in Software Engineering" />
+  <meta name="github-repo" content="danrodgar/DefectPredictionSoftEng" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Defect Prediction in Software Engineering" />
+  
+  <meta name="twitter:description" content="Defect Prediction in Software Engineering" />
+  
+
+<meta name="author" content="Daniel Rodriguez and Javier Dolado">
+
+
+<meta name="date" content="2017-06-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="regression-tecniques-in-software-defect-prediction.html">
+<link rel="next" href="data-mining-issues-in-defect-prediction.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis in Software Engineering with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Introduction to Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>II Data Sources and Metrics and Standards in Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="2" data-path="data-sources-in-software-engineering.html"><a href="data-sources-in-software-engineering.html"><i class="fa fa-check"></i><b>2</b> Data Sources in Software Engineering</a></li>
+<li class="chapter" data-level="3" data-path="repositories.html"><a href="repositories.html"><i class="fa fa-check"></i><b>3</b> Repositories</a></li>
+<li class="chapter" data-level="4" data-path="open-toolsdashboards-to-extract-data.html"><a href="open-toolsdashboards-to-extract-data.html"><i class="fa fa-check"></i><b>4</b> Open Tools/Dashboards to extract data</a><ul>
+<li class="chapter" data-level="4.1" data-path="open-toolsdashboards-to-extract-data.html"><a href="open-toolsdashboards-to-extract-data.html#issues"><i class="fa fa-check"></i><b>4.1</b> Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html"><i class="fa fa-check"></i><b>5</b> Metrics in Software Enginering Prediction</a><ul>
+<li class="chapter" data-level="5.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#complexity-metrics"><i class="fa fa-check"></i><b>5.1</b> Complexity Metrics</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#mccabes-complexity-measures"><i class="fa fa-check"></i><b>5.1.1</b> McCabe’s Complexity Measures</a></li>
+<li class="chapter" data-level="5.1.2" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#halstead-s-software-science"><i class="fa fa-check"></i><b>5.1.2</b> Halstead-s Software Science</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#object-oriented-metrics"><i class="fa fa-check"></i><b>5.2</b> Object-Oriented Metrics</a></li>
+<li class="chapter" data-level="5.3" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#churn-and-process-metrics"><i class="fa fa-check"></i><b>5.3</b> Churn and Process Metrics</a></li>
+<li class="chapter" data-level="5.4" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#defect-standards"><i class="fa fa-check"></i><b>5.4</b> Defect Standards</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
+<li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
+<li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
+<li class="chapter" data-level="6.3" data-path="supervised-classification.html"><a href="supervised-classification.html#distanced-based-methods"><i class="fa fa-check"></i><b>6.3</b> Distanced-based Methods</a></li>
+<li class="chapter" data-level="6.4" data-path="supervised-classification.html"><a href="supervised-classification.html#neural-networks"><i class="fa fa-check"></i><b>6.4</b> Neural Networks</a></li>
+<li class="chapter" data-level="6.5" data-path="supervised-classification.html"><a href="supervised-classification.html#support-vector-machine"><i class="fa fa-check"></i><b>6.5</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="6.6" data-path="supervised-classification.html"><a href="supervised-classification.html#probabilistic-methods"><i class="fa fa-check"></i><b>6.6</b> Probabilistic Methods</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#naive-bayes"><i class="fa fa-check"></i><b>6.6.1</b> Naive Bayes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="supervised-classification.html"><a href="supervised-classification.html#linear-discriminant-analysis-lda"><i class="fa fa-check"></i><b>6.7</b> Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="supervised-classification.html"><a href="supervised-classification.html#predicting-the-number-of-defects-numerical-class"><i class="fa fa-check"></i><b>6.7.1</b> Predicting the number of defects (numerical class)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="supervised-classification.html"><a href="supervised-classification.html#binary-logistic-regression-blr"><i class="fa fa-check"></i><b>6.8</b> Binary Logistic Regression (BLR)</a></li>
+<li class="chapter" data-level="6.9" data-path="supervised-classification.html"><a href="supervised-classification.html#the-caret-package"><i class="fa fa-check"></i><b>6.9</b> The caret package</a></li>
+<li class="chapter" data-level="6.10" data-path="supervised-classification.html"><a href="supervised-classification.html#ensembles"><i class="fa fa-check"></i><b>6.10</b> Ensembles</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html"><i class="fa fa-check"></i><b>7</b> Regression tecniques in Software defect prediction</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-poison"><i class="fa fa-check"></i><b>7.1</b> Zero Poison</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#load-packages"><i class="fa fa-check"></i><b>7.1.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#the-number-of-software-defects.-count-data"><i class="fa fa-check"></i><b>7.1.2</b> The number of Software Defects. Count Data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#normal-regression"><i class="fa fa-check"></i><b>7.1.3</b> Normal Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#poisson-regression"><i class="fa fa-check"></i><b>7.1.4</b> Poisson Regression</a></li>
+<li class="chapter" data-level="7.1.5" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#negative-binomial"><i class="fa fa-check"></i><b>7.1.5</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.1.6" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-poisson-regression-zip"><i class="fa fa-check"></i><b>7.1.6</b> Zero-Inflated Poisson Regression ZIP</a></li>
+<li class="chapter" data-level="7.1.7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-negative-binomial-zinb"><i class="fa fa-check"></i><b>7.1.7</b> Zero-Inflated Negative Binomial ZINB</a></li>
+<li class="chapter" data-level="7.1.8" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#read-data"><i class="fa fa-check"></i><b>7.1.8</b> Read Data</a></li>
+<li class="chapter" data-level="7.1.9" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#plot-histogram"><i class="fa fa-check"></i><b>7.1.9</b> Plot histogram</a></li>
+<li class="chapter" data-level="7.1.10" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#correlation-among-variables"><i class="fa fa-check"></i><b>7.1.10</b> Correlation among variables</a></li>
+<li class="chapter" data-level="7.1.11" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#classical-regression"><i class="fa fa-check"></i><b>7.1.11</b> Classical Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#poisson-regression-1"><i class="fa fa-check"></i><b>7.2</b> Poisson Regression</a></li>
+<li class="chapter" data-level="7.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-to-null-model-intercept"><i class="fa fa-check"></i><b>7.3</b> Compare to Null Model (intercept)</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#negative-binomial-1"><i class="fa fa-check"></i><b>7.4</b> Negative Binomial</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-poisson"><i class="fa fa-check"></i><b>7.4.1</b> Zero Inflated Poisson</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zero-inflated-negative-binomial"><i class="fa fa-check"></i><b>7.4.2</b> Zero Inflated Negative Binomial</a></li>
+<li class="chapter" data-level="7.4.3" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#comparing-models-with-vuong-test"><i class="fa fa-check"></i><b>7.4.3</b> Comparing models with Vuong test</a></li>
+<li class="chapter" data-level="7.4.4" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compute-confidence-intervals-for-intercept-and-variables.-zip-version"><i class="fa fa-check"></i><b>7.4.4</b> Compute Confidence Intervals for intercept and variables. ZIP version</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-models-fit.-aic-and-bic"><i class="fa fa-check"></i><b>7.5</b> Compare Models Fit. AIC and BIC</a></li>
+<li class="chapter" data-level="7.6" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#compare-prediction-of-defects"><i class="fa fa-check"></i><b>7.6</b> Compare prediction of Defects</a></li>
+<li class="chapter" data-level="7.7" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#plot-predictions"><i class="fa fa-check"></i><b>7.7</b> Plot predictions</a></li>
+<li class="chapter" data-level="7.8" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.8</b> Regression diagnostics</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#cooks-d-for-the-zip"><i class="fa fa-check"></i><b>7.8.1</b> Cook’s D for the ZIP</a></li>
+<li class="chapter" data-level="7.8.2" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#zip-model-variable-selection-for-the-equinox-using-aic-and-bic"><i class="fa fa-check"></i><b>7.8.2</b> ZIP Model variable selection for the Equinox using AIC and BIC</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="regression-tecniques-in-software-defect-prediction.html"><a href="regression-tecniques-in-software-defect-prediction.html#references-and-r-code-used"><i class="fa fa-check"></i><b>7.9</b> References and R code used</a></li>
+</ul></li>
+<li class="part"><span><b>IV Evaluation</b></span></li>
+<li class="chapter" data-level="8" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html"><i class="fa fa-check"></i><b>8</b> Evaluation of Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#building-and-validating-a-model"><i class="fa fa-check"></i><b>8.1</b> Building and Validating a Model</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#holdout-approach"><i class="fa fa-check"></i><b>8.1.1</b> Holdout approach</a></li>
+<li class="chapter" data-level="8.1.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cross-validation-cv"><i class="fa fa-check"></i><b>8.1.2</b> Cross Validation (CV)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#evaluation-of-classification-models"><i class="fa fa-check"></i><b>8.2</b> Evaluation of Classification Models</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#prediction-in-probabilistic-classifiers"><i class="fa fa-check"></i><b>8.2.1</b> Prediction in probabilistic classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#other-metrics-used-in-software-engineering-with-classification"><i class="fa fa-check"></i><b>8.3</b> Other Metrics used in Software Engineering with Classification</a></li>
+<li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
+<li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
+</ul></li>
+<li class="part"><span><b>V Problems and Issues in Defect Prediction</b></span></li>
+<li class="chapter" data-level="9" data-path="data-mining-issues-in-defect-prediction.html"><a href="data-mining-issues-in-defect-prediction.html"><i class="fa fa-check"></i><b>9</b> Data Mining Issues in Defect Prediction</a></li>
+<li class="chapter" data-level="10" data-path="outliers-missing-values-inconsistencies-data-noise.html"><a href="outliers-missing-values-inconsistencies-data-noise.html"><i class="fa fa-check"></i><b>10</b> Outliers, missing values, inconsistencies data noise</a></li>
+<li class="chapter" data-level="11" data-path="redundant-and-irrelevant-attributes-and-instances.html"><a href="redundant-and-irrelevant-attributes-and-instances.html"><i class="fa fa-check"></i><b>11</b> Redundant and irrelevant attributes and instances</a></li>
+<li class="chapter" data-level="12" data-path="overlapping-or-class-separability.html"><a href="overlapping-or-class-separability.html"><i class="fa fa-check"></i><b>12</b> Overlapping or class separability</a></li>
+<li class="chapter" data-level="13" data-path="data-shifting.html"><a href="data-shifting.html"><i class="fa fa-check"></i><b>13</b> Data shifting</a></li>
+<li class="chapter" data-level="14" data-path="imbalance-datasets.html"><a href="imbalance-datasets.html"><i class="fa fa-check"></i><b>14</b> Imbalance datasets</a></li>
+<li class="chapter" data-level="15" data-path="evaluation-metrics-and-the-evaluation-of-models.html"><a href="evaluation-metrics-and-the-evaluation-of-models.html"><i class="fa fa-check"></i><b>15</b> Evaluation metrics and the evaluation of models</a></li>
+<li class="chapter" data-level="16" data-path="cross-project-defect-prediction.html"><a href="cross-project-defect-prediction.html"><i class="fa fa-check"></i><b>16</b> Cross project defect prediction</a></li>
+<li class="part"><span><b>VI Examples</b></span></li>
+<li class="chapter" data-level="17" data-path="feature-subsect-selection-in-defect-prediction.html"><a href="feature-subsect-selection-in-defect-prediction.html"><i class="fa fa-check"></i><b>17</b> Feature Subsect Selection in Defect Prediction</a></li>
+<li class="chapter" data-level="18" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>18</b> Imbalanced data</a></li>
+<li class="chapter" data-level="19" data-path="subgroup-discovery.html"><a href="subgroup-discovery.html"><i class="fa fa-check"></i><b>19</b> Subgroup Discovery</a></li>
+<li class="chapter" data-level="20" data-path="semi-supervised-learning.html"><a href="semi-supervised-learning.html"><i class="fa fa-check"></i><b>20</b> Semi-supervised learning</a></li>
+<li class="chapter" data-level="21" data-path="learning-from-crowds.html"><a href="learning-from-crowds.html"><i class="fa fa-check"></i><b>21</b> Learning from Crowds</a></li>
+<li class="chapter" data-level="22" data-path="multi-objective-rules-for-defect-prediction.html"><a href="multi-objective-rules-for-defect-prediction.html"><i class="fa fa-check"></i><b>22</b> Multi-objective Rules for defect prediction</a></li>
+<li class="chapter" data-level="23" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html"><i class="fa fa-check"></i><b>23</b> Settings Thresholds for Defect Prediction</a><ul>
+<li class="chapter" data-level="23.1" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-mean-and-standard-deviation"><i class="fa fa-check"></i><b>23.1</b> Use of Mean and Standard Deviation</a></li>
+<li class="chapter" data-level="23.2" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-weighted-benchmark-data"><i class="fa fa-check"></i><b>23.2</b> Use of Weighted Benchmark Data</a></li>
+<li class="chapter" data-level="23.3" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#use-of-quantiles"><i class="fa fa-check"></i><b>23.3</b> Use of Quantiles</a></li>
+<li class="chapter" data-level="23.4" data-path="settings-thresholds-for-defect-prediction.html"><a href="settings-thresholds-for-defect-prediction.html#some-further-literature"><i class="fa fa-check"></i><b>23.4</b> Some further literature</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Defect Prediction in Software Engineering</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evaluation-of-models" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Evaluation of Models</h1>
+<p>Once we obtain the model with the training data, we need to evaluate it with some new data (testing data).</p>
+<blockquote>
+<p><strong>No Free Lunch theorem</strong> In the absence of any knowledge about the prediction problem, no model can be said to be uniformly better than any other</p>
+</blockquote>
+<div id="building-and-validating-a-model" class="section level2">
+<h2><span class="header-section-number">8.1</span> Building and Validating a Model</h2>
+<p>We cannnot use the the same data for training and testing (it is like evaluating a student with the exercises previouly solved in class, the sudent’s marks will be “optimistic” and we do not know about student capability to generalise the learned concepts).</p>
+<p>Therefore, we should, at a minimun, divide the dataset into <em>training</em> and <em>testing</em>, learn the model with the training data and test it with the rest of data as explained next.</p>
+<div id="holdout-approach" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Holdout approach</h3>
+<p><strong>Holdout approach</strong> consists of dividing the dataset into <em>training</em> (typically approx. 2/3 of the data) and <em>testing</em> (approx 1/3 of the data). + Problems: Data can be skewed, missing classes, etc. if randomly divided. Stratification ensures that each class is represented with approximately equal proportions (e.g., if data contains aprox 45% of positive cases, the training and testing datasets should mantain similar proportion of positive cases).</p>
+<p>Holdout estimate can be made more reliable by repeating the process with different subsamples (repeated holdout method)</p>
+<p>The error rates on the different iterations are averaged (overall error rate)</p>
+<ul>
+<li>Usually, part of the data points are used for building the model and the remaining points are used for validating the model. There are several approaches to this process.</li>
+<li><em>Validation Set approach</em>: it is the simplest method. It consists of randomly dividing the available set of oservations into two parts, a <em>training set</em> and a <em>validation set</em> or hold-out set. Usually 2/3 of the data points are used for training and 1/3 is used for testing purposes.</li>
+</ul>
+<div class="figure">
+<img src="figures/validation.png" alt="Hold out validation" />
+<p class="caption">Hold out validation</p>
+</div>
+</div>
+<div id="cross-validation-cv" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Cross Validation (CV)</h3>
+<p><em>k-fold Cross-Validation</em> involves randomly dividing the set of observations into <span class="math inline">\(k\)</span> groups, or folds, of approximately equal size. One fold is treated as a validation set and the method is trained on the remaining <span class="math inline">\(k-1\)</span> folds. This procedure is repeated <span class="math inline">\(k\)</span> times. If <span class="math inline">\(k\)</span> is equal to <span class="math inline">\(n\)</span> we are in the previous method.</p>
+<ul>
+<li><p>1st step: split dataset (<span class="math inline">\(\cal D\)</span>) into <span class="math inline">\(k\)</span> subsets of approximatelly equal size <span class="math inline">\(C_1, \dots, C_k\)</span></p></li>
+<li><p>2nd step: we construct a dataset <span class="math inline">\(D_i = D-C_i\)</span> used for training and test the accuracy of the classifier <span class="math inline">\(D_i\)</span> on <span class="math inline">\(C_i\)</span> subset for testing</p></li>
+</ul>
+<p>Having done this for all <span class="math inline">\(k\)</span> we estimate the accuracy of the method by averaging the accuracy over the <span class="math inline">\(k\)</span> cross-validation trials</p>
+<div class="figure">
+<img src="figures/kfold.png" alt="k-fold" />
+<p class="caption">k-fold</p>
+</div>
+<ul>
+<li><em>Leave-One-Out Cross-Validation</em>: This is a special case of CV. Instead of creating two subsets for training and testing, a single observation is used for the validation set, and the remaining observations make up the training set. This approach is repeated n times (the total number of observations) and the estimate for the test mean squared error is the average of the n test estimates.</li>
+</ul>
+<div class="figure">
+<img src="figures/leaveone.png" alt="Leave One Out" />
+<p class="caption">Leave One Out</p>
+</div>
+
+</div>
+</div>
+<div id="evaluation-of-classification-models" class="section level2">
+<h2><span class="header-section-number">8.2</span> Evaluation of Classification Models</h2>
+<p>The confusion matrix (which can be extended to multiclass problems). The following table shows the possible outcomes for binary classification problems:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(Pred Pos\)</span></th>
+<th><span class="math inline">\(Pred Neg\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Act Pos\)</span></td>
+<td><span class="math inline">\(TP\)</span></td>
+<td><span class="math inline">\(FN\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Act Neg\)</span></td>
+<td><span class="math inline">\(FP\)</span></td>
+<td><span class="math inline">\(TN\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>where <em>True Positives</em> (<span class="math inline">\(TP\)</span>) and <em>True Negatives</em> (<span class="math inline">\(TN\)</span>) are respectively the number of positive and negative instances correctly classified, <em>False Positives</em> (<span class="math inline">\(FP\)</span>) is the number of negative instances misclassified as positive (also called Type I errors), and <em>False Negatives</em> (<span class="math inline">\(FN\)</span>) is the number of positive instances misclassified as negative (Type II errors).</p>
+<p>From the confusion matrix, we can calculate:</p>
+<ul>
+<li><em>True positive rate</em>, or <em>recall </em> (<span class="math inline">\(TP_r = recall = r = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</li>
+<li><em>False negative rate</em> (<span class="math inline">\(FN_r=FN/TP+FN\)</span>) is the proportion of positive cases misclassified as belonging to the negative class.</li>
+<li><em>False positive rate</em> (<span class="math inline">\(FP_r=FP/FP+TN\)</span>) is the proportion of negative cases misclassified as belonging to the positive class.</li>
+<li><em>True negative rate</em> (<span class="math inline">\(TN_r=TN/FP+TN\)</span>) is the proportion of negative cases correctly classified as belonging to the negative class.</li>
+</ul>
+<p>There is a tradeoff between <span class="math inline">\(FP_r\)</span> and <span class="math inline">\(FN_r\)</span> as the objective is minimize both metrics (or conversely, maximize the true negative and positive rates). It is possible to combine both metrics into a single figure, predictive <span class="math inline">\(accuracy\)</span>:</p>
+<p><span class="math display">\[accuracy = \frac{TP + TN}{TP + TN + FP + FN}\]</span></p>
+<p>to measure performance of classifiers (or the complementary value, the <em>error rate</em> which is defined as <span class="math inline">\(1-accuracy\)</span>)</p>
+<ul>
+<li><p>Precision, fraction of relevant instances among the retrieved instances, <span class="math display">\[\frac{TP}{TP+FP}\]</span></p></li>
+<li><p>Recall$ (<span class="math inline">\(sensitivity\)</span> probability of detection, <span class="math inline">\(PD\)</span>) is the fraction of relevant instances that have been retrieved over total relevant instances, <span class="math inline">\(\frac{TP}{TP+FN}\)</span></p></li>
+<li><p><em>f-measure</em> is the harmonic mean of precision and recall, <span class="math inline">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></li>
+<li><p>G-mean: <span class="math inline">\(\sqrt{PD \times Precision}\)</span></p></li>
+<li><p>G-mean2: <span class="math inline">\(\sqrt{PD \times Specificity}\)</span></p></li>
+<li><p>J coefficient, <span class="math inline">\(j-coeff = sensitivity + specificity - 1 = PD-PF\)</span></p></li>
+</ul>
+<p>(Jiang, Cubic and Ma, 2008 ESE)</p>
+<ul>
+<li>A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew’s Correlation Coefficient (<span class="math inline">\(MCC\)</span>)~:</li>
+</ul>
+<p><span class="math display">\[$MCC=\frac{TP\times TN - FP\times FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}\]</span></p>
+<p><span class="math inline">\(MCC\)</span> can also be calculated from the confusion matrix. Its range goes from -1 to +1; the closer to one the better as it indicates perfect prediction whereas a value of 0 means that classification is not better than random prediction and negative values mean that predictions are worst than random.</p>
+<div id="prediction-in-probabilistic-classifiers" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Prediction in probabilistic classifiers</h3>
+<p>A probabilistic classifier estimates the probability of each of the posible class values given the attribute values of the instance <span class="math inline">\(P(c|{x})\)</span>. Then, given a new instance, <span class="math inline">\({x}\)</span>, the class value with the highest a posteriori probability will be assigned to that new instance (the <em>winner takes all</em> approach):</p>
+<p><span class="math inline">\(\psi({x}) = argmax_c (P(c|{x}))\)</span></p>
+</div>
+</div>
+<div id="other-metrics-used-in-software-engineering-with-classification" class="section level2">
+<h2><span class="header-section-number">8.3</span> Other Metrics used in Software Engineering with Classification</h2>
+<p>In the domain of defect prediction and when two classes are considered, it is also customary to refer to the <em>probability of detection</em>, (<span class="math inline">\(pd\)</span>) which corresponds to the True Positive rate (<span class="math inline">\(TP_{rate}\)</span> or ) as a measure of the goodness of the model, and <em>probability of false alarm</em> (<span class="math inline">\(pf\)</span>) as performance measures~.</p>
+<p>The objective is to find which techniques that maximise <span class="math inline">\(pd\)</span> and minimise <span class="math inline">\(pf\)</span>. As stated by Menzies et al., the balance between these two measures depends on the project characteristics (e.g. real-time systems vs. information management systems) it is formulated as the Euclidean distance from the sweet spot <span class="math inline">\(pf=0\)</span> and <span class="math inline">\(pd=1\)</span> to a pair of <span class="math inline">\((pf,pd)\)</span>.</p>
+<p><span class="math inline">\(balance=1-\frac{\sqrt{(0-pf^2)+(1-pd^2)}}{\sqrt{2}}\)</span></p>
+<p>It is normalized by the maximum possible distance across the ROC square (<span class="math inline">\(\sqrt{2}, 2\)</span>), subtracted this value from 1, and expressed it as a percentage.</p>
+
+</div>
+<div id="graphical-evaluation" class="section level2">
+<h2><span class="header-section-number">8.4</span> Graphical Evaluation</h2>
+<div id="receiver-operating-characteristic-roc" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> Receiver Operating Characteristic (ROC)</h3>
+<p>The <em>Receiver Operating Characteristic</em> (<span class="math inline">\(ROC\)</span>)<span class="citation">(Fawcett <a href="#ref-Fawcett2006">2006</a>)</span> curve which provides a graphical visualisation of the results.</p>
+<div class="figure">
+<img src="figures/roc.png" alt="Receiver Operating Characteristic" />
+<p class="caption">Receiver Operating Characteristic</p>
+</div>
+<p>The Area Under the ROC Curve (AUC) also provides a quality measure between positive and negative rates with a single value.</p>
+<p>A simple way to approximate the AUC is with the following equation: <span class="math inline">\(AUC=\frac{1+TP_{r}-FP_{r}}{2}\)</span></p>
+</div>
+<div id="precision-recall-curve-prc" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Precision-Recall Curve (PRC)</h3>
+<p>Similarly to ROC, another widely used evaluation technique is the Precision-Recall Curve (PRC), which depicts a trade off between precision and recall and can also be summarised into a single value as the Area Under the Precision-Recall Curve (AUPRC)~.</p>
+<p>%AUPCR is more accurate than the ROC for testing performances when dealing with imbalanced datasets as well as optimising ROC values does not necessarily optimises AUPR values, i.e., a good classifier in AUC space may not be so good in PRC space. %The weighted average uses weights proportional to class frequencies in the data. %The weighted average is computed by weighting the measure of class (TP rate, precision, recall …) by the proportion of instances there are in that class. Computing the average can be sometimes be misleading. For instance, if class 1 has 100 instances and you achieve a recall of 30%, and class 2 has 1 instance and you achieve recall of 100% (you predicted the only instance correctly), then when taking the average (65%) you will inflate the recall score because of the one instance you predicted correctly. Taking the weighted average will give you 30.7%, which is much more realistic measure of the performance of the classifier.</p>
+
+</div>
+</div>
+<div id="numeric-prediction-evaluation" class="section level2">
+<h2><span class="header-section-number">8.5</span> Numeric Prediction Evaluation</h2>
+<p>RSME</p>
+<p>Mean Square Error = <span class="math inline">\(MSE\)</span> = <span class="math inline">\(\frac{(p_1-a_1)^2 + \ldots +(p_n-a_n)^2}{n}\)</span></p>
+<p><span class="math inline">\({MSE}=\frac{1}{n}\sum_{i=1}^n(\hat{y_i} - y_i)^2\)</span></p>
+<p><span class="math inline">\({RMSD}=\sqrt{\frac{\sum_{t=1}^n (\hat y_t - y)^2}{n}}\)</span></p>
+<p>Mean-absolute error <span class="math inline">\(MAE\)</span></p>
+<p><span class="math inline">\(\frac{|p_1-a_1| + \ldots +|p_n-a_n|}{n}\)</span></p>
+<p>Relative absolute error:</p>
+<p><span class="math inline">\(RAE = \frac{ \sum^N_{i=1} | \hat{\theta}_i - \theta_i | } { \sum^N_{i=1} | \overline{\theta} - \theta_i | }\)</span></p>
+<p>Root relative-squared error:</p>
+<p><span class="math inline">\(RAE = \sqrt{ \frac{ \sum^N_{i=1} | \hat{\theta}_i - \theta_i | } { \sum^N_{i=1} | \overline{\theta} - \theta_i | } }\)</span></p>
+<p>where <span class="math inline">\(\hat{\theta}\)</span> is a mean value of <span class="math inline">\(\theta\)</span>.</p>
+<p>Relative-squared error <span class="math inline">\(\frac{(p_1-a_1)^2 + \ldots +(p_n-a_n)^2}{(a_1-\hat{a})^2 + \ldots + (a_n-\hat{a})^2}\)</span> (<span class="math inline">\(\hat{a}\)</span> is the mean value over the training data)</p>
+<p>Relative Absolut Error</p>
+<p>Correlation Coefficient</p>
+<p>Correlation coefficient between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is defined as <span class="math display">\[\rho(X,Y) = \frac{{\bf
+Cov}(X,Y)}{\sqrt{{\bf Var}(X){\bf Var}(Y)}}.\]</span> The {} <span class="math inline">\(r\)</span> between two samples <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_j\)</span> is defined as <span class="math inline">\(r = S_{xy}/\sqrt{S_{xx}S_{yy}}.\)</span></p>
+<p>Example: Is there any linear relationship between the effort estimates (<span class="math inline">\(p_i\)</span>) and actual effort (<span class="math inline">\(a_i\)</span>)?</p>
+<p><span class="math inline">\(a\|39,43,21,64,57,47,28,75,34,52\)</span></p>
+<p><span class="math inline">\(p\|65,78,52,82,92,89,73,98,56,75\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p&lt;-<span class="kw">c</span>(<span class="dv">39</span>,<span class="dv">43</span>,<span class="dv">21</span>,<span class="dv">64</span>,<span class="dv">57</span>,<span class="dv">47</span>,<span class="dv">28</span>,<span class="dv">75</span>,<span class="dv">34</span>,<span class="dv">52</span>)
+a&lt;-<span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">78</span>,<span class="dv">52</span>,<span class="dv">82</span>,<span class="dv">92</span>,<span class="dv">89</span>,<span class="dv">73</span>,<span class="dv">98</span>,<span class="dv">56</span>,<span class="dv">75</span>)
+<span class="co">#</span>
+<span class="kw">cor</span>(p,a)</code></pre></div>
+<pre><code>## [1] 0.8397859</code></pre>
+<p><span class="math inline">\(R^2\)</span></p>
+
+
+</div>
+<div id="underfitting-vs.overfitting" class="section level2">
+<h2><span class="header-section-number">8.6</span> Underfitting vs. Overfitting</h2>
+<p><img src="figures/underfitting.png" alt="Underfitting" /> <img src="figures/overfitting.png" alt="Overfitting" /></p>
+<p>For example, increasing the tree size, decreases the training and testing errors. However, at some point after (tree complexity), training error keeps decreasing but testing error increases. Many algorithms have parameters to determine the model complexity (e.g., in decision trees is the prunning parameter)</p>
+<div class="figure">
+<img src="figures/overfittingTrees.png" alt="Overfitting in trees" />
+<p class="caption">Overfitting in trees</p>
+</div>
+
+</div>
+</div>
+
+
+
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Fawcett2006">
+<p>Fawcett, Tom. 2006. “An Introduction to Roc Analysis.” <em>Pattern Recognition Letters</em> 27 (8): 861–74. doi:<a href="https://doi.org/http://dx.doi.org/10.1016/j.patrec.2005.10.010">http://dx.doi.org/10.1016/j.patrec.2005.10.010</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-tecniques-in-software-defect-prediction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-mining-issues-in-defect-prediction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/danrodgar/dasedown/edit/master/430_evaluation.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

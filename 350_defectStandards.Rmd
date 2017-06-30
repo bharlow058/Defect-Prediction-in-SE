@@ -1,0 +1,54 @@
+
+## Defect Standards
+
+
+### IBM's Orthogonal Defect Classificatoin (ODC)
+
+| ODC Activity  |  ODC Trigger  |  ODC Impact              | 
+|---------------|----------------|---------------------------| 
+| Design review  |  Design conformance  |  Installability | 
+| Code inspection  |  Logic, flow  |  Standards | 
+| Unit test  |  Backward compatibility  |  Serviceability | 
+| Build  |  Lateral compatibility  |  Integrity | 
+| BVT  |  Concurrency  |  Security | 
+| CVT  |  Internal document  |  Migration | 
+| SVT  |  Language dependency  |  Reliability | 
+| IVT  |  Side effect  |  Performance | 
+| GVT  |  Rare situations  |  Documentation 
+| TVT  |  Simple path  |  Requirements 
+| DBCS IVT  |  Complex path  |  Maintenance 
+| Performance  |  Coverage  |  Usability 
+| Scalability  |  Variation  |  Accessibility 
+| ID review  |  Sequencing  |  Capability 
+| GUI review  |  Interaction  |   
+| Acceptance  |  Workload, stress  |   
+| Beta  |  Recovery, exception  |   
+|  Start, restart  |   
+|   |  Hardware configuration  |   
+|   |  Software configuration  |   
+|   |  Screen text, characters  |   
+|   |  Navigation  |   
+|   |  Widget  |   GUI behavior  |   
+
+
+
+
+The impact is classified in the following categories:
+
+
+| ODC Impact      | Description                                     |
+|---------------- |-------------------------------------------------|
+|Installability  | The ability of the customer to prepare and place the software in position for use (not include Usability). | 
+|Integrity/Security  | The protection of systems, programs, and data from inadvertent or malicious destruction, alteration, or disclosure.   | 
+|Performance  | The speed of the software as perceived by the customer and the customer's end users, in terms of their ability to perform their tasks.   | 
+|Maintenance  | The ease of applying preventive or corrective fixes to the software. An example would be that the fixes can not be applied due to a bad medium. Another example might be that the application of maintenance requires a great deal of manual effort, or is calling many pre- or co-requisite requisite maintenance.   | 
+|Serviceability  | The ability to diagnose failures easily and quickly, with minimal impact to the customer.   | 
+|Migration  | The ease of upgrading to a current release, particularly in terms of the impact on existing customer data and operations. This would include planning for migration, where a lack of adequate documentation makes this task difficult. It would also apply in those situations where a new release of an existing product introduces changes effecting the external interfaces between the product and the customer's applications.   | 
+| Documentation  | The degree to which the publication aids provided for understanding the structure and intended uses of the software are correct and complete.   | 
+| Usability  | The degree to which the software and publication aids enable the product to be easily understood and conveniently employed by its end user.   | 
+Standards  | The degree to which the software complies with established pertinent standards.   
+| Reliability  | The ability of the software to consistently perform its intended function without unplanned interruption. Severe interruptions, such as ABEND and WAIT would always be considered reliability.   | 
+| Requirements  | A customer expectation, with regard to capability, which was not known, understood, or prioritized as a requirement for the current product or release. This value should be chosen during development for additions to the plan of record. It should also be selected, after a product is made generally available, when customers report that the capability of the function or product does not meet their expectation.   | 
+| Accessibility  | Ensuring that successful access to information and use of information technology is provided to people who have disabilities.   | 
+| Capability  | The ability of the software to perform its intended functions, and satisfy known requirements, where the customer is not impacted in any of the previous categories.   | 
+
