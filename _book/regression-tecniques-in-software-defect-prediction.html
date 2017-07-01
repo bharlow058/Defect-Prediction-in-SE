@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -234,10 +234,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="regression-tecniques-in-software-defect-prediction" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> Regression tecniques in Software defect prediction</h1>
 <p>The purpose of this Section is to show the basic ways of estimating software defects by means of several regression models. We apply the techniques on the Equinox dataset. In what follows we use the same data points for training and testing, for the sake of clarity.</p>
-<div id="acknowledgments" class="section level5">
-<h5><span class="header-section-number">7.0.0.0.1</span> Acknowledgments</h5>
-<p>TIN2016-76956-C3-1-R TIN2015-71841-REDT</p>
-</div>
 <div id="zero-poison" class="section level2">
 <h2><span class="header-section-number">7.1</span> Zero Poison</h2>
 <p>When estimating the number of defects but we have many zeroes, we can use different types of zero Poison regression.</p>
@@ -264,7 +260,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="the-number-of-software-defects.-count-data" class="section level3">
 <h3><span class="header-section-number">7.1.2</span> The number of Software Defects. Count Data</h3>
-<p>The number of software Defects found in a software product can be assimilated to the “count data” concept that is used in many disciplines, because the outcome,number of defects, of whatever software process is a count. There are several ways of analyzing count data. The classical Poisson, negative binomial regression model can be augmented with zero-inflated poisson and zero-inflated negative binomial models to cope with the excess of zeros in the count data. Zero-inflated means that the response variable -software defects- contains more zeros than expected, based on the Poisson or negative binomial distribution. A simple histogram may show the trend. Count variables appear in different areas and have common properties: their range is a non-negative integer(0, 1, ….); and their values are skewed towards zero, because few values are high.</p>
+<p>The number of software defects found in a software product can be assimilated to the “count data” concept that is used in many disciplines, because the outcome,number of defects, of whatever software process is a count. There are several ways of analyzing count data. The classical Poisson, negative binomial regression model can be augmented with zero-inflated poisson and zero-inflated negative binomial models to cope with the excess of zeros in the count data. Zero-inflated means that the response variable -software defects- contains more zeros than expected, based on the Poisson or negative binomial distribution. A simple histogram may show the trend. Count variables appear in different areas and have common properties: their range is a non-negative integer(0, 1, ….); and their values are skewed towards zero, because few values are high.</p>
 </div>
 <div id="normal-regression" class="section level3">
 <h3><span class="header-section-number">7.1.3</span> Normal Regression</h3>
@@ -984,7 +980,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/420_defectRegression.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

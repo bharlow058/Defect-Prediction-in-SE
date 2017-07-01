@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -241,9 +241,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">5.1</span> Complexity Metrics</h2>
 <p>These metrics have been used for quality assurance during:</p>
 <ul>
-<li>Development to obtain quality measures, code reviews etc.</li>
-<li>Testing to focus and prioritize testing effort, improve efficiency etc.</li>
-<li>Maintenance as indicators of comprehensibility of the modules etc.</li>
+<li><p>Development to obtain quality measures, code reviews etc.</p></li>
+<li><p>Testing to focus and prioritize testing effort, improve efficiency etc.</p></li>
+<li><p>Maintenance as indicators of comprehensibility of the modules etc.</p></li>
 </ul>
 <p>Generally, the developers or maintainers use rules of thumb or threshold values to keep modules, methods etc. within certain range. For example, if the cyclomatic complexity (<span class="math inline">\(v(g)\)</span>) of a module is between 1 and 10, it is considered to have a very low risk of being defective; however, any value greater than 50 is considered to have an unmanageable complexity and risk. For the essential complexity (<span class="math inline">\(ev(g)\)</span>), the threshold suggested is 4 etc. Although these metrics have been used for long time, there are no clear thresholds, for example, although McCabe suggests a threshold of 10 for <span class="math inline">\(v(g)\)</span>, NASA’s in–house studies for this metric concluded that a threshold of 20 can be a better predictor of a module being defective.</p>
 <p>Several authors have studied the relation between lines of code and defects, for example, <span class="citation">(Zhang <a href="#ref-Zhang2009">2009</a>)</span></p>
@@ -260,15 +260,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">5.1.2</span> Halstead-s Software Science</h3>
 <p>Late 70s, Halstead developed a set of metrics based on <span class="citation">(Halstead <a href="#ref-Halstead77">1977</a>)</span>:</p>
 <ul>
-<li>Operators, keywords such as <code>if</code>, <code>while</code>, <code>for</code>, operators <code>+</code>, <code>=</code>, <code>AND</code>, etc.</li>
-<li>Operands, program variables and constants. programa. \end{itemize}</li>
+<li><p>Operators, keywords such as <code>if</code>, <code>while</code>, <code>for</code>, operators <code>+</code>, <code>=</code>, <code>AND</code>, etc.</p></li>
+<li><p>Operands, program variables and constants.</p></li>
 </ul>
 <p>All metrics are calculated using the following:</p>
 <ul>
-<li><span class="math inline">\(n_1\)</span>, number of distinct operators</li>
-<li><span class="math inline">\(N_1\)</span>, total number of operators</li>
-<li><span class="math inline">\(n_2\)</span>, number of distinct operands</li>
-<li><span class="math inline">\(N_2\)</span>, the total number of operands</li>
+<li><p><span class="math inline">\(n_1\)</span>, number of distinct operators</p></li>
+<li><p><span class="math inline">\(N_1\)</span>, total number of operators</p></li>
+<li><p><span class="math inline">\(n_2\)</span>, number of distinct operands</p></li>
+<li><p><span class="math inline">\(N_2\)</span>, the total number of operands</p></li>
 </ul>
 <p>For example, given the following excerpt:</p>
 <pre><code>if (MAX &lt; 2) {
@@ -277,10 +277,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }</code></pre>
 <p>We obtain the following values:</p>
 <ul>
-<li><span class="math inline">\(n1 = 6\)</span> (<code>if, { }, System.out.print(), =, *, $&lt;$</code>)</li>
-<li><span class="math inline">\(N1 = 6\)</span> (<code>if, { }, System.out.print(), =, *, $&lt;$</code>)</li>
-<li><span class="math inline">\(n2 = 4\)</span> (<code>MAX, a, b, 2</code>)</li>
-<li><span class="math inline">\(N2 = 6\)</span> (<code>MAX, 2, a, b, MAX, a</code>)</li>
+<li><p><span class="math inline">\(n1 = 6\)</span> (<code>if, { }, System.out.print(), =, *, $&lt;$</code>)</p></li>
+<li><p><span class="math inline">\(N1 = 6\)</span> (<code>if, { }, System.out.print(), =, *, $&lt;$</code>)</p></li>
+<li><p><span class="math inline">\(n2 = 4\)</span> (<code>MAX, a, b, 2</code>)</p></li>
+<li><p><span class="math inline">\(N2 = 6\)</span> (<code>MAX, 2, a, b, MAX, a</code>)</p></li>
 </ul>
 <p>Using this four variable, several metrics are calculated.</p>
 <ul>
@@ -302,13 +302,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Coupling Between Objects (CBO) for a class is a count of the number of other classes to which it is coupled. Coupling between two classes is said to occur when one class uses methods or variables of another class. COB is measured by counting the number of distinct non-inheritance related class hierarchies on which a class depends.</p></li>
 <li><p>Depth of Inheritance Tree (DIT) measures the maximum level of the inheritance hierarchy of a class; the root of the inheritance tree inherits from no class and is at level zero of the inheritance tree. Direct count of the levels of the levels in an inheritance hierarchy.</p></li>
 <li><p>Number of Children (NOC) is the number of immediate subclasses subordinate to a class in the hierarchy. NOC counts the number of subclasses belonging to a class. According to C&amp;K, NOC indicate the level of reuse, the likelihood of improper abstraction and as possible indication of the level of testing required.</p></li>
-<li>Response For a Class (RFC) is the count of the set of all methods that can be invoked in response to a message to an object of the class or by some method in the class. According to C&amp;K, RFC is a measure of the complexity of a class through the number of methods and the amount of communication with other classes.</li>
+<li><p>Response For a Class (RFC) is the count of the set of all methods that can be invoked in response to a message to an object of the class or by some method in the class. According to C&amp;K, RFC is a measure of the complexity of a class through the number of methods and the amount of communication with other classes.</p></li>
 <li><p>Weighted Methods per Class (WMC) measures the complexity of an individual class. If all methods are considered equally complex, then WMC is simply the number of methods defined in each class. C&amp;K suggests that WMC is intended to measure the complexity of a class. Therefore, it is an indicator of the effort needed to develop and maintain a class.</p></li>
-<li><p>Lack of Cohesion in Methods (LCOM) measures the extent to which methods reference the classes instance data.</p></li>
+<li>Lack of Cohesion in Methods (LCOM) measures the extent to which methods reference the classes instance data.</li>
 <li><p>Etc.</p></li>
 </ul>
-<p>Jurescko and Spinellis <span class="citation">(Jureczko and Spinellis <a href="#ref-JureczkoS10">2010</a>)</span></p>
-<p>Bansiya and Davis, A hierarchical model for object-oriented design quality assessment <span class="citation">(Bansiya and Davis <a href="#ref-BansiyaD02">2002</a>)</span></p>
+<p><span class="citation">(Jureczko and Spinellis <a href="#ref-JureczkoS10">2010</a>)</span> Jurescko and Spinellis</p>
+<p><span class="citation">(Bansiya and Davis <a href="#ref-BansiyaD02">2002</a>)</span> A hierarchical model for object-oriented design quality assessment</p>
 </div>
 <div id="churn-and-process-metrics" class="section level2">
 <h2><span class="header-section-number">5.3</span> Churn and Process Metrics</h2>
@@ -358,11 +358,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tbody>
 </table>
 <p>A Comparative Analysis of the Efficiency of Change Metrics and Static Code Attributes for Defect Prediction <span class="citation">(Moser, Pedrycz, and Succi <a href="#ref-MoserPS2008">2008</a>)</span></p>
-<p>A futher description of typical metrics used <span class="citation">(Krishnan et al. <a href="#ref-KrishnanSLG2011">2011</a>)</span>:</p>
-<table style="width:76%;">
+<table style="width:96%;">
 <colgroup>
-<col width="15%" />
-<col width="61%" />
+<col width="20%" />
+<col width="75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -372,71 +371,72 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </thead>
 <tbody>
 <tr class="odd">
-<td>COMMITS</td>
-<td>Number of commits a file has gone through</td>
+<td>Commits</td>
+<td>No. of commits a file has gone through</td>
 </tr>
 <tr class="even">
-<td>REFACTORINGS</td>
-<td>Number of times a file has been refactored</td>
+<td>Refactorings</td>
+<td>No. of times a file has been refactored</td>
 </tr>
 <tr class="odd">
-<td>BUGFIXES</td>
-<td>Number of times a file has been involved in bug fixing</td>
+<td>Bugfixes</td>
+<td>No. of times a file has been involved in bug fixing</td>
 </tr>
 <tr class="even">
-<td>AUTHORS</td>
-<td>Number of distinct authors that made commits to the file</td>
+<td>Authors</td>
+<td>No. of distinct authors that made commits to the file</td>
 </tr>
 <tr class="odd">
-<td>LOC-ADDED</td>
-<td>Number of lines of code added to the file</td>
+<td>LoC-Added</td>
+<td>No. of lines of code added to the file</td>
 </tr>
 <tr class="even">
-<td>MAX-LOC-ADDED</td>
-<td>Maximum number of lines of code added for all commits</td>
+<td>Max-LoC-Added</td>
+<td>Max no. of lines of code added for all commits</td>
 </tr>
 <tr class="odd">
-<td>AVG-LOC-ADDED</td>
-<td>Average lines of code added per commit</td>
+<td>Avg-LoC-Added</td>
+<td>Avg lines of code added per commit</td>
 </tr>
 <tr class="even">
-<td>LOC-DELETED</td>
-<td>Number of lines of code deleted from the file</td>
+<td>LoC-DELETED</td>
+<td>No. of lines of code deleted from the file</td>
 </tr>
 <tr class="odd">
-<td>MAX-LOC-ADDED</td>
-<td>Maximum number of lines of code deleted for all commits</td>
+<td>Max-LoC-Added</td>
+<td>Max no. of lines of code deleted for all commits</td>
 </tr>
 <tr class="even">
-<td>AVG-LOC-ADDED</td>
-<td>Average lines of code deleted per commit</td>
+<td>Avg-LoC-Added</td>
+<td>Avg lines of code deleted per commit</td>
 </tr>
 <tr class="odd">
-<td>CODECHURN</td>
+<td>CodeChurn</td>
 <td>Sum of all commits (added lines of code deleted lines of code)</td>
 </tr>
 <tr class="even">
-<td>MAX-CODECHURN</td>
+<td>Max-CodeChurn</td>
 <td>Maximum CODECHURN for all commits</td>
 </tr>
 <tr class="odd">
-<td>AVG-CODECHURN</td>
+<td>Avg-CodeChurn</td>
 <td>Average CODECHURN per commit</td>
 </tr>
 <tr class="even">
-<td>MAX-CHANGESET</td>
+<td>Max-Changeset</td>
 <td>Maximum number of files committed together with the repository</td>
 </tr>
 <tr class="odd">
-<td>AVG-CHANGESET</td>
+<td>Avg-Changeset</td>
 <td>Average number of files committed together with the repository</td>
 </tr>
 <tr class="even">
-<td>WEIGHTED-AGE</td>
+<td>Weighted-Age</td>
 <td>Age of a file normalized by added lines of code</td>
 </tr>
 </tbody>
 </table>
+<p>A further description of typical metrics used <span class="citation">(Krishnan et al. <a href="#ref-KrishnanSLG2011">2011</a>)</span>:</p>
 
 </div>
 <div id="defect-standards" class="section level2">
@@ -635,20 +635,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
+<p>These impact categories have been used to classify defects <span class="citation">(Huang et al. <a href="#ref-HuangNPGBT2011">2011</a>)</span></p>
 
 </div>
 </div>
 </div>
 
 
-
-<ul>
-<li><p>Which metrics have the most predictive power?</p></li>
-<li><p>Which machine learning models have the most predictive power? There are the Machine Learning models that can be applied in defect prediciton.</p></li>
-<li>Classification (Which modules are prone to be defective?)</li>
-<li><p>Regression (How many errors in a module?). It is a difficult question but it can help to predict the ranking of modules according how error prone they will be.</p></li>
-<li><p>How can we evaluate the learned models?</p></li>
-</ul>
 
 </div>
 <h3>References</h3>
@@ -657,7 +650,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Zhang, H. 2009. “An Investigation of the Relationships Between Lines of Code and Defects.” In <em>IEEE International Conference on Software Maintenance</em>, 274–83. doi:<a href="https://doi.org/10.1109/ICSM.2009.5306304">10.1109/ICSM.2009.5306304</a>.</p>
 </div>
 <div id="ref-mccabe76">
-<p>McCabe, T J. 1976. “A Complexity Measure.” <em>IEEE Transactions on Software Engineering</em> 2 (4): 308–20.</p>
+<p>McCabe, T.J. 1976. “A Complexity Measure.” <em>IEEE Transactions on Software Engineering</em> 2 (4): 308–20.</p>
 </div>
 <div id="ref-Halstead77">
 <p>Halstead, M.H. 1977. <em>Elements of Software Science</em>. Elsevier Computer Science Library. Operating and Programming Systems Series; 2. New York ; Oxford: Elsevier.</p>
@@ -666,7 +659,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Chidamber, S.R., and C.F. Kemerer. 1994. “A Metrics Suite for Object Oriented Design.” <em>IEEE Transactions on Software Engineering</em> 20 (6): 476–93. doi:<a href="https://doi.org/10.1109/32.295895">10.1109/32.295895</a>.</p>
 </div>
 <div id="ref-JureczkoS10">
-<p>Jureczko, Marian, and Diomidis Spinellis. 2010. “Using Object-Oriented Design Metrics to Predict Software Defects.” In <em>Models and Methodology of System Dependability. Proceedings of RELCOMEX 2010: Fifth International Conference on Dependability of Computer Systems DepCoS</em>, 69–81. Monographs of System Dependability. Wrocław, Poland: Oficyna Wydawnicza Politechniki Wrocławskiej. <a href="http://www.dmst.aueb.gr/dds/pubs/conf/2010-DepCoS-RELCOMEX-ckjm-defects/html/JS10.html" class="uri">http://www.dmst.aueb.gr/dds/pubs/conf/2010-DepCoS-RELCOMEX-ckjm-defects/html/JS10.html</a>.</p>
+<p>Jureczko, Marian, and Diomidis Spinellis. 2010. “Using Object-Oriented Design Metrics to Predict Software Defects.” In <em>Models and Methodology of System Dependability. Proceedings of RELCOMEX 2010 Fifth International Conference on Dependability of Computer Systems DepCoS</em>, 69–81. Monographs of System Dependability. Wrocław, Poland: Oficyna Wydawnicza Politechniki Wrocławskiej. <a href="http://www.dmst.aueb.gr/dds/pubs/conf/2010-DepCoS-RELCOMEX-ckjm-defects/html/JS10.html" class="uri">http://www.dmst.aueb.gr/dds/pubs/conf/2010-DepCoS-RELCOMEX-ckjm-defects/html/JS10.html</a>.</p>
 </div>
 <div id="ref-BansiyaD02">
 <p>Bansiya, J., and C. G. Davis. 2002. “A Hierarchical Model for Object-Oriented Design Quality Assessment.” <em>IEEE Transactions on Software Engineering</em> 28 (1): 4–17. doi:<a href="https://doi.org/10.1109/32.979986">10.1109/32.979986</a>.</p>
@@ -675,10 +668,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Madeyski, Lech, and Marian Jureczko. 2015. “Which Process Metrics Can Significantly Improve Defect Prediction Models? An Empirical Study.” <em>Software Quality Journal</em> 23 (3): 393–422. doi:<a href="https://doi.org/10.1007/s11219-014-9241-7">10.1007/s11219-014-9241-7</a>.</p>
 </div>
 <div id="ref-MoserPS2008">
-<p>Moser, Raimund, Witold Pedrycz, and Giancarlo Succi. 2008. “A Comparative Analysis of the Efficiency of Change Metrics and Static Code Attributes for Defect Prediction.” In <em>Proceedings of the 30th International Conference on Software Engineering (Icse’08)</em>, 181–90. ICSE’08. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/1368088.1368114">10.1145/1368088.1368114</a>.</p>
+<p>Moser, R., W. Pedrycz, and G. Succi. 2008. “A Comparative Analysis of the Efficiency of Change Metrics and Static Code Attributes for Defect Prediction.” In <em>2008 Acm/Ieee 30th International Conference on Software Engineering</em>, 181–90. doi:<a href="https://doi.org/10.1145/1368088.1368114">10.1145/1368088.1368114</a>.</p>
 </div>
 <div id="ref-KrishnanSLG2011">
 <p>Krishnan, Sandeep, Chris Strasburg, Robyn R. Lutz, and Katerina Goševa-Popstojanova. 2011. “Are Change Metrics Good Predictors for an Evolving Software Product Line?” In <em>Proceedings of the 7th International Conference on Predictive Models in Software Engineering (Promise’11)</em>, 7:1–7:10. Promise’11. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/2020390.2020397">10.1145/2020390.2020397</a>.</p>
+</div>
+<div id="ref-HuangNPGBT2011">
+<p>Huang, LiGuo, V. Ng, I. Persing, Ruili Geng, Xu Bai, and Jeff Tian. 2011. “AutoODC: Automated Generation of Orthogonal Defect Classifications.” In <em>26th Ieee/Acm International Conference on Automated Software Engineering (Ase’2011)</em>, 412–15. doi:<a href="https://doi.org/10.1109/ASE.2011.6100086">10.1109/ASE.2011.6100086</a>.</p>
 </div>
 </div>
             </section>
@@ -719,7 +715,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/300_metrics.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

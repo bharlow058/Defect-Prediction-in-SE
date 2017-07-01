@@ -10,16 +10,16 @@ rmd_files: [
 
   "300_metrics.Rmd",
   "350_defectStandards.Rmd",
+
   "400_defectPredictionML.Rmd",
   "415_basicModelBuildingSupervised.Rmd",
-  "416_ensembles.Rmd",	
+  "416_ensembles.Rmd",
   "420_defectRegression.Rmd",
 
   "430_evaluation.Rmd",
   "435_evaluationClassifiers.Rmd",
   "436_evaluationGraphical.Rmd",
   "437_evaluationRegression.Rmd",
-  "440_evaluationUnsupervised.Rmd",
   "445_evaluationIssues.Rmd",
 
   "600_Issues.Rmd",

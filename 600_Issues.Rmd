@@ -4,16 +4,19 @@
 
 There are many challenges related to Software Mining and fault prediction such as:
 
-* fault prediction without fault data
-* limited fault data 
-* noisy data
-* cross-company vs within-company.
+  * fault prediction without fault data
+
+  * limited fault data 
+
+  * noisy data
+
+  * cross-company vs within-company.
 
 Catal highlights some of these issues [@Catal_WIRED12].
 
 # Outliers, missing values, inconsistencies data noise
 
-Although this statistical problem is well known in the literature, it is not always properly reported as reported by Turhan [@TurhanESE12]. 
+Although this statistical problem is well known in the literature, it is not always properly reported. 
 
 For example preprocessing of the NASA datasets hosted at PROMISE as some concerns about their quality have been raised [@GrayBDSB11]. And these are by far the most used datasets.
 
@@ -25,12 +28,12 @@ It is also well known that the existence of irrelevant and redundant features in
 
 Feature Selection has been applied and studied by the software engineering community [@KhoshgoftaarGN12],
 
-However instance selection that needs further research (a few exceptions for effort estimation include [@KS02],[@CHPB05]. 
+ 
+Futhermore, feature selection algorithms do not perform well with unbalanced datasets (defect prediction datasets tend to be are highly unbalanced), resulting in a selection of metrics that are not adequate for the learning algorithms See [@WangKWN12][@RRCA07]. 
 
-For example, the JM1 dataset rom NASA's defect prediction datasets in PROMISE has 8,000 repeated instances. Defect prediction datasets tend to be are highly unbalanced.
+However instance selection that needs further research. For example, the JM1 dataset rom NASA's defect prediction datasets in PROMISE has 8,000 repeated instances
 
-
-Futhermore, feature selection algorithms do not perform well with imbalanced datasets, resulting in a selection of metrics that are not adequate for the learning algorithms See [@WangKWN12][@RRCA07]
+A few exceptions for effort estimation include [@KS02],[@CHPB05]. 
 
 
 # Overlapping or class separability

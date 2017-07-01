@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -304,10 +304,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>where <em>True Positives</em> (<span class="math inline">\(TP\)</span>) and <em>True Negatives</em> (<span class="math inline">\(TN\)</span>) are respectively the number of positive and negative instances correctly classified, <em>False Positives</em> (<span class="math inline">\(FP\)</span>) is the number of negative instances misclassified as positive (also called Type I errors), and <em>False Negatives</em> (<span class="math inline">\(FN\)</span>) is the number of positive instances misclassified as negative (Type II errors).</p>
 <p>From the confusion matrix, we can calculate:</p>
 <ul>
-<li><em>True positive rate</em>, or <em>recall </em> (<span class="math inline">\(TP_r = recall = r = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</li>
-<li><em>False negative rate</em> (<span class="math inline">\(FN_r=FN/TP+FN\)</span>) is the proportion of positive cases misclassified as belonging to the negative class.</li>
-<li><em>False positive rate</em> (<span class="math inline">\(FP_r=FP/FP+TN\)</span>) is the proportion of negative cases misclassified as belonging to the positive class.</li>
-<li><em>True negative rate</em> (<span class="math inline">\(TN_r=TN/FP+TN\)</span>) is the proportion of negative cases correctly classified as belonging to the negative class.</li>
+<li><p><em>True positive rate</em>, or <em>recall </em> (<span class="math inline">\(TP_r = recall = r = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</p></li>
+<li><p><em>False negative rate</em> (<span class="math inline">\(FN_r=FN/TP+FN\)</span>) is the proportion of positive cases misclassified as belonging to the negative class.</p></li>
+<li><p><em>False positive rate</em> (<span class="math inline">\(FP_r=FP/FP+TN\)</span>) is the proportion of negative cases misclassified as belonging to the positive class.</p></li>
+<li><p><em>True negative rate</em> (<span class="math inline">\(TN_r=TN/FP+TN\)</span>) is the proportion of negative cases correctly classified as belonging to the negative class.</p></li>
 </ul>
 <p>There is a tradeoff between <span class="math inline">\(FP_r\)</span> and <span class="math inline">\(FN_r\)</span> as the objective is minimize both metrics (or conversely, maximize the true negative and positive rates). It is possible to combine both metrics into a single figure, predictive <span class="math inline">\(accuracy\)</span>:</p>
 <p><span class="math display">\[accuracy = \frac{TP + TN}{TP + TN + FP + FN}\]</span></p>
@@ -324,7 +324,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew’s Correlation Coefficient (<span class="math inline">\(MCC\)</span>)~:</li>
 </ul>
-<p><span class="math display">\[$MCC=\frac{TP\times TN - FP\times FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}\]</span></p>
+<p><span class="math display">\[MCC=\frac{TP\times TN - FP\times FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}\]</span></p>
 <p><span class="math inline">\(MCC\)</span> can also be calculated from the confusion matrix. Its range goes from -1 to +1; the closer to one the better as it indicates perfect prediction whereas a value of 0 means that classification is not better than random prediction and negative values mean that predictions are worst than random.</p>
 <div id="prediction-in-probabilistic-classifiers" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> Prediction in probabilistic classifiers</h3>
@@ -336,7 +336,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">8.3</span> Other Metrics used in Software Engineering with Classification</h2>
 <p>In the domain of defect prediction and when two classes are considered, it is also customary to refer to the <em>probability of detection</em>, (<span class="math inline">\(pd\)</span>) which corresponds to the True Positive rate (<span class="math inline">\(TP_{rate}\)</span> or ) as a measure of the goodness of the model, and <em>probability of false alarm</em> (<span class="math inline">\(pf\)</span>) as performance measures~.</p>
 <p>The objective is to find which techniques that maximise <span class="math inline">\(pd\)</span> and minimise <span class="math inline">\(pf\)</span>. As stated by Menzies et al., the balance between these two measures depends on the project characteristics (e.g. real-time systems vs. information management systems) it is formulated as the Euclidean distance from the sweet spot <span class="math inline">\(pf=0\)</span> and <span class="math inline">\(pd=1\)</span> to a pair of <span class="math inline">\((pf,pd)\)</span>.</p>
-<p><span class="math inline">\(balance=1-\frac{\sqrt{(0-pf^2)+(1-pd^2)}}{\sqrt{2}}\)</span></p>
+<p><span class="math display">\[balance=1-\frac{\sqrt{(0-pf^2)+(1-pd^2)}}{\sqrt{2}}\]</span></p>
 <p>It is normalized by the maximum possible distance across the ROC square (<span class="math inline">\(\sqrt{2}, 2\)</span>), subtracted this value from 1, and expressed it as a percentage.</p>
 
 </div>
@@ -447,7 +447,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/430_evaluation.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

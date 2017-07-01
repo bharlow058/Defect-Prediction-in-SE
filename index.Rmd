@@ -25,6 +25,13 @@ keep_tex: true
 
 These notes will try to describe the state of the art in software defect prediction. 
 
+**Acknowledgments**
+
+  * TIN2016-76956-C3-1-R
+
+  * TIN2015-71841-REDT
+
+
 Work in progress.
 
 This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/us/) United States License. 

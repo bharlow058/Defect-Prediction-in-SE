@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -233,19 +233,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>Defect Prediction in Software engineering addresses the problem of predicting which software modules will be error prone. In this way, testing effort can be focused on those modules that are more error prone.</p>
+<p><em>Defect prediction</em> in software engineering addresses the problem of predicting which software modules will be error prone. In this way, testing effort can be focused on those modules that are more error prone.</p>
 <p>Techniques are typically classified into:</p>
 <ul>
 <li><p>Defect Classification - using data mining tecniques to find error prone modules</p></li>
-<li><p>Defect Ranking - sort the modules according to their probabilit of being error prone. For example, finding the 20 per cent of the modules with most bugs.</p></li>
+<li><p>Defect Ranking - sort the modules according to their probability of being error-prone. For example, finding the 20 per cent of the modules with most bugs.</p></li>
 </ul>
 <p>There are other works that make use of textual information to classify defects. For example in order to find what to fix first or what requirement should be implemented (functinal or non-functional requierements).</p>
 <ul>
-<li><p>Categorise reviews - for example from Bug Tracking tools (e.g. bugzilla) defect descriptions or Mobile aplications (Appstore or Google play) reviews</p></li>
-<li><p>Defect categories - Standards to deal with defects, for example <em>Orthogonal Defect Classification</em> (ODC) or with classifying requirements so that we can answer “What to fix first or implement (non-functional requierements)”. For example, <span class="citation">(Huang et al. <a href="#ref-HuangNPGBT2011">2011</a>)</span></p></li>
+<li><p><em>Categorise reviews</em> - for example from Bug Tracking tools (e.g. Bugzilla) defect descriptions or Mobile aplications (Appstore or Google play) reviews</p></li>
+<li><p><em>Defect categories</em> - Standards to deal with defects, for example <em>Orthogonal Defect Classification</em> (ODC) or with classifying requirements so that we can answer “What to fix first or implement (non-functional requierements)”. For example, <span class="citation">(Huang et al. <a href="#ref-HuangNPGBT2011">2011</a>)</span></p></li>
 </ul>
 <p>There are other tools to deal with defects such as Findbugs or PMD that work with a set of rules describing possible problems but these tools do not use predictive models but here we refer mainly to <em>machine learning</em> approaches to defect prediction.</p>
-<p>Some systematic reviews of software fault prediction studies include <span class="citation">(Catal and Diri <a href="#ref-CC2009">2009</a>)</span>, <span class="citation">(Catal <a href="#ref-Catal2011">2011</a>)</span>, <span class="citation">(Hall et al. <a href="#ref-HallBBGC2012">2012</a>)</span></p>
+<p>Some systematic reviews of software fault prediction studies include:</p>
+<ul>
+<li><p><span class="citation">(Hall et al. <a href="#ref-HallBBGC2012">2012</a>)</span> - A Systematic Literature Review on Fault Prediction Performance in Software Engineering</p></li>
+<li><p><span class="citation">(Catal and Diri <a href="#ref-CC2009">2009</a>)</span> - A systematic review of software fault prediction studies</p></li>
+<li><p><span class="citation">(Catal <a href="#ref-Catal2011">2011</a>)</span> - Software fault prediction: A literature review and current trends</p></li>
+</ul>
 
 </div>
 
@@ -254,16 +259,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-HuangNPGBT2011">
-<p>Huang, LiGuo, V. Ng, I. Persing, Ruili Geng, Xu Bai, and Jeff Tian. 2011. “AutoODC: Automated Generation of Orthogonal Defect Classifications.” In <em>26th Ieee/Acm International Conference on Automated Software Engineering (Ase 2011)</em>, 412–15. doi:<a href="https://doi.org/10.1109/ASE.2011.6100086">10.1109/ASE.2011.6100086</a>.</p>
+<p>Huang, LiGuo, V. Ng, I. Persing, Ruili Geng, Xu Bai, and Jeff Tian. 2011. “AutoODC: Automated Generation of Orthogonal Defect Classifications.” In <em>26th Ieee/Acm International Conference on Automated Software Engineering (Ase’2011)</em>, 412–15. doi:<a href="https://doi.org/10.1109/ASE.2011.6100086">10.1109/ASE.2011.6100086</a>.</p>
+</div>
+<div id="ref-HallBBGC2012">
+<p>Hall, T., S. Beecham, D. Bowes, D. Gray, and S. Counsell. 2012. “A Systematic Literature Review on Fault Prediction Performance in Software Engineering.” <em>IEEE Transactions on Software Engineering</em> 38 (6): 1276–1304. doi:<a href="https://doi.org/10.1109/TSE.2011.103">10.1109/TSE.2011.103</a>.</p>
 </div>
 <div id="ref-CC2009">
 <p>Catal, Cagatay, and Banu Diri. 2009. “A Systematic Review of Software Fault Prediction Studies.” <em>Expert Systems with Applications</em> 36 (4): 7346–54. doi:<a href="https://doi.org/10.1016/j.eswa.2008.10.027">10.1016/j.eswa.2008.10.027</a>.</p>
 </div>
 <div id="ref-Catal2011">
 <p>Catal, Cagatay. 2011. “Software Fault Prediction: A Literature Review and Current Trends.” <em>Expert Systems with Applications</em> 38 (4): 4626–36. doi:<a href="https://doi.org/10.1016/j.eswa.2010.10.024">10.1016/j.eswa.2010.10.024</a>.</p>
-</div>
-<div id="ref-HallBBGC2012">
-<p>Hall, T., S. Beecham, D. Bowes, D. Gray, and S. Counsell. 2012. “A Systematic Literature Review on Fault Prediction Performance in Software Engineering.” <em>IEEE Transactions on Software Engineering</em> 38 (6): 1276–1304. doi:<a href="https://doi.org/10.1109/TSE.2011.103">10.1109/TSE.2011.103</a>.</p>
 </div>
 </div>
             </section>
@@ -304,7 +309,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/100_intro.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

@@ -37,11 +37,7 @@ Relative Absolut Error
 
 Correlation Coefficient
 
-Correlation coefficient between two random
-variables $X$ and $Y$ is defined as $$\rho(X,Y) = \frac{{\bf
-Cov}(X,Y)}{\sqrt{{\bf Var}(X){\bf Var}(Y)}}.$$ The {\em sample
-correlation coefficient} $r$ between two samples $x_i$ and $y_j$ is
-defined as $r = S_{xy}/\sqrt{S_{xx}S_{yy}}.$ 
+Correlation coefficient between two random variables $X$ and $Y$ is defined as $\rho(X,Y) = \frac{{\bf Cov}(X,Y)}{\sqrt{{\bf Var}(X){\bf Var}(Y)}}$. The sample correlation coefficient} $r$ between two samples $x_i$ and $y_j$ is vvdefined as $r = S_{xy}/\sqrt{S_{xx}S_{yy}}$ 
 
 Example: Is there any linear relationship between the effort estimates ($p_i$) and actual effort ($a_i$)? 
 

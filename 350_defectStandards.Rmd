@@ -52,3 +52,8 @@ Standards  | The degree to which the software complies with established pertinen
 | Accessibility  | Ensuring that successful access to information and use of information technology is provided to people who have disabilities.   | 
 | Capability  | The ability of the software to perform its intended functions, and satisfy known requirements, where the customer is not impacted in any of the previous categories.   | 
 
+
+
+These impact categories have been used to classify defects [@HuangNPGBT2011]
+
+

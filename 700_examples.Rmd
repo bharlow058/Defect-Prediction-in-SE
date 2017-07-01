@@ -5,18 +5,18 @@
 
 Feature Subsect Selection (FSS) is important in different ways:
 
-+ A reduced volume of data allows different data mining or searching techniques to be applied.
+  + A reduced volume of data allows different data mining or searching techniques to be applied.
 
-+ Irrelevant and redundant attributes can generate less accurate and more complex models. Furthermore, data mining algorithms can be executed faster.
+  + Irrelevant and redundant attributes can generate less accurate and more complex models. Furthermore, data mining algorithms can be executed faster.
 
-+ We can avoid the collection of data for those irrelevant and redundant attributes in the future.
+  + We can avoid the collection of data for those irrelevant and redundant attributes in the future.
 
 FSS algorithms search through candidate feature subsets guide by a certain evaluation measure which captures the goodness of each subset. An optimal (or near optimal) subset
 is selected when the search stops. There are two possibilities when applying FSS:
 
-+ The _filter model_ relies on general characteristics of the data to evaluate and select feature subsets without involving any data mining algorithm.
+  + The _filter model_ relies on general characteristics of the data to evaluate and select feature subsets without involving any data mining algorithm.
 
-+ The _wrapper model_ requires one predetermined mining algorithm and uses its performance as the evaluation criterion. It searches for features better suited to the mining algorithm aiming to improve mining performance, but it also tends to be more computationally expensive than filter model.
+  + The _wrapper model_ requires one predetermined mining algorithm and uses its performance as the evaluation criterion. It searches for features better suited to the mining algorithm aiming to improve mining performance, but it also tends to be more computationally expensive than filter model.
 
 
 We applied Feature Subset Selection (FSS) to several datasets publicly available (PROMISE repository), and different classifiers to improve the detection of faulty modules.
@@ -49,9 +49,8 @@ Different approaches include:
   
   * Random Under-Sampling (RUS) removes instances from the majority class 
   
-  More intelligent approaches include SMOTE (Synthetic Minority Over-sampling Technique)
-generates new instances based on a number of nearest neighbours ($k$-NN) There are other variations of SMOTE (Borderline SMOTE) 
-  ![](./figures/SMOTE.png)
+  More intelligent approaches that random sampling include SMOTE (Synthetic Minority Over-sampling Technique) that generates new instances based on a number of nearest neighbours ($k$-NN). There are other variations of SMOTE (Borderline SMOTE) 
+  ![SMOTE](./figures/SMOTE.png)
 
 + _Cost-Sensitive Classifiers_ (CSC) penalises differently the
 type of errors
@@ -65,6 +64,9 @@ type of errors
 
 [@SeiffertEtAl07] An empirical study of the classification performance of learners
 	on imbalanced and noisy software quality data
+
+
+
 
 # Subgroup Discovery
 
@@ -98,14 +100,14 @@ It is worth noting that we do not cover all examples
 
 ![SD Gen Vs Spc](./figures/SD_GenVsSpc.png)
 
-This has been applied to deal with imbalanced [@RodriguezEtAlINS12]
+This has been applied to deal with unbalanced data [@RodriguezEtAlINS12]
 
 Classical algorithms include the SD, CN2-SD algorithms etc.
 
 Using the CN2-SD algorithm with the KC2 dataset:
 ![Barchar KC2 using CN2-SD](./figures/barChar-CN2SD-KC2.png)
 
-And with 
+And with the SD algorithm:
 ![Barchar KC2 using CN2-SD](./figures/barChar-SD-KC2.png)
 
 

@@ -2,9 +2,6 @@
 
 The purpose of this Section is to show the basic ways of estimating software defects by means of several regression models. We apply the techniques on the Equinox dataset. In what follows we use the same data points for training and testing, for the sake of clarity.
 
-##### Acknowledgments
-TIN2016-76956-C3-1-R
-TIN2015-71841-REDT
 
 ## Zero Poison
 
@@ -38,7 +35,7 @@ library(corrplot)
 
 ### The number of Software Defects. Count Data
 
-The number of software Defects found in a software product can be assimilated to the "count data" concept that is used in many disciplines, because the outcome,number of defects, of whatever software process is a count.
+The number of software defects found in a software product can be assimilated to the "count data" concept that is used in many disciplines, because the outcome,number of defects, of whatever software process is a count.
 There are several ways of analyzing count data. The classical Poisson, negative binomial regression model can be augmented with zero-inflated poisson and zero-inflated negative binomial models to cope with the excess of zeros in the count data. Zero-inflated means that the response variable -software defects- contains more zeros than expected, based on the Poisson or negative binomial distribution. A simple histogram may show the trend. 
 Count variables appear in different areas and have common properties: their range is a non-negative integer(0, 1, ....); and their values are skewed towards zero, because few values are high. 
 
@@ -52,8 +49,8 @@ The normal regression provided by the general linear model (glm in R) is not app
 This model can be used if there is no excess in the number of zeros. The poisson model is the most common and it is a probability distribution that is controlled by a single parameter, $\lambda$
 
 ```{r poisdist, echo=FALSE}
-lambda <- 1 #change this parameter
-ggplot(transform(data.frame(x=c(0:10)), y=dpois(x, lambda)), aes(x, y)) + 
+lambda <- 1 # Change this parameter
+ggplot(transform(data.frame(x=c(0:20)), y=dpois(x, lambda)), aes(x, y)) + 
     geom_bar(stat="identity")
 
 ```
@@ -590,6 +587,7 @@ defects_final_zip
 
 
 ## References and R code used 
+
 1. A. Alexander Beaujean, Grant B. Morgan, Tutorial on Using Regression Models with Count Outcomes using R. Practical Assessment, Research & Evaluation, Volume 21, Number 2, February 2016
 
 1. Achim Zeileis, Christian Kleiber and Simon Jackman, Regression Models for Count Data in R

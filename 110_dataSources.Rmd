@@ -21,7 +21,7 @@ We classify this trail in the following categories:
 
 
 
-Types of information stored in the repositories
+Types of information stored in the repositories:
 
   * Meta-information about the project itself and the
 people that participated.
@@ -57,7 +57,7 @@ and cost of the project.
 
 There is a number of open research repositories in Software Engineering. Among them:
 
-  + PROMISE (PRedictOr Models In Software Engineering) [8]: 
+  + PROMISE (PRedictOr Models In Software Engineering): 
 [http://openscience.us/repo/](http://openscience.us/repo/)
 
 ![Promise Repository](figures/Promise.png)
@@ -146,9 +146,9 @@ There are problems such as different tools report different values for the same 
 
 It is well-know that the NASA datasets have some problems:
 
-[@Gray2011] The misuse of the NASA metrics data program data sets for automated software defect prediction
+ + [@Gray2011] The misuse of the NASA metrics data program data sets for automated software defect prediction
 
-[@Shepperd2013] Data Quality: Some Comments on the NASA Software Defect Datasets
+ + [@Shepperd2013] Data Quality: Some Comments on the NASA Software Defect Datasets
 
 
 

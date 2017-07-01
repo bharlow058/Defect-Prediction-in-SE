@@ -3,23 +3,33 @@
 
 # Introduction
 
-Defect Prediction in Software engineering addresses the problem of predicting which software modules will be error prone.  In this way, testing effort can be focused on those modules that are more error prone.
+_Defect prediction_ in software engineering addresses the problem of predicting which software modules will be error prone.  In this way, testing effort can be focused on those modules that are more error prone.
  
 Techniques are typically classified into:
 
-+ Defect Classification - using data mining tecniques to find error prone modules
+  + Defect Classification - using data mining tecniques to find error prone modules
   
-+ Defect Ranking - sort the modules according to their probabilit of being error prone. For example, finding the 20 per cent of the modules with most bugs.
+  + Defect Ranking - sort the modules according to their probability of being error-prone. For example, finding the 20 per cent of the modules with most bugs.
   
 
 There are other works that make use of textual information to classify defects. For example in order to find what to fix first or what requirement should be implemented (functinal or non-functional requierements).
 
-+ Categorise reviews - for example from Bug Tracking tools (e.g. bugzilla) defect descriptions or Mobile aplications (Appstore or Google play) reviews 
+  + _Categorise reviews_ - for example from Bug Tracking tools (e.g. Bugzilla) defect descriptions or Mobile aplications (Appstore or Google play) reviews 
 
-+ Defect categories - Standards to deal with defects, for example _Orthogonal Defect Classification_ (ODC) or with classifying requirements so that we can answer "What to fix first or implement (non-functional requierements)". For example, [@HuangNPGBT2011]
+  + _Defect categories_ - Standards to deal with defects, for example _Orthogonal Defect Classification_ (ODC) or with classifying requirements so that we can answer "What to fix first or implement (non-functional requierements)". For example, [@HuangNPGBT2011]
 
 
 There are other tools to deal with defects such as Findbugs or PMD that work with a set of rules describing possible problems but these tools do not use predictive models but here we refer mainly to _machine learning_ approaches to defect prediction.
 
-Some systematic reviews of software fault prediction studies include [@CC2009], [@Catal2011], [@HallBBGC2012]
+Some systematic reviews of software fault prediction studies include:
+
+  + [@HallBBGC2012] - A Systematic Literature Review on Fault Prediction Performance in Software Engineering
+  
+  + [@CC2009] - A systematic review of software fault prediction studies
+
+  + [@Catal2011] - Software fault prediction: A literature review and current trends
+  
+
+
+
 

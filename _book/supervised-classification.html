@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -279,7 +279,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We have multiple types of models such as <em>classification trees</em>, <em>rules</em>, <em>neural networks</em>, and <em>probabilistic classifiers</em> that can be used to classify instances.</p>
 <p>Fernandez et al provide an extensive comparison of 176 classifiers using the UCI dataset <span class="citation">(Fernández-Delgado et al. <a href="#ref-FernandezCBA14">2014</a>)</span>.</p>
 <p>We will show the use of different classification techniques in the problem of defect prediction as running example. In this example,the different datasets are composed of classical metrics (<em>Halstead</em> or <em>McCabe</em> metrics) based on counts of operators/operands and like or object-oriented metrics (e.g. Chidamber and Kemerer) and the class attribute indicating whether the module or class was defective.</p>
-<p>Most works in defect predicition have compare and analysed different classifiers with different datasets. Some relevant works include:</p>
+<p>Most works in defect predicition have compared and analysed different classifiers with different datasets. Some relevant works include:</p>
 <div id="classification-trees" class="section level2">
 <h2><span class="header-section-number">6.1</span> Classification Trees</h2>
 <p>There are several packages for inducing classification trees, for example with the <a href="https://cran.r-project.org/web/packages/party/index.html">party package</a> (recursive partitioning):</p>
@@ -287,176 +287,175 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">library</span>(party) <span class="co"># Build a decision tree</span>
 <span class="kw">library</span>(caret) 
 
-kc1 &lt;-<span class="st"> </span><span class="kw">read.arff</span>(<span class="st">&quot;./datasets/defectPred/D1/KC1.arff&quot;</span>)
-<span class="kw">str</span>(kc1)</code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    2096 obs. of  22 variables:
-##  $ LOC_BLANK            : num  0 0 0 0 2 0 0 0 0 2 ...
-##  $ BRANCH_COUNT         : num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ LOC_CODE_AND_COMMENT : num  0 0 0 0 0 0 0 0 0 0 ...
-##  $ LOC_COMMENTS         : num  0 0 0 0 0 0 0 0 0 0 ...
-##  $ CYCLOMATIC_COMPLEXITY: num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ DESIGN_COMPLEXITY    : num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ ESSENTIAL_COMPLEXITY : num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ LOC_EXECUTABLE       : num  3 1 1 1 8 3 1 1 1 9 ...
-##  $ HALSTEAD_CONTENT     : num  11.6 0 0 0 18 ...
-##  $ HALSTEAD_DIFFICULTY  : num  2.67 0 0 0 3.5 2.67 0 0 0 3.75 ...
-##  $ HALSTEAD_EFFORT      : num  82.3 0 0 0 220.9 ...
-##  $ HALSTEAD_ERROR_EST   : num  0.01 0 0 0 0.02 0.01 0 0 0 0.04 ...
-##  $ HALSTEAD_LENGTH      : num  11 1 1 1 19 11 1 1 1 29 ...
-##  $ HALSTEAD_LEVEL       : num  0.38 0 0 0 0.29 0.38 0 0 0 0.27 ...
-##  $ HALSTEAD_PROG_TIME   : num  4.57 0 0 0 12.27 ...
-##  $ HALSTEAD_VOLUME      : num  30.9 0 0 0 63.1 ...
-##  $ NUM_OPERANDS         : num  4 0 0 0 7 4 0 0 0 10 ...
-##  $ NUM_OPERATORS        : num  7 1 1 1 12 7 1 1 1 19 ...
-##  $ NUM_UNIQUE_OPERANDS  : num  3 0 0 0 5 3 0 0 0 8 ...
-##  $ NUM_UNIQUE_OPERATORS : num  4 1 1 1 5 4 1 1 1 6 ...
-##  $ LOC_TOTAL            : num  5 3 3 3 12 5 3 3 3 13 ...
-##  $ Defective            : Factor w/ 2 levels &quot;N&quot;,&quot;Y&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+jm1 &lt;-<span class="st"> </span><span class="kw">read.arff</span>(<span class="st">&quot;./datasets/defectPred/D1/JM1.arff&quot;</span>)
+<span class="kw">str</span>(jm1)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    9593 obs. of  22 variables:
+##  $ LOC_BLANK            : num  447 37 11 106 101 67 105 18 39 143 ...
+##  $ BRANCH_COUNT         : num  826 29 405 240 464 187 344 47 163 67 ...
+##  $ LOC_CODE_AND_COMMENT : num  12 8 0 7 11 4 9 0 1 7 ...
+##  $ LOC_COMMENTS         : num  157 42 17 344 75 1 40 10 6 49 ...
+##  $ CYCLOMATIC_COMPLEXITY: num  470 19 404 127 263 94 207 24 94 34 ...
+##  $ DESIGN_COMPLEXITY    : num  385 19 2 105 256 63 171 13 67 25 ...
+##  $ ESSENTIAL_COMPLEXITY : num  113 6 1 33 140 27 58 1 3 1 ...
+##  $ LOC_EXECUTABLE       : num  2824 133 814 952 1339 ...
+##  $ HALSTEAD_CONTENT     : num  210 108 101 218 106 ...
+##  $ HALSTEAD_DIFFICULTY  : num  384.4 46.3 206 215.2 337.4 ...
+##  $ HALSTEAD_EFFORT      : num  31079782 232044 4294926 10100867 12120796 ...
+##  $ HALSTEAD_ERROR_EST   : num  26.95 1.67 6.95 15.65 11.98 ...
+##  $ HALSTEAD_LENGTH      : num  8441 685 2033 5669 4308 ...
+##  $ HALSTEAD_LEVEL       : num  0 0.02 0 0 0 0.02 0 0.03 0.01 0.02 ...
+##  $ HALSTEAD_PROG_TIME   : num  1726655 12891 238607 561159 673378 ...
+##  $ HALSTEAD_VOLUME      : num  80843 5009 20848 46944 35928 ...
+##  $ NUM_OPERANDS         : num  3021 295 813 2301 1556 ...
+##  $ NUM_OPERATORS        : num  5420 390 1220 3368 2752 ...
+##  $ NUM_UNIQUE_OPERANDS  : num  609 121 811 262 226 167 279 47 117 355 ...
+##  $ NUM_UNIQUE_OPERATORS : num  155 38 411 49 98 27 105 18 52 23 ...
+##  $ LOC_TOTAL            : num  3442 222 844 1411 1532 ...
+##  $ Defective            : Factor w/ 2 levels &quot;N&quot;,&quot;Y&quot;: 2 2 2 2 2 2 2 2 1 2 ...</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stratified partition (training and test sets)</span>
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>kc1$Defective,<span class="dt">p=</span>.<span class="dv">60</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
-kc1.train &lt;-<span class="st"> </span>kc1[inTrain,]
-kc1.test &lt;-<span class="st"> </span>kc1[-inTrain,]
+inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>jm1$Defective,<span class="dt">p=</span>.<span class="dv">60</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
+jm1.train &lt;-<span class="st"> </span>jm1[inTrain,]
+jm1.test &lt;-<span class="st"> </span>jm1[-inTrain,]
 
-kc1.formula &lt;-<span class="st"> </span>kc1$Defective ~<span class="st"> </span>. <span class="co"># formula approach: defect as dependent variable and the rest as independent variables</span>
-kc1.ctree &lt;-<span class="st"> </span><span class="kw">ctree</span>(kc1.formula, <span class="dt">data =</span> kc1.train)
+jm1.formula &lt;-<span class="st"> </span>jm1$Defective ~<span class="st"> </span>. <span class="co"># formula approach: defect as dependent variable and the rest as independent variables</span>
+jm1.ctree &lt;-<span class="st"> </span><span class="kw">ctree</span>(jm1.formula, <span class="dt">data =</span> jm1.train)
 
 <span class="co"># predict on test data</span>
-pred &lt;-<span class="st"> </span><span class="kw">predict</span>(kc1.ctree, <span class="dt">newdata =</span> kc1.test)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(jm1.ctree, <span class="dt">newdata =</span> jm1.test)
 <span class="co"># check prediction result</span>
-<span class="kw">table</span>(pred, kc1.test$Defective)</code></pre></div>
+<span class="kw">table</span>(pred, jm1.test$Defective)</code></pre></div>
 <pre><code>##     
-## pred   N   Y
-##    N 708 130
-##    Y   0   0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kc1.ctree)</code></pre></div>
+## pred    N    Y
+##    N   82    3
+##    Y 3051  700</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(jm1.ctree)</code></pre></div>
 <p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Using the C50 package, there are two ways, specifying train and testing</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C50)
-c50t &lt;-<span class="st"> </span><span class="kw">C5.0</span>(kc1.train[,-<span class="kw">ncol</span>(kc1.train)], kc1.train[,<span class="kw">ncol</span>(kc1.train)])
+<span class="kw">require</span>(utils)
+<span class="co"># c50t &lt;- C5.0(jm1.train[,-ncol(jm1.train)], jm1.train[,ncol(jm1.train)])</span>
+c50t2 &lt;-<span class="st"> </span><span class="kw">C5.0</span>(Defective ~<span class="st"> </span>., jm1.train)
 <span class="kw">summary</span>(c50t)
 <span class="kw">plot</span>(c50t)
-<span class="co"># c50tPred &lt;- predict.C5.0(c50t, kc1.train)</span>
-<span class="co"># table(c50tPred, kc1.train$Defective)</span></code></pre></div>
-<p>or using the formula approach:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the formula notation</span>
-<span class="co"># c50t2 &lt;- C5.0(Defective ~ ., kc1.train)</span>
-<span class="co"># c50tPred2 &lt;- predict(c50t2, kc1.train)</span>
-<span class="co"># table(c50tPred2, kc1.train$Defective)</span></code></pre></div>
-<p>Using the <a href="https://cran.r-project.org/web/packages/rpart/index.html">‘rpart’ package</a></p>
+c50tPred &lt;-<span class="st"> </span><span class="kw">predict</span>(c50t, jm1.train)
+<span class="co"># table(c50tPred, jm1.train$Defective)</span></code></pre></div>
+<p>Using the <a href="https://cran.r-project.org/web/packages/rpart/index.html">‘rpart’</a> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the &#39;rpart&#39; package</span>
 <span class="kw">library</span>(rpart)
-kc1.rpart &lt;-<span class="st"> </span><span class="kw">rpart</span>(Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train)
-<span class="kw">plot</span>(kc1.rpart)</code></pre></div>
-<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+jm1.rpart &lt;-<span class="st"> </span><span class="kw">rpart</span>(Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train, <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">prior =</span> <span class="kw">c</span>(.<span class="dv">65</span>,.<span class="dv">35</span>), <span class="dt">split =</span> <span class="st">&quot;information&quot;</span>))
+<span class="co"># par(mfrow = c(1,2), xpd = NA)</span>
+<span class="kw">plot</span>(jm1.rpart)
+<span class="kw">text</span>(jm1.rpart, <span class="dt">use.n =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jm1.rpart</code></pre></div>
+<pre><code>## n= 5757 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 5757 2014.95000 N (0.6500000 0.3500000)  
+##    2) LOC_TOTAL&lt; 42.5 4309 1032.28000 N (0.7439560 0.2560440) *
+##    3) LOC_TOTAL&gt;=42.5 1448  742.67870 Y (0.4304514 0.5695486)  
+##      6) NUM_UNIQUE_OPERANDS&lt; 59.5 1206  655.11750 Y (0.4726955 0.5273045)  
+##       12) LOC_BLANK&lt; 7.5 449  209.89060 N (0.5624895 0.4375105)  
+##         24) LOC_CODE_AND_COMMENT&lt; 3.5 412  171.72870 N (0.5988063 0.4011937) *
+##         25) LOC_CODE_AND_COMMENT&gt;=3.5 37   13.53220 Y (0.2617743 0.7382257) *
+##       13) LOC_BLANK&gt;=7.5 757  385.26960 Y (0.4251579 0.5748421)  
+##         26) HALSTEAD_DIFFICULTY&gt;=64.45 55   13.35668 N (0.7409751 0.2590249) *
+##         27) HALSTEAD_DIFFICULTY&lt; 64.45 702  347.06100 Y (0.4061023 0.5938977) *
+##      7) NUM_UNIQUE_OPERANDS&gt;=59.5 242   87.56126 Y (0.2579656 0.7420344) *</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
-<span class="co">#asRules(kc1.rpart)</span>
-<span class="co">#fancyRpartPlot(kc1.rpart)</span></code></pre></div>
+<span class="co"># asRules(jm1.rpart)</span>
+<span class="co"># fancyRpartPlot(jm1.rpart)</span></code></pre></div>
 </div>
 <div id="rules" class="section level2">
 <h2><span class="header-section-number">6.2</span> Rules</h2>
 <p>C5 Rules</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(C50)
-c50r &lt;-<span class="st"> </span><span class="kw">C5.0</span>(kc1.train[,-<span class="kw">ncol</span>(kc1.train)], kc1.train[,<span class="kw">ncol</span>(kc1.train)], <span class="dt">rules =</span> <span class="ot">TRUE</span>)
+c50r &lt;-<span class="st"> </span><span class="kw">C5.0</span>(jm1.train[,-<span class="kw">ncol</span>(jm1.train)], jm1.train[,<span class="kw">ncol</span>(jm1.train)], <span class="dt">rules =</span> <span class="ot">TRUE</span>)
 <span class="kw">summary</span>(c50r)</code></pre></div>
 <pre><code>## 
 ## Call:
-## C5.0.default(x = kc1.train[, -ncol(kc1.train)], y =
-##  kc1.train[, ncol(kc1.train)], rules = TRUE)
+## C5.0.default(x = jm1.train[, -ncol(jm1.train)], y =
+##  jm1.train[, ncol(jm1.train)], rules = TRUE)
 ## 
 ## 
-## C5.0 [Release 2.07 GPL Edition]      Fri Jun 30 09:26:09 2017
+## C5.0 [Release 2.07 GPL Edition]      Sat Jul  1 11:24:22 2017
 ## -------------------------------
 ## 
 ## Class specified by attribute `outcome&#39;
 ## 
-## Read 1258 cases (22 attributes) from undefined.data
+## Read 5757 cases (22 attributes) from undefined.data
 ## 
 ## Rules:
 ## 
-## Rule 1: (1173/142, lift 1.0)
-##  NUM_OPERANDS &lt;= 67
-##  -&gt;  class N  [0.878]
+## Rule 1: (5512/923, lift 1.0)
+##  CYCLOMATIC_COMPLEXITY &lt;= 67
+##  NUM_UNIQUE_OPERANDS &lt;= 59
+##  -&gt;  class N  [0.832]
 ## 
-## Rule 2: (7, lift 5.7)
-##  LOC_COMMENTS &lt;= 0
-##  DESIGN_COMPLEXITY &gt; 2
-##  DESIGN_COMPLEXITY &lt;= 4
-##  HALSTEAD_DIFFICULTY &gt; 10.6
-##  NUM_UNIQUE_OPERATORS &lt;= 12
-##  LOC_TOTAL &lt;= 37
-##  -&gt;  class Y  [0.889]
+## Rule 2: (11/1, lift 4.6)
+##  LOC_BLANK &gt; 3
+##  DESIGN_COMPLEXITY &gt; 3
+##  LOC_EXECUTABLE &gt; 31
+##  LOC_EXECUTABLE &lt;= 33
+##  LOC_TOTAL &lt;= 42
+##  -&gt;  class Y  [0.846]
 ## 
-## Rule 3: (7, lift 5.7)
-##  DESIGN_COMPLEXITY &gt; 4
-##  LOC_EXECUTABLE &lt;= 47
-##  NUM_OPERANDS &gt; 50
-##  NUM_UNIQUE_OPERATORS &lt;= 17
-##  -&gt;  class Y  [0.889]
+## Rule 3: (25/5, lift 4.2)
+##  CYCLOMATIC_COMPLEXITY &gt; 67
+##  -&gt;  class Y  [0.778]
 ## 
-## Rule 4: (15/1, lift 5.7)
-##  LOC_CODE_AND_COMMENT &lt;= 0
-##  LOC_EXECUTABLE &lt;= 47
-##  HALSTEAD_LEVEL &gt; 0.04
-##  NUM_UNIQUE_OPERATORS &gt; 17
-##  -&gt;  class Y  [0.882]
-## 
-## Rule 5: (85/32, lift 4.0)
-##  NUM_OPERANDS &gt; 67
-##  -&gt;  class Y  [0.621]
+## Rule 4: (242/110, lift 3.0)
+##  NUM_UNIQUE_OPERANDS &gt; 59
+##  LOC_TOTAL &gt; 42
+##  -&gt;  class Y  [0.545]
 ## 
 ## Default class: N
 ## 
 ## 
-## Evaluation on training data (1258 cases):
+## Evaluation on training data (5757 cases):
 ## 
 ##          Rules     
 ##    ----------------
 ##      No      Errors
 ## 
-##       5  149(11.8%)   &lt;&lt;
+##       4 1025(17.8%)   &lt;&lt;
 ## 
 ## 
 ##     (a)   (b)    &lt;-classified as
 ##    ----  ----
-##    1030    33    (a): class N
-##     116    79    (b): class Y
+##    4589   112    (a): class N
+##     913   143    (b): class Y
 ## 
 ## 
 ##  Attribute usage:
 ## 
-##  100.00% NUM_OPERANDS
-##    2.31% NUM_UNIQUE_OPERATORS
-##    1.75% LOC_EXECUTABLE
-##    1.19% LOC_CODE_AND_COMMENT
-##    1.19% HALSTEAD_LEVEL
-##    1.11% DESIGN_COMPLEXITY
-##    0.56% LOC_COMMENTS
-##    0.56% HALSTEAD_DIFFICULTY
-##    0.56% LOC_TOTAL
+##   99.95% NUM_UNIQUE_OPERANDS
+##   96.18% CYCLOMATIC_COMPLEXITY
+##    4.39% LOC_TOTAL
+##    0.19% LOC_BLANK
+##    0.19% DESIGN_COMPLEXITY
+##    0.19% LOC_EXECUTABLE
 ## 
 ## 
-## Time: 0.0 secs</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c50rPred &lt;- predict(c50r, kc1.train)</span>
-<span class="co"># table(c50rPred, kc1.train$Defective)</span></code></pre></div>
+## Time: 0.2 secs</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c50rPred &lt;- predict(c50r, jm1.train)</span>
+<span class="co"># table(c50rPred, jm1.train$Defective)</span></code></pre></div>
 </div>
 <div id="distanced-based-methods" class="section level2">
 <h2><span class="header-section-number">6.3</span> Distanced-based Methods</h2>
 <p>In this case, there is no model as such. Given a new instance to classify, this approach finds the closest <span class="math inline">\(k\)</span>-neighbours to the given instance.</p>
 <p><img src="figures/279px-KnnClassification.svg.png" alt="k-NN Classification" /> (Source: Wikipedia - <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" class="uri">https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm</a>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(class)
+m1 &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>jm1.train[,-<span class="dv">22</span>], <span class="dt">test=</span>jm1.test[,-<span class="dv">22</span>], <span class="dt">cl=</span>jm1.train[,<span class="dv">22</span>], <span class="dt">k=</span><span class="dv">3</span>)
 
-ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">2</span>, <span class="kw">nrow</span>(iris), <span class="dt">replace=</span>T, <span class="dt">prob=</span><span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))
-kc1.train &lt;-<span class="st"> </span>kc1[ind==<span class="dv">1</span>, ]
-kc1.test &lt;-<span class="st"> </span>kc1[ind==<span class="dv">2</span>, ]
-
-m1 &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>kc1.train[,-<span class="dv">22</span>], <span class="dt">test=</span>kc1.test[,-<span class="dv">22</span>], <span class="dt">cl=</span>kc1.train[,<span class="dv">22</span>], <span class="dt">k=</span><span class="dv">3</span>)
-
-<span class="kw">table</span>(kc1.test[,<span class="dv">22</span>],m1)</code></pre></div>
+<span class="kw">table</span>(jm1.test[,<span class="dv">22</span>],m1)</code></pre></div>
 <pre><code>##    m1
-##       N   Y
-##   N 449  28
-##   Y  63  19</code></pre>
+##        N    Y
+##   N 2827  306
+##   Y  553  150</code></pre>
 </div>
 <div id="neural-networks" class="section level2">
 <h2><span class="header-section-number">6.4</span> Neural Networks</h2>
@@ -486,49 +485,49 @@ m1 &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">tr
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
 <span class="kw">library</span>(klaR)</code></pre></div>
 <pre><code>## Loading required package: MASS</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">NaiveBayes</span>(Defective ~<span class="st"> </span>., <span class="dt">data =</span> kc1.train)
-predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(model, kc1.test[,-<span class="dv">22</span>])
-<span class="kw">confusionMatrix</span>(predictions$class, kc1.test$Defective)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">NaiveBayes</span>(Defective ~<span class="st"> </span>., <span class="dt">data =</span> jm1.train)
+predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(model, jm1.test[,-<span class="dv">22</span>])
+<span class="kw">confusionMatrix</span>(predictions$class, jm1.test$Defective)</code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
-## Prediction   N   Y
-##          N 428  57
-##          Y  49  25
+## Prediction    N    Y
+##          N 2990  548
+##          Y  143  155
 ##                                           
-##                Accuracy : 0.8104          
-##                  95% CI : (0.7754, 0.8421)
-##     No Information Rate : 0.8533          
-##     P-Value [Acc &gt; NIR] : 0.9977          
+##                Accuracy : 0.8199          
+##                  95% CI : (0.8073, 0.8319)
+##     No Information Rate : 0.8167          
+##     P-Value [Acc &gt; NIR] : 0.3168          
 ##                                           
-##                   Kappa : 0.2107          
-##  Mcnemar&#39;s Test P-Value : 0.4966          
+##                   Kappa : 0.2251          
+##  Mcnemar&#39;s Test P-Value : &lt;2e-16          
 ##                                           
-##             Sensitivity : 0.8973          
-##             Specificity : 0.3049          
-##          Pos Pred Value : 0.8825          
-##          Neg Pred Value : 0.3378          
-##              Prevalence : 0.8533          
-##          Detection Rate : 0.7657          
-##    Detection Prevalence : 0.8676          
-##       Balanced Accuracy : 0.6011          
+##             Sensitivity : 0.9544          
+##             Specificity : 0.2205          
+##          Pos Pred Value : 0.8451          
+##          Neg Pred Value : 0.5201          
+##              Prevalence : 0.8167          
+##          Detection Rate : 0.7795          
+##    Detection Prevalence : 0.9223          
+##       Balanced Accuracy : 0.5874          
 ##                                           
 ##        &#39;Positive&#39; Class : N               
 ## </code></pre>
 <p>Using the <code>e1071</code> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span> (e1071)
-n1 &lt;-<span class="kw">naiveBayes</span>(kc1.train$Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train)
+n1 &lt;-<span class="kw">naiveBayes</span>(jm1.train$Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train)
 
 <span class="co"># Show first 3 results using &#39;class&#39;</span>
-<span class="kw">head</span>(<span class="kw">predict</span>(n1,kc1.test, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;class&quot;</span>)),<span class="dv">3</span>) <span class="co"># class by default</span></code></pre></div>
-<pre><code>## [1] N N N
+<span class="kw">head</span>(<span class="kw">predict</span>(n1,jm1.test, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;class&quot;</span>)),<span class="dv">3</span>) <span class="co"># class by default</span></code></pre></div>
+<pre><code>## [1] N Y Y
 ## Levels: N Y</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show first 3 results using &#39;raw&#39;</span>
-<span class="kw">head</span>(<span class="kw">predict</span>(n1,kc1.test, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;raw&quot;</span>)),<span class="dv">3</span>)</code></pre></div>
-<pre><code>##      N            Y
-## [1,] 1 2.623259e-09
-## [2,] 1 2.623259e-09
-## [3,] 1 6.435114e-09</code></pre>
+<span class="kw">head</span>(<span class="kw">predict</span>(n1,jm1.test, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;raw&quot;</span>)),<span class="dv">3</span>)</code></pre></div>
+<pre><code>##                 N         Y
+## [1,] 1.0000000000 0.0000000
+## [2,] 0.0000000000 1.0000000
+## [3,] 0.0007540951 0.9992459</code></pre>
 <p>There are other variants such as TAN and KDB that do not assume the independece condition allowin us more complex structures.</p>
 <div class="figure">
 <img src="figures/classifier_TAN.png" alt="Naive Bayes" />
@@ -544,142 +543,142 @@ n1 &lt;-<span class="kw">naiveBayes</span>(kc1.train$Defective ~<span class="st"
 <div id="linear-discriminant-analysis-lda" class="section level2">
 <h2><span class="header-section-number">6.7</span> Linear Discriminant Analysis (LDA)</h2>
 <p>One classical approach to classification is Linear Discriminant Analysis (LDA), a generalization of Fisher’s linear discriminant, as a method used to find a linear combination of features to separate two or more classes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ldaModel &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ldaModel &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
 ldaModel</code></pre></div>
 <pre><code>## Linear Discriminant Analysis 
 ## 
-## 1537 samples
+## 5757 samples
 ##   21 predictors
 ##    2 classes: &#39;N&#39;, &#39;Y&#39; 
 ## 
 ## Pre-processing: centered (21), scaled (21) 
 ## Resampling: Bootstrapped (25 reps) 
-## Summary of sample sizes: 1537, 1537, 1537, 1537, 1537, 1537, ... 
+## Summary of sample sizes: 5757, 5757, 5757, 5757, 5757, 5757, ... 
 ## Resampling results:
 ## 
 ##   Accuracy   Kappa    
-##   0.8551284  0.3280731</code></pre>
+##   0.8184746  0.1371754</code></pre>
 <p>We can observe that we are training our model using <code>Defective ~ .</code> as a formula were <code>Defective</code> is the class variable separed by <code>~</code> and the ´.´ means the rest of the variables. Also, we are using a filter for the training data to (preProc) to center and scale.</p>
 <p>Also, as stated in the documentation about the <code>train</code> method : &gt; <a href="http://topepo.github.io/caret/training.html" class="uri">http://topepo.github.io/caret/training.html</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,<span class="dt">repeats=</span><span class="dv">3</span>)
-ldaModel &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+ldaModel &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
 
 ldaModel</code></pre></div>
 <pre><code>## Linear Discriminant Analysis 
 ## 
-## 1537 samples
+## 5757 samples
 ##   21 predictors
 ##    2 classes: &#39;N&#39;, &#39;Y&#39; 
 ## 
 ## Pre-processing: centered (21), scaled (21) 
 ## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 1384, 1384, 1382, 1383, 1383, 1383, ... 
+## Summary of sample sizes: 5182, 5181, 5181, 5181, 5181, 5181, ... 
 ## Resampling results:
 ## 
 ##   Accuracy   Kappa    
-##   0.8594727  0.3551627</code></pre>
+##   0.8167443  0.1308431</code></pre>
 <p>Instead of accuracy we can activate other metrics using <code>summaryFunction=twoClassSummary</code> such as <code>ROC</code>, <code>sensitivity</code> and <code>specificity</code>. To do so, we also need to speficy <code>classProbs=TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,<span class="dt">repeats=</span><span class="dv">3</span>, <span class="dt">classProbs=</span><span class="ot">TRUE</span>, <span class="dt">summaryFunction=</span>twoClassSummary)
-ldaModel3xcv10 &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+ldaModel3xcv10 &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
 
 ldaModel3xcv10</code></pre></div>
 <pre><code>## Linear Discriminant Analysis 
 ## 
-## 1537 samples
+## 5757 samples
 ##   21 predictors
 ##    2 classes: &#39;N&#39;, &#39;Y&#39; 
 ## 
 ## Pre-processing: centered (21), scaled (21) 
 ## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 1384, 1384, 1383, 1383, 1382, 1384, ... 
+## Summary of sample sizes: 5181, 5182, 5180, 5181, 5182, 5181, ... 
 ## Resampling results:
 ## 
 ##   ROC        Sens       Spec     
-##   0.8062856  0.9585212  0.3349444</code></pre>
+##   0.7073554  0.9731275  0.1189847</code></pre>
 <p>Most methods have parameters that need to be optimised and that is one of the</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsFit3x10cv &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;pls&quot;</span>, <span class="dt">trControl=</span><span class="kw">trainControl</span>(<span class="dt">classProbs=</span><span class="ot">TRUE</span>), <span class="dt">metric=</span><span class="st">&quot;ROC&quot;</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsFit3x10cv &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train, <span class="dt">method=</span><span class="st">&quot;pls&quot;</span>, <span class="dt">trControl=</span><span class="kw">trainControl</span>(<span class="dt">classProbs=</span><span class="ot">TRUE</span>), <span class="dt">metric=</span><span class="st">&quot;ROC&quot;</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
 
 plsFit3x10cv</code></pre></div>
 <pre><code>## Partial Least Squares 
 ## 
-## 1537 samples
+## 5757 samples
 ##   21 predictors
 ##    2 classes: &#39;N&#39;, &#39;Y&#39; 
 ## 
 ## Pre-processing: centered (21), scaled (21) 
 ## Resampling: Bootstrapped (25 reps) 
-## Summary of sample sizes: 1537, 1537, 1537, 1537, 1537, 1537, ... 
+## Summary of sample sizes: 5757, 5757, 5757, 5757, 5757, 5757, ... 
 ## Resampling results across tuning parameters:
 ## 
-##   ncomp  Accuracy   Kappa    
-##   1      0.8448983  0.1507835
-##   2      0.8572696  0.2578249
-##   3      0.8600026  0.2810041
+##   ncomp  Accuracy   Kappa     
+##   1      0.8204925  0.06414865
+##   2      0.8196635  0.08261024
+##   3      0.8200588  0.08777031
 ## 
 ## Accuracy was used to select the optimal model using  the largest value.
-## The final value used for the model was ncomp = 3.</code></pre>
+## The final value used for the model was ncomp = 1.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(plsFit3x10cv)</code></pre></div>
-<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>The parameter <code>tuneLength</code> allow us to specify the number values per parameter to consider.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsFit3x10cv &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>kc1.train, <span class="dt">method=</span><span class="st">&quot;pls&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">metric=</span><span class="st">&quot;ROC&quot;</span>, <span class="dt">tuneLength=</span><span class="dv">5</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsFit3x10cv &lt;-<span class="st"> </span><span class="kw">train</span> (Defective ~<span class="st"> </span>., <span class="dt">data=</span>jm1.train, <span class="dt">method=</span><span class="st">&quot;pls&quot;</span>, <span class="dt">trControl=</span>ctrl, <span class="dt">metric=</span><span class="st">&quot;ROC&quot;</span>, <span class="dt">tuneLength=</span><span class="dv">5</span>, <span class="dt">preProc=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>,<span class="st">&quot;scale&quot;</span>))
 
 plsFit3x10cv</code></pre></div>
 <pre><code>## Partial Least Squares 
 ## 
-## 1537 samples
+## 5757 samples
 ##   21 predictors
 ##    2 classes: &#39;N&#39;, &#39;Y&#39; 
 ## 
 ## Pre-processing: centered (21), scaled (21) 
 ## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 1384, 1383, 1383, 1383, 1383, 1384, ... 
+## Summary of sample sizes: 5182, 5182, 5181, 5181, 5181, 5181, ... 
 ## Resampling results across tuning parameters:
 ## 
-##   ncomp  ROC        Sens       Spec     
-##   1      0.8035487  0.9812085  0.1250000
-##   2      0.8134917  0.9829934  0.2100556
-##   3      0.8086396  0.9835142  0.2266667
-##   4      0.8058229  0.9837806  0.2281111
-##   5      0.8070816  0.9827430  0.2198333
+##   ncomp  ROC        Sens       Spec      
+##   1      0.6930018  0.9951784  0.04482480
+##   2      0.6989680  0.9904273  0.06441450
+##   3      0.7019246  0.9892927  0.06441450
+##   4      0.7044831  0.9887963  0.06693621
+##   5      0.7052068  0.9884417  0.06756813
 ## 
 ## ROC was used to select the optimal model using  the largest value.
-## The final value used for the model was ncomp = 2.</code></pre>
+## The final value used for the model was ncomp = 5.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(plsFit3x10cv)</code></pre></div>
-<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Finally to predict new cases, <code>caret</code> will use the best classfier obtained for prediction.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsProbs &lt;-<span class="st"> </span><span class="kw">predict</span>(plsFit3x10cv, <span class="dt">newdata =</span> kc1.test, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsClasses &lt;-<span class="st"> </span><span class="kw">predict</span>(plsFit3x10cv, <span class="dt">newdata =</span> kc1.test, <span class="dt">type =</span> <span class="st">&quot;raw&quot;</span>)
-<span class="kw">confusionMatrix</span>(<span class="dt">data=</span>plsClasses,kc1.test$Defective)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsProbs &lt;-<span class="st"> </span><span class="kw">predict</span>(plsFit3x10cv, <span class="dt">newdata =</span> jm1.test, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plsClasses &lt;-<span class="st"> </span><span class="kw">predict</span>(plsFit3x10cv, <span class="dt">newdata =</span> jm1.test, <span class="dt">type =</span> <span class="st">&quot;raw&quot;</span>)
+<span class="kw">confusionMatrix</span>(<span class="dt">data=</span>plsClasses,jm1.test$Defective)</code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
-## Prediction   N   Y
-##          N 463  72
-##          Y  14  10
+## Prediction    N    Y
+##          N 3108  643
+##          Y   25   60
 ##                                           
-##                Accuracy : 0.8462          
-##                  95% CI : (0.8135, 0.8751)
-##     No Information Rate : 0.8533          
-##     P-Value [Acc &gt; NIR] : 0.7081          
+##                Accuracy : 0.8259          
+##                  95% CI : (0.8135, 0.8377)
+##     No Information Rate : 0.8167          
+##     P-Value [Acc &gt; NIR] : 0.07427         
 ##                                           
-##                   Kappa : 0.131           
-##  Mcnemar&#39;s Test P-Value : 7.923e-10       
+##                   Kappa : 0.1174          
+##  Mcnemar&#39;s Test P-Value : &lt; 2e-16         
 ##                                           
-##             Sensitivity : 0.9706          
-##             Specificity : 0.1220          
-##          Pos Pred Value : 0.8654          
-##          Neg Pred Value : 0.4167          
-##              Prevalence : 0.8533          
-##          Detection Rate : 0.8283          
-##    Detection Prevalence : 0.9571          
-##       Balanced Accuracy : 0.5463          
+##             Sensitivity : 0.99202         
+##             Specificity : 0.08535         
+##          Pos Pred Value : 0.82858         
+##          Neg Pred Value : 0.70588         
+##              Prevalence : 0.81674         
+##          Detection Rate : 0.81022         
+##    Detection Prevalence : 0.97784         
+##       Balanced Accuracy : 0.53868         
 ##                                           
 ##        &#39;Positive&#39; Class : N               
 ## </code></pre>
 <div id="predicting-the-number-of-defects-numerical-class" class="section level3">
 <h3><span class="header-section-number">6.7.1</span> Predicting the number of defects (numerical class)</h3>
-<p>From the Bug Predictiono Repository <a href="http://bug.inf.usi.ch/download.php" class="uri">http://bug.inf.usi.ch/download.php</a></p>
-<p>Some datasets contain CK and other 11 object oriented metrics for the last version of the system plus categorized (with severity and priority) post-release defects. Using such dataset:</p>
+<p>From the Bug Prediction Repository (BPR) <a href="http://bug.inf.usi.ch/download.php" class="uri">http://bug.inf.usi.ch/download.php</a></p>
+<p>Some datasets contain CK and other 11 object-oriented metrics for the last version of the system plus categorized (with severity and priority) post-release defects. Using such dataset:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jdt &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./datasets/defectPred/BPD/single-version-ck-oo-EclipseJDTCore.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>)
 
 <span class="co"># We just use the number of bugs, so we removed others</span>
@@ -769,10 +768,8 @@ jdt2 =<span class="st"> </span><span class="kw">data.frame</span>(cbo, bugs)
 inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>jdt2$bugs,<span class="dt">p=</span>.<span class="dv">8</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
 jdtTrain &lt;-<span class="st"> </span>jdt2[inTrain,]
 jdtTest &lt;-<span class="st"> </span>jdt2[-inTrain,]</code></pre></div>
-<p>BLR models fault-proneness are as follows</p>
-<p><span class="math display">\[fp(X) = \frac{e^{logit()}}{1 + e^{logit(X)}}\]</span></p>
-<p>where the simplest form for logit is:</p>
-<p><span class="math inline">\(logit(X) = c_{0} + c_{1}X\)</span></p>
+<p>BLR models fault-proneness are as follows <span class="math inline">\(fp(X) = \frac{e^{logit()}}{1 + e^{logit(X)}}\)</span></p>
+<p>where the simplest form for logit is <span class="math inline">\(logit(X) = c_{0} + c_{1}X\)</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># logit regression</span>
 <span class="co"># glmLogit &lt;- train (bugs ~ ., data=jdt.train, method=&quot;glm&quot;, family=binomial(link = logit))       </span>
 
@@ -814,7 +811,7 @@ glmLogit &lt;-<span class="st"> </span><span class="kw">glm</span> (bugs ~<span 
 <pre><code>## [1] 0.1104278 0.9840854</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(jdt2$cbo,jdt2$bugs)
 <span class="kw">curve</span>(<span class="kw">predict</span>(glmLogit, <span class="kw">data.frame</span>(<span class="dt">cbo=</span>x), <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>),<span class="dt">add=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># points(jdtTrain$cbo,fitted(glmLogit))</span></code></pre></div>
 <p>Another type of graph:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(popbio)</code></pre></div>
@@ -824,61 +821,24 @@ glmLogit &lt;-<span class="st"> </span><span class="kw">glm</span> (bugs ~<span 
 ## 
 ##     sensitivity</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">logi.hist.plot</span>(jdt2$cbo,jdt2$bugs,<span class="dt">boxp=</span><span class="ot">FALSE</span>,<span class="dt">type=</span><span class="st">&quot;hist&quot;</span>,<span class="dt">col=</span><span class="st">&quot;gray&quot;</span>)</code></pre></div>
-<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="DefectPredictionSoftEng_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="the-caret-package" class="section level2">
 <h2><span class="header-section-number">6.9</span> The caret package</h2>
 <p>There are hundreds of packages to perform classification task in R, but many of those can be used throught the ‘caret’ package which helps with many of the data mining process task as described next.</p>
-<p>The [caret (Classification And REgression Training) package][<a href="http://topepo.github.io/caret/" class="uri">http://topepo.github.io/caret/</a>](<a href="http://topepo.github.io/caret/" class="uri">http://topepo.github.io/caret/</a>) provides a unified interface for modeling and prediction with around 150 different models with tools for:</p>
+<p>The caret package<a href="http://topepo.github.io/caret/" class="uri">http://topepo.github.io/caret/</a> provides a unified interface for modeling and prediction with around 150 different models with tools for:</p>
 <pre><code>+ data splitting
+
 + pre-processing
+
 + feature selection
+
 + model tuning using resampling
+
 + variable importance estimation, etc.</code></pre>
 <p>Website: <a href="http://caret.r-forge.r-project.org" class="uri">http://caret.r-forge.r-project.org</a></p>
 <p>JSS Paper: <a href="www.jstatsoft.org/v28/i05/paper" class="uri">www.jstatsoft.org/v28/i05/paper</a></p>
 <p>Book: <a href="http://AppliedPredictiveModeling.com/">Applied Predictive Modeling</a></p>
-<p>For example, using one of the NASA datasets used extensively in defect prediction:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
-<span class="kw">library</span>(foreign)
-
-kc1 &lt;-<span class="st"> </span><span class="kw">read.arff</span>(<span class="st">&quot;./datasets/defectPred/D1/KC1.arff&quot;</span>)
-<span class="kw">str</span>(kc1)</code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    2096 obs. of  22 variables:
-##  $ LOC_BLANK            : num  0 0 0 0 2 0 0 0 0 2 ...
-##  $ BRANCH_COUNT         : num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ LOC_CODE_AND_COMMENT : num  0 0 0 0 0 0 0 0 0 0 ...
-##  $ LOC_COMMENTS         : num  0 0 0 0 0 0 0 0 0 0 ...
-##  $ CYCLOMATIC_COMPLEXITY: num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ DESIGN_COMPLEXITY    : num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ ESSENTIAL_COMPLEXITY : num  1 1 1 1 1 1 1 1 1 1 ...
-##  $ LOC_EXECUTABLE       : num  3 1 1 1 8 3 1 1 1 9 ...
-##  $ HALSTEAD_CONTENT     : num  11.6 0 0 0 18 ...
-##  $ HALSTEAD_DIFFICULTY  : num  2.67 0 0 0 3.5 2.67 0 0 0 3.75 ...
-##  $ HALSTEAD_EFFORT      : num  82.3 0 0 0 220.9 ...
-##  $ HALSTEAD_ERROR_EST   : num  0.01 0 0 0 0.02 0.01 0 0 0 0.04 ...
-##  $ HALSTEAD_LENGTH      : num  11 1 1 1 19 11 1 1 1 29 ...
-##  $ HALSTEAD_LEVEL       : num  0.38 0 0 0 0.29 0.38 0 0 0 0.27 ...
-##  $ HALSTEAD_PROG_TIME   : num  4.57 0 0 0 12.27 ...
-##  $ HALSTEAD_VOLUME      : num  30.9 0 0 0 63.1 ...
-##  $ NUM_OPERANDS         : num  4 0 0 0 7 4 0 0 0 10 ...
-##  $ NUM_OPERATORS        : num  7 1 1 1 12 7 1 1 1 19 ...
-##  $ NUM_UNIQUE_OPERANDS  : num  3 0 0 0 5 3 0 0 0 8 ...
-##  $ NUM_UNIQUE_OPERATORS : num  4 1 1 1 5 4 1 1 1 6 ...
-##  $ LOC_TOTAL            : num  5 3 3 3 12 5 3 3 3 13 ...
-##  $ Defective            : Factor w/ 2 levels &quot;N&quot;,&quot;Y&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<p>Then we need to divide the data into training and testing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Split data into training and test datasets</span>
-<span class="kw">set.seed</span>(<span class="dv">1</span>)
-inTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>kc1$Defective,<span class="dt">p=</span>.<span class="dv">75</span>,<span class="dt">list=</span><span class="ot">FALSE</span>)
-kc1.train &lt;-<span class="st"> </span>kc1[inTrain,]
-kc1.test &lt;-<span class="st"> </span>kc1[-inTrain,]</code></pre></div>
-<p>Another approach to dividing the data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Split data into training and test datasets</span>
-<span class="kw">set.seed</span>(<span class="dv">1</span>)
-ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">2</span>, <span class="kw">nrow</span>(kc1), <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.75</span>, <span class="fl">0.25</span>))
-kc1.train &lt;-<span class="st"> </span>kc1[ind==<span class="dv">1</span>, ]
-kc1.test &lt;-<span class="st"> </span>kc1[ind==<span class="dv">2</span>, ]</code></pre></div>
 
 </div>
 <div id="ensembles" class="section level2">
@@ -907,11 +867,11 @@ kc1.rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(kc1$De
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 4
 ## 
-##         OOB estimate of  error rate: 13.74%
+##         OOB estimate of  error rate: 13.6%
 ## Confusion matrix:
 ##      N   Y class.error
-## N 1704  67  0.03783173
-## Y  221 104  0.68000000</code></pre>
+## N 1703  68  0.03839639
+## Y  217 108  0.66769231</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kc1.rf)</code></pre></div>
 <p><img src="DefectPredictionSoftEng_files/figure-html/randomForest-1.png" width="672" /></p>
 <p>A problem with ensembles is that their models are difficult to interpret (they behave as blackboxes) in comparison to decision trees or rules which provide an explanation of their decision making process.</p>
@@ -968,7 +928,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/415_basicModelBuildingSupervised.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

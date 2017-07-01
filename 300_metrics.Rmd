@@ -17,7 +17,9 @@ Change Metrics describe how a file changed in the past, e.g., REVISIONS, REFACTO
 These metrics have been used for quality assurance during:
  
  + Development to obtain quality measures, code reviews etc.
+ 
  + Testing to focus and prioritize testing effort, improve efficiency etc.
+ 
  + Maintenance as indicators of comprehensibility of the modules etc.  
 
 Generally, the developers or maintainers use rules of thumb or threshold values to keep modules, methods etc. within certain range. For example, if the cyclomatic complexity ($v(g)$) of a module is between 1 and 10, it is considered to have a very low risk of being defective; however, any value greater than 50 is considered to have an unmanageable complexity and risk. For the essential complexity ($ev(g)$), the threshold suggested is 4 etc. Although these metrics have been used for long time, there are no clear thresholds, for example, although McCabe suggests a threshold of 10 for $v(g)$, NASA's in--house studies for this metric concluded that a threshold of 20 can be a better predictor of a module being defective.
@@ -39,17 +41,21 @@ McCabe defined a set of complexity measures based on the graph of a program [@mc
 
 Late 70s, Halstead developed a set of metrics based on [@Halstead77]:
 
-+ Operators,  keywords such as `if`, `while`, `for`, operators `+`, `=`, `AND`, etc.
-+ Operands, program variables and constants.
-programa.
-\end{itemize}
+ + Operators,  keywords such as `if`, `while`, `for`, operators `+`, `=`, `AND`, etc.
+
+ + Operands, program variables and constants.
+
 
 All metrics are calculated using the following:
 
  + $n_1$, number of distinct operators
+
  + $N_1$, total number of operators
+
  + $n_2$, number of distinct operands
+
  + $N_2$, the total number of operands
+
 
 For example, given the following excerpt:
 
@@ -62,8 +68,11 @@ For example, given the following excerpt:
 We obtain the following values:
 
   + $n1 = 6$ (`if, { }, System.out.print(), =, *, $<$`)
+
   + $N1 = 6$ (`if, { }, System.out.print(), =, *, $<$`)
+
   + $n2 = 4$ (`MAX, a, b, 2`)
+
   + $N2 = 6$ (`MAX, 2, a, b, MAX, a`)
 
 Using this four variable, several metrics are calculated.
@@ -98,21 +107,18 @@ chidamber and Kemerer introduced a set of OO complexity Metrics that is being hi
 + Number of Children (NOC) is the number of immediate subclasses subordinate to a class in the hierarchy. NOC counts the number of subclasses belonging to a class. According to C&K, NOC indicate the level of reuse, the likelihood of improper abstraction and as possible indication of the level of testing required.
 
 + Response For a Class (RFC) is the count of the set of all methods that can be invoked in response to a message to an object of the class or by some method in the class. According to C&K, RFC is a measure of the complexity of a class through the number of methods and the amount of communication with other classes. 
+
 + Weighted Methods per Class (WMC) measures the complexity of an individual class. If all methods are considered equally complex, then WMC is simply the number of methods defined in each class. C&K suggests that WMC is intended to measure the complexity of a class. Therefore, it is an indicator of the effort needed to develop and maintain a class. 
 
 + Lack of Cohesion in Methods (LCOM) measures the extent to which methods reference the classes instance data. 
-
-
 + Etc.
 
 
 
-Jurescko and Spinellis [@JureczkoS10]
+[@JureczkoS10] Jurescko and Spinellis 
 
 
-Bansiya and Davis,  A hierarchical model for object-oriented design quality assessment [@BansiyaD02]
-
-
+[@BansiyaD02] A hierarchical model for object-oriented design quality assessment 
 
 
 ## Churn and Process Metrics
@@ -133,35 +139,30 @@ Madeyski and Jurescko present a taxonomy of process metrics [@Madeyski2015]:
 | Number of Defects in Previous Version (NDPV)  | X |   | X  | 
 
 
-
-
-
 A Comparative Analysis of the Efficiency of Change Metrics and Static Code Attributes for Defect Prediction [@MoserPS2008] 
 
 
-A futher description of typical metrics used [@KrishnanSLG2011]:
+| Metrics 	    | Definition                                          | 
+| --------------|-----------------------------------------------------| 
+| Commits     	| No. of commits a file has gone through              | 
+| Refactorings	| No. of times a file has been refactored             | 
+| Bugfixes    	| No. of times a file has been involved in bug fixing | 
+| Authors     	| No. of distinct authors that made commits to the file | 
+| LoC-Added   	| No. of lines of code added to the file              | 
+| Max-LoC-Added | Max no. of lines of code added for all commits      | 
+| Avg-LoC-Added | Avg lines of code added per commit | 
+| LoC-DELETED 	| No. of lines of code deleted from the file | 
+| Max-LoC-Added	| Max no. of lines of code deleted for all commits | 
+| Avg-LoC-Added | Avg lines of code deleted per commit | 
+| CodeChurn 	  | Sum of all commits (added lines of code deleted lines of code) | 
+| Max-CodeChurn | Maximum CODECHURN for all commits | 
+| Avg-CodeChurn | Average CODECHURN per commit | 
+| Max-Changeset | Maximum number of files committed together with the repository | 
+| Avg-Changeset | Average number of files committed together with the repository | 
+| Weighted-Age 	| Age of a file normalized by added lines of code | 
 
 
-
-| Metrics 	| Definition | 
-| ----------|-------------------------------------------| 
-| COMMITS 	| Number of commits a file has gone through | 
-| REFACTORINGS	| Number of times a file has been refactored | 
-| BUGFIXES 	| Number of times a file has been involved in bug fixing | 
-| AUTHORS 	| Number of distinct authors that made commits to the file | 
-| LOC-ADDED 	| Number of lines of code added to the file | 
-| MAX-LOC-ADDED 	| Maximum number of lines of code added for all commits | 
-| AVG-LOC-ADDED 	| Average lines of code added per commit | 
-| LOC-DELETED 	| Number of lines of code deleted from the file | 
-| MAX-LOC-ADDED	| Maximum number of lines of code deleted for all commits | 
-| AVG-LOC-ADDED 	| Average lines of code deleted per commit | 
-| CODECHURN 	| Sum of all commits (added lines of code deleted lines of code) | 
-| MAX-CODECHURN 	| Maximum CODECHURN for all commits | 
-| AVG-CODECHURN 	| Average CODECHURN per commit | 
-| MAX-CHANGESET 	| Maximum number of files committed together with the repository | 
-| AVG-CHANGESET 	| Average number of files committed together with the repository | 
-| WEIGHTED-AGE 	| Age of a file normalized by added lines of code | 
-
+A further description of typical metrics used [@KrishnanSLG2011]:
 
 
 

@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -235,26 +235,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 11</span> Redundant and irrelevant attributes and instances</h1>
 <p>It is also well known that the existence of irrelevant and redundant features in the datasets has a negative impact on most data mining algorithms, which assume a certain level of balance between the class attributes.</p>
 <p>Feature Selection has been applied and studied by the software engineering community <span class="citation">(T. M. Khoshgoftaar, Gao, and Napolitano <a href="#ref-KhoshgoftaarGN12">2012</a><a href="#ref-KhoshgoftaarGN12">a</a>)</span>,</p>
-<p>However instance selection that needs further research (a few exceptions for effort estimation include <span class="citation">(Kirsopp and Shepperd <a href="#ref-KS02">2002</a>)</span>,<span class="citation">(Chen et al. <a href="#ref-CHPB05">2005</a>)</span>.</p>
-<p>For example, the JM1 dataset rom NASA’s defect prediction datasets in PROMISE has 8,000 repeated instances. Defect prediction datasets tend to be are highly unbalanced.</p>
-<p>Futhermore, feature selection algorithms do not perform well with imbalanced datasets, resulting in a selection of metrics that are not adequate for the learning algorithms See <span class="citation">(Wang et al. <a href="#ref-WangKWN12">2012</a>)</span><span class="citation">(Rodriguez et al. <a href="#ref-RRCA07">2007</a>)</span></p>
+<p>Futhermore, feature selection algorithms do not perform well with unbalanced datasets (defect prediction datasets tend to be are highly unbalanced), resulting in a selection of metrics that are not adequate for the learning algorithms See <span class="citation">(Wang et al. <a href="#ref-WangKWN12">2012</a>)</span><span class="citation">(Rodriguez et al. <a href="#ref-RRCA07">2007</a>)</span>.</p>
+<p>However instance selection that needs further research. For example, the JM1 dataset rom NASA’s defect prediction datasets in PROMISE has 8,000 repeated instances</p>
+<p>A few exceptions for effort estimation include <span class="citation">(<span class="citeproc-not-found" data-reference-id="KS02"><strong>???</strong></span>)</span>,<span class="citation">(Chen et al. <a href="#ref-CHPB05">2005</a>)</span>.</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-KhoshgoftaarGN12">
 <p>Khoshgoftaar, Taghi M., Kehan Gao, and Amri Napolitano. 2012a. “An Empirical Study of Feature Ranking Techniques for Software Quality Prediction.” <em>International Journal of Software Engineering and Knowledge Engineering</em> 22 (2): 161–83.</p>
 </div>
-<div id="ref-KS02">
-<p>Kirsopp, C., and M. Shepperd. 2002. “Case and Feature Subset Selection in Case-Based Software Project Effort Prediction.” In <em>Proceedings of 22nd International Conference on Knowledge-Based Systems and Applied Artificial Intelligence (Sgai’02)</em>.</p>
-</div>
-<div id="ref-CHPB05">
-<p>Chen, Z., T. Menzies, D. Port, and D. Boehm. 2005. “Finding the Right Data for Software Cost Modeling.” <em>IEEE Software</em> 22 (6): 38–46. doi:<a href="https://doi.org/10.1109/MS.2005.151">10.1109/MS.2005.151</a>.</p>
-</div>
 <div id="ref-WangKWN12">
 <p>Wang, Huanjing, Taghi M. Khoshgoftaar, Randall Wald, and Amri Napolitano. 2012. “A Comparative Study on the Stability of Software Metric Selection Techniques.” In <em>11th International Conference on Machine Learning and Applications, Icmla</em>, 301–7.</p>
 </div>
 <div id="ref-RRCA07">
-<p>Rodriguez, D., R. Ruiz, J. Cuadrado-Gallego, and J. Aguilar-Ruiz. 2007. “Detecting Fault Modules Applying Feature Selection to Classifiers.” In <em>Information Reuse and Integration, 2007. Iri 2007. Ieee International Conference on</em>, 667–72. doi:<a href="https://doi.org/10.1109/IRI.2007.4296696">10.1109/IRI.2007.4296696</a>.</p>
+<p>Rodriguez, D., R. Ruiz, J. Cuadrado, and J. Aguilar-Ruiz. 2007. “Detecting Fault Modules Applying Feature Selection to Classifiers.” In <em>IEEE International Conference on Information Reuse and Integration (Iri 2007)</em>, 667–72. doi:<a href="https://doi.org/10.1109/IRI.2007.4296696">10.1109/IRI.2007.4296696</a>.</p>
+</div>
+<div id="ref-CHPB05">
+<p>Chen, Z., T. Menzies, D. Port, and D. Boehm. 2005. “Finding the Right Data for Software Cost Modeling.” <em>IEEE Software</em> 22 (6): 38–46. doi:<a href="https://doi.org/10.1109/MS.2005.151">10.1109/MS.2005.151</a>.</p>
 </div>
 </div>
             </section>
@@ -295,7 +292,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/600_Issues.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

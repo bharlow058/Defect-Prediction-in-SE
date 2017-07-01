@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-06-30">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.1" data-path="metrics-in-software-enginering-prediction.html"><a href="metrics-in-software-enginering-prediction.html#ibms-orthogonal-defect-classificatoin-odc"><i class="fa fa-check"></i><b>5.4.1</b> IBM’s Orthogonal Defect Classificatoin (ODC)</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Machine Learning in Defect Predictions in Software Engineering Defect Prediction</b></span></li>
+<li class="part"><span><b>III Machine Learning in Defect Prediction</b></span></li>
 <li class="chapter" data-level="6" data-path="supervised-classification.html"><a href="supervised-classification.html"><i class="fa fa-check"></i><b>6</b> Supervised Classification</a><ul>
 <li class="chapter" data-level="6.1" data-path="supervised-classification.html"><a href="supervised-classification.html#classification-trees"><i class="fa fa-check"></i><b>6.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="6.2" data-path="supervised-classification.html"><a href="supervised-classification.html#rules"><i class="fa fa-check"></i><b>6.2</b> Rules</a></li>
@@ -242,11 +242,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Random OverSampling (ROS) replicates instances from the minority class towards a more balanced distribution</p></li>
 <li><p>Random Under-Sampling (RUS) removes instances from the majority class</p></li>
 </ul>
-<p>More intelligent approaches include SMOTE (Synthetic Minority Over-sampling Technique) generates new instances based on a number of nearest neighbours (<span class="math inline">\(k\)</span>-NN) There are other variations of SMOTE (Borderline SMOTE) <img src="figures/SMOTE.png" /></p>
+<p>More intelligent approaches that random sampling include SMOTE (Synthetic Minority Over-sampling Technique) that generates new instances based on a number of nearest neighbours (<span class="math inline">\(k\)</span>-NN). There are other variations of SMOTE (Borderline SMOTE) <img src="figures/SMOTE.png" alt="SMOTE" /></p>
 <ul>
 <li><p><em>Cost-Sensitive Classifiers</em> (CSC) penalises differently the type of errors</p></li>
 <li><p><em>Ensembles</em>: Bagging (Bootstrap aggregating), boosting and stacking (Stacked generalization) which combines different types of models</p></li>
-<li><p><em>Robust algorithms</em>: algorithms or modification to algorithmsdesigned to work with unbalanced data <span class="citation">(Ibarguren and J.M. Pérez <a href="#ref-Ibarguren2017">2017</a>)</span></p></li>
+<li><p><em>Robust algorithms</em>: algorithms or modification to algorithmsdesigned to work with unbalanced data <span class="citation">(Ibarguren et al. <a href="#ref-Ibarguren2017">2017</a>)</span></p></li>
 </ul>
 <p><span class="citation">(Seiffert et al. <a href="#ref-SeiffertEtAl07">2007</a>)</span> An empirical study of the classification performance of learners on imbalanced and noisy software quality data</p>
 </div>
@@ -259,7 +259,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Khoshgoftaar, Taghi M., Kehan Gao, and Amri Napolitano. 2012a. “An Empirical Study of Feature Ranking Techniques for Software Quality Prediction.” <em>International Journal of Software Engineering and Knowledge Engineering</em> 22 (2): 161–83.</p> 2012b. “Exploring an Iterative Feature Selection Technique for Highly Imbalanced Data Sets.” In <em>IEEE 13th International Conference on Information Reuse and Integration (Iri’2012)</em>, 101–8. doi:<a href="https://doi.org/10.1109/IRI.2012.6302997">10.1109/IRI.2012.6302997</a>.</p>
 </div>
 <div id="ref-Ibarguren2017">
-<p>Ibarguren, Igor, and Daniel Rodriguez J.M. Pérez Javier Muguerza. 2017. “The Consolidated Tree Construction Algorithm in Imbalanced Defect Prediction Datasets.” In <em>Evolutionary Methods and Machine Learning in Se, Testing and Se Repositories. Proccedings of the 2017 Ieee Congress on Evolutionary Computation (Cec2017)</em>, 96–103.</p>
+<p>Ibarguren, Igor, J.M. Pérez, Javier Muguerza, Daniel Rodriguez, and Rachel Harrison. 2017. “The Consolidated Tree Construction Algorithm in Imbalanced Defect Prediction Datasets.” In <em>Evolutionary Methods and Machine Learning in Se, Testing and Se Repositories. Proceedings of the 2017 Ieee Congress on Evolutionary Computation (Cec2017)</em>, 96–103.</p>
 </div>
 <div id="ref-SeiffertEtAl07">
 <p>Seiffert, C., T.M. Khoshgoftaar, J. Van Hulse, and A. Folleco. 2007. “An Empirical Study of the Classification Performance of Learners on Imbalanced and Noisy Software Quality Data.” In <em>2007 Ieee International Conference on Information Reuse and Integration, Ieee Iri-2007</em>, 651–58.</p>
@@ -303,7 +303,7 @@ gitbook.start({
 "link": "https://github.com/danrodgar/dasedown/edit/master/700_examples.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DefectPredictionSoftEng.pdf", "DefectPredictionSoftEng.epub"],
 "toc": {
 "collapse": "subsection"
 }

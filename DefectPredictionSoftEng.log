@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.2.18)  24 JUN 2017 22:46
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.2.18)  1 JUL 2017 11:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -889,28 +889,8 @@ LaTeX Info: Redefining \nameref on input line 142.
 
 ] [2
 
-] (./DefectPredictionSoftEng.toc)
-\tf@toc=\write5
-\openout5 = `DefectPredictionSoftEng.toc'.
-
-[3] [4
-
-] [5] [6
-
-] [7] [8] [9] [10
-
-] [11] [12]
-Chapter 1.
-[13
-
-] [14]
-Chapter 2.
-
-Package natbib Warning: Citation `HCC06' on page 15 undefined on input line 271
-.
-
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 271.
-
+] (./DefectPredictionSoftEng.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 8.
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -918,120 +898,426 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmr' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 271.
-
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 8.
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 271
-.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 8.
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 271
-.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 8.
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 271.
+(Font)              <10> on input line 8.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 271.
+(Font)              <7> on input line 8.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 271.
-LaTeX Font Info:    Try loading font information for U+msa on input line 271.
+(Font)              <5> on input line 8.
+LaTeX Font Info:    Try loading font information for U+msa on input line 8.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 271.
+LaTeX Font Info:    Try loading font information for U+msb on input line 8.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
+) [3])
+\tf@toc=\write5
+\openout5 = `DefectPredictionSoftEng.toc'.
 
-Package natbib Warning: Citation `herraiz2009flossmetrics' on page 15 undefined
- on input line 273.
+[4] [5] [6
 
+] [7] [8
 
-Package natbib Warning: Citation `QualitasCorpus2010' on page 15 undefined on i
-nput line 279.
+] [9] [10]
+Chapter 1.
+[11
 
+] [12
 
-Package natbib Warning: Citation `LBNRB09' on page 15 undefined on input line 2
-82.
+] [13] [14]
+Chapter 2.
+File: figures/artifactsMeta.png Graphic file (type QTm)
+<use  "figures/artifactsMeta.png" > [15
 
+] [16]
+Chapter 3.
+File: figures/Promise.png Graphic file (type QTm)
+<use  "figures/Promise.png" > [17
 
-Package natbib Warning: Citation `NZ10' on page 15 undefined on input line 284.
+] [18]
+Chapter 4.
+File: ./figures/process.png Graphic file (type QTm)
+<use  "./figures/process.png" >
+File: figures/Grimoire.png Graphic file (type QTm)
+<use  "figures/Grimoire.png" >
+File: figures/sonarQube.png Graphic file (type QTm)
+<use  "figures/sonarQube.png" > [19
 
+] [20]
+Chapter 5.
+File: figures/metricsCollection.png Graphic file (type QTm)
+<use  "figures/metricsCollection.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 461--462
+[][]
+ []
 
-
-Package natbib Warning: Citation `VanAntwerpM2008' on page 15 undefined on inpu
-t line 287.
-
-
-Package natbib Warning: Citation `Vasa2010' on page 15 undefined on input line 
-314.
-
-
-Package natbib Warning: Citation `DAmb2010a' on page 15 undefined on input line
- 317.
-
-
-Package natbib Warning: Citation `ALR11' on page 15 undefined on input line 317
-.
-
-
-Package natbib Warning: Citation `ZPZ07' on page 15 undefined on input line 320
-.
-
-
-Package natbib Warning: Citation `NZZH12' on page 15 undefined on input line 32
-0.
-
-[15
-
-] [16
+[21
 
 ]
-Chapter 3.
-
-Package natbib Warning: Citation `Zhang2009' on page 17 undefined on input line
- 365.
-
-
-Package natbib Warning: Citation `mccabe76' on page 17 undefined on input line 
-369.
-
-
-Package natbib Warning: Citation `Halstead77' on page 17 undefined on input lin
-e 371.
-
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 379.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 379.
-LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 427
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 521
 .
 (/usr/share/texlive/texmf-dist/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [17] [18])
-Runaway argument?
-{volumen volumen óptimo y el actual se denomina \% \textbf {nivel}, \ETC.
-! File ended while scanning use of \textbf .
-<inserted text> 
-                \par 
-<*> DefectPredictionSoftEng.tex
-                                
-Here is how much of TeX's memory you used:
- 25282 strings out of 495525
- 444054 string characters out of 6185940
- 519769 words of memory out of 5000000
- 28291 multiletter control sequences out of 15000+600000
- 24415 words of font info for 58 fonts, out of 8000000 for 9000
- 40 hyphenation exceptions out of 8191
- 54i,11n,68p,10421b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+) [22] [23] [24] [25] [26] [27
 
-Output written on DefectPredictionSoftEng.pdf (18 pages).
+] [28]
+Chapter 6.
+File: figures/supervClass1.png Graphic file (type QTm)
+<use  "figures/supervClass1.png" >
+LaTeX Font Info:    Font shape `EU1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 982.
+[29
+
+] [30]
+File: DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-1-1.pdf Graphic 
+file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-1-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[31]
+File: DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-3-1.pdf Graphic 
+file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-3-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[32] [33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[34]
+File: ./figures/279px-KnnClassification.svg.png Graphic file (type QTm)
+<use  "./figures/279px-KnnClassification.svg.png" >
+File: ./figures/neuralnet.png Graphic file (type QTm)
+<use  "./figures/neuralnet.png" >
+File: ./figures/neuralnet2.png Graphic file (type QTm)
+<use  "./figures/neuralnet2.png" >
+File: ./figures/Kernel_Machine.svg.png Graphic file (type QTm)
+<use  "./figures/Kernel_Machine.svg.png" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[35] [36]
+File: ./figures/classifier_NB.png Graphic file (type QTm)
+<use  "./figures/classifier_NB.png" > [37]
+File: ./figures/classifier_TAN.png Graphic file (type QTm)
+<use  "./figures/classifier_TAN.png" >
+File: ./figures/classifier_KDB.png Graphic file (type QTm)
+<use  "./figures/classifier_KDB.png" >
+Underfull \vbox (badness 3039) has occurred while \output is active []
+
+[38] [39] [40]
+File: DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-11-1.pdf Graphic
+ file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-11-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[41]
+File: DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-12-1.pdf Graphic
+ file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-12-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[42] [43] [44] [45]
+File: DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-21-1.pdf Graphic
+ file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-21-1.pdf" > [46
+]
+File: DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-22-1.pdf Graphic
+ file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/unnamed-chunk-22-1.pdf" >
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+[47] [48]
+File: DefectPredictionSoftEng_files/figure-latex/randomForest-1.pdf Graphic fil
+e (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/randomForest-1.pdf" > [49] [5
+0
+
+]
+Chapter 7.
+[51]
+File: DefectPredictionSoftEng_files/figure-latex/poisdist-1.pdf Graphic file (t
+ype QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/poisdist-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[52] [53]
+File: DefectPredictionSoftEng_files/figure-latex/histogram-1.pdf Graphic file (
+type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/histogram-1.pdf" >
+File: DefectPredictionSoftEng_files/figure-latex/histogram-2.pdf Graphic file (
+type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/histogram-2.pdf" >
+Underfull \vbox (badness 5359) has occurred while \output is active []
+
+[54]
+File: DefectPredictionSoftEng_files/figure-latex/correlation-1.pdf Graphic file
+ (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/correlation-1.pdf" >
+File: DefectPredictionSoftEng_files/figure-latex/correlation-2.pdf Graphic file
+ (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/correlation-2.pdf" >
+File: DefectPredictionSoftEng_files/figure-latex/correlation-3.pdf Graphic file
+ (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/correlation-3.pdf" >
+Overfull \hbox (266.21992pt too wide) in paragraph at lines 2169--2172
+[][] []
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[55]
+Underfull \vbox (badness 1874) has occurred while \output is active []
+
+[56] [57] [58] [59] [60] [61] [62] [63]
+Overfull \vbox (0.32831pt too high) detected at line 2827
+ []
+
+[64] [65]
+File: DefectPredictionSoftEng_files/figure-latex/finalhistograms-1.pdf Graphic 
+file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/finalhistograms-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[66]
+File: DefectPredictionSoftEng_files/figure-latex/finalhistograms-2.pdf Graphic 
+file (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/finalhistograms-2.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[67]
+File: DefectPredictionSoftEng_files/figure-latex/diagnostics-1.pdf Graphic file
+ (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/diagnostics-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[68]
+File: DefectPredictionSoftEng_files/figure-latex/residual plots-1.pdf Graphic f
+ile (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/residual plots-1.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[69]
+File: DefectPredictionSoftEng_files/figure-latex/residual plots-2.pdf Graphic f
+ile (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/residual plots-2.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[70]
+File: DefectPredictionSoftEng_files/figure-latex/residual plots-3.pdf Graphic f
+ile (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/residual plots-3.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[71]
+File: DefectPredictionSoftEng_files/figure-latex/residual plots-4.pdf Graphic f
+ile (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/residual plots-4.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[72]
+File: DefectPredictionSoftEng_files/figure-latex/residual plots-5.pdf Graphic f
+ile (type QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/residual plots-5.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[73]
+File: DefectPredictionSoftEng_files/figure-latex/CooksD-1.pdf Graphic file (typ
+e QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/CooksD-1.pdf" >
+File: DefectPredictionSoftEng_files/figure-latex/CooksD-2.pdf Graphic file (typ
+e QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/CooksD-2.pdf" >
+File: DefectPredictionSoftEng_files/figure-latex/CooksD-3.pdf Graphic file (typ
+e QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/CooksD-3.pdf" >
+File: DefectPredictionSoftEng_files/figure-latex/CooksD-4.pdf Graphic file (typ
+e QTm)
+<use  "DefectPredictionSoftEng_files/figure-latex/CooksD-4.pdf" >
+Underfull \hbox (badness 10000) in paragraph at lines 3108--3112
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3108--3112
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3108--3112
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[74] [75] [76] [77] [78
+
+] [79] [80]
+Chapter 8.
+File: figures/validation.png Graphic file (type QTm)
+<use  "figures/validation.png" > [81
+
+]
+File: figures/kfold.png Graphic file (type QTm)
+<use  "figures/kfold.png" >
+File: figures/leaveone.png Graphic file (type QTm)
+<use  "figures/leaveone.png" > [82]
+
+Package natbib Warning: Citation `Matthews1975Comparison' on page 83 undefined 
+on input line 3400.
+
+
+Overfull \vbox (285.5158pt too high) has occurred while \output is active []
+
+[83]
+File: figures/roc.png Graphic file (type QTm)
+<use  "figures/roc.png" >
+
+Package natbib Warning: Citation `Davis2006' on page 84 undefined on input line
+ 3473.
+
+[84] [85]
+
+LaTeX Font Warning: Font shape `EU1/lmtt/bx/it' in size <10> not available
+(Font)              Font shape `EU1/lmtt/b/sl' tried instead on input line 3540
+.
+
+File: ./figures/underfitting.png Graphic file (type QTm)
+<use  "./figures/underfitting.png" >
+File: ./figures/overfitting.png Graphic file (type QTm)
+<use  "./figures/overfitting.png" >
+File: figures/overfittingTrees.png Graphic file (type QTm)
+<use  "figures/overfittingTrees.png" > [86] [87] [88
+
+] [89] [90]
+Chapter 9.
+[91
+
+] [92
+
+]
+Chapter 10.
+[93] [94
+
+]
+Chapter 11.
+
+Package natbib Warning: Citation `KS02' on page 95 undefined on input line 3628
+.
+
+[95] [96
+
+]
+Chapter 12.
+[97] [98
+
+]
+Chapter 13.
+[99] [100
+
+]
+Chapter 14.
+[101] [102
+
+]
+Chapter 15.
+[103] [104
+
+]
+Chapter 16.
+[105] [106
+
+] [107] [108]
+Chapter 17.
+[109
+
+] [110
+
+]
+Chapter 18.
+File: ./figures/SMOTE.png Graphic file (type QTm)
+<use  "./figures/SMOTE.png" > [111] [112]
+Chapter 19.
+File: ./figures/SDexample.png Graphic file (type QTm)
+<use  "./figures/SDexample.png" >
+File: ./figures/SD_GenVsSpc.png Graphic file (type QTm)
+<use  "./figures/SD_GenVsSpc.png" >
+File: ./figures/barChar-CN2SD-KC2.png Graphic file (type QTm)
+<use  "./figures/barChar-CN2SD-KC2.png" >
+Overfull \hbox (111.15685pt too wide) in paragraph at lines 3908--3910
+[]\EU1/lmr/m/it/10 Using the CN2-SD algorithm with the KC2 dataset: [] 
+ []
+
+File: ./figures/barChar-SD-KC2.png Graphic file (type QTm)
+<use  "./figures/barChar-SD-KC2.png" >
+Overfull \hbox (119.15079pt too wide) in paragraph at lines 3911--3913
+[]\EU1/lmr/m/it/10 And with the SD algorithm: [] 
+ []
+
+
+Underfull \vbox (badness 4699) has occurred while \output is active []
+
+[113
+
+] [114] [115] [116
+
+]
+Chapter 20.
+[117] [118]
+Chapter 21.
+File: ./figures/crowds.png Graphic file (type QTm)
+<use  "./figures/crowds.png" >
+File: ./figures/esquema_report.png Graphic file (type QTm)
+<use  "./figures/esquema_report.png" > [119
+
+] [120]
+Chapter 22.
+[121
+
+] [122
+
+]
+Chapter 23.
+Missing character: There is no − in font rm-lmr10!
+[123] [124] [125
+
+] [126] (./DefectPredictionSoftEng.bbl [127
+
+] [128] [129] [130])
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4077.
+[131]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4077.
+(./DefectPredictionSoftEng.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4077.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 4077.
+ ) 
+Here is how much of TeX's memory you used:
+ 25683 strings out of 495525
+ 453429 string characters out of 6185940
+ 514345 words of memory out of 5000000
+ 28630 multiletter control sequences out of 15000+600000
+ 25220 words of font info for 52 fonts, out of 8000000 for 9000
+ 40 hyphenation exceptions out of 8191
+ 54i,6n,68p,10421b,557s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on DefectPredictionSoftEng.pdf (131 pages).
