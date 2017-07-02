@@ -196,7 +196,7 @@ We are applying MOQAR (multi-objective evolutionary schemes to discover quantita
 [@Martinez2016] Improving a Multi-objective Evolutionary Algorithm to Discover Quantitative Association Rules
 
 
-
+[@Canfora2015] Defect prediction as a multiobjective optimization problem
 
 
 
