@@ -1,6 +1,6 @@
 ## Evaluation of Classification Models
 
-The confusion matrix (which can be extended to multiclass problems). The following table shows the possible outcomes for binary classification problems:
+The confusion matrix (which can be extended to multiclass problems) is a matrix that is often used to describe the performance of a classification model. The following table shows the possible outcomes for binary classification problems:
 
 
 |           |$Pred Pos$ | $Pred Neg$ |
@@ -13,7 +13,7 @@ where *True Positives* ($TP$) and *True Negatives* ($TN$) are respectively the n
 
 From the confusion matrix, we can calculate:
 
-   + *True positive rate*, or *recall * ($TP_r = recall = r = TP/TP+FN$) is the proportion of positive cases correctly classified as belonging to the positive class.
+   + *True positive rate*, *recall* or *sensitivity*) ($TP_r = recall = senstivity = TP/TP+FN$) is the proportion of positive cases correctly classified as belonging to the positive class.
    
    + *False negative rate* ($FN_r=FN/TP+FN$) is the proportion of positive cases misclassified as belonging to the negative class.
    
@@ -30,25 +30,22 @@ to measure performance of classifiers (or the complementary value, the _error ra
 
 + Precision, fraction of relevant instances among the retrieved instances, $$\frac{TP}{TP+FP}$$
 
-+ Recall$ ($sensitivity$ probability of detection, $PD$) is the fraction of relevant instances that have been retrieved over total relevant instances, $\frac{TP}{TP+FN}$
++ Recall ($sensitivity$ probability of detection, $PD$) is the fraction of relevant instances that have been retrieved over total relevant instances, $\frac{TP}{TP+FN}$
 
-+ _f-measure_ is the harmonic mean of precision and recall, 
++ _f-measure_ (f-score or F1) is the harmonic mean of precision and recall, 
 $2 \cdot \frac{precision \cdot recall}{precision + recall}$
 
-+ G-mean: $\sqrt{PD \times Precision}$
++ Geometric mean, $Gmean = \sqrt{Recall \times Precision}$
 
-+ G-mean2: $\sqrt{PD \times Specificity}$
++ Geometric mean, 2$Gmean_2 = \sqrt{Recall \times Specificity}$
 
-+ J coefficient, $j-coeff = sensitivity + specificity - 1 = PD-PF$
++ J coefficient, $j-coeff = sensitivity + specificity - 1$
 
-(Jiang, Cubic and Ma, 2008 ESE)
-
-
-+ A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew's Correlation Coefficient ($MCC$)~\cite{Matthews1975Comparison}: 
++ A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew's Correlation Coefficient ($MCC$) [@Matthews1975Comparison]: 
 
 $$MCC=\frac{TP\times TN - FP\times FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}$$
 
-$MCC$ can also be calculated from the confusion matrix. Its range goes from -1 to +1; the closer to one the better as it indicates perfect prediction whereas a value of 0 means that classification is not better than random prediction and negative values mean that predictions are worst than random.
+$MCC$ is also be calculated from the confusion matrix with the advantage that consider all four values (while other measures consider only two or tree). Its range goes from -1 to +1; the closer to one the better as it indicates perfect prediction whereas a value of 0 means that classification is not better than random prediction and negative values mean that predictions are worst than random.
 
 
 
@@ -65,7 +62,7 @@ $\psi({x}) = argmax_c (P(c|{x}))$
 ## Other Metrics used in Software Engineering with Classification
 
 
-In the domain of defect prediction and when two classes are considered, it is also customary to refer to the *probability of detection*, ($pd$) which corresponds to the True Positive rate ($TP_{rate}$ or \emph{Sensitivity}) as a measure of the goodness of the model, and *probability of false alarm* ($pf$) as performance measures~\cite{Menzies07}. 
+In the domain of defect prediction and when two classes are considered, it is also customary to refer to the *probability of detection*, ($pd$) which corresponds to the True Positive rate ($TP_{rate}$, $recall$ or $Sensitivity$). Also the *probability of false alarm* ($pf$) corresponds to the False Positive rate, $FP_r$, (see [@Menzies07]). 
 
 The objective is to find which techniques that maximise $pd$ and minimise $pf$. As stated by Menzies et al., the balance between these two measures depends on the project characteristics (e.g. real-time systems vs. information management systems) it is formulated as the Euclidean distance from the sweet spot $pf=0$ and $pd=1$ to a pair of $(pf,pd)$. 
 
@@ -74,4 +71,9 @@ $$balance=1-\frac{\sqrt{(0-pf^2)+(1-pd^2)}}{\sqrt{2}}$$
 It is normalized by the maximum possible distance across the ROC square ($\sqrt{2}, 2$), subtracted this value from 1, and expressed it as a percentage.
 
 
- 
+However, reporting $pd$ and $pf$ only can be missleading as the discussion on Menzies et al paper [@Menzies07] by Zhang and Zhang [-@Zhang07] comment that their precision is extremely low (just between 2 and 30 per cent) and authors should report also report. This is due to the fact that datasets are quite unbalanced. An analysis of this problem is well described by Gray et al [-@GrayBDSC2011]. On the other hand, the Menzies et al [-@Menzies07b] replied to this problem arguing that in defect prediction such high-recall and low-prediction is still useful .
+
+Some other references:
+
+[@JiangCM2008] - Techniques for evaluating fault prediction models
+

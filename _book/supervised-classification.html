@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-07-01">
+<meta name="date" content="2017-07-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -184,6 +184,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
 <li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cost-curves"><i class="fa fa-check"></i><b>8.4.3</b> Cost Curves</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
 <li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
@@ -381,7 +382,7 @@ c50r &lt;-<span class="st"> </span><span class="kw">C5.0</span>(jm1.train[,-<spa
 ##  jm1.train[, ncol(jm1.train)], rules = TRUE)
 ## 
 ## 
-## C5.0 [Release 2.07 GPL Edition]      Sat Jul  1 11:24:22 2017
+## C5.0 [Release 2.07 GPL Edition]      Thu Jul  6 20:44:34 2017
 ## -------------------------------
 ## 
 ## Class specified by attribute `outcome&#39;
@@ -440,7 +441,7 @@ c50r &lt;-<span class="st"> </span><span class="kw">C5.0</span>(jm1.train[,-<spa
 ##    0.19% LOC_EXECUTABLE
 ## 
 ## 
-## Time: 0.2 secs</code></pre>
+## Time: 0.1 secs</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c50rPred &lt;- predict(c50r, jm1.train)</span>
 <span class="co"># table(c50rPred, jm1.train$Defective)</span></code></pre></div>
 </div>

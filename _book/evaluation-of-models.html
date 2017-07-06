@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-07-01">
+<meta name="date" content="2017-07-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -184,6 +184,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
 <li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cost-curves"><i class="fa fa-check"></i><b>8.4.3</b> Cost Curves</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
 <li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
@@ -279,7 +280,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="evaluation-of-classification-models" class="section level2">
 <h2><span class="header-section-number">8.2</span> Evaluation of Classification Models</h2>
-<p>The confusion matrix (which can be extended to multiclass problems). The following table shows the possible outcomes for binary classification problems:</p>
+<p>The confusion matrix (which can be extended to multiclass problems) is a matrix that is often used to describe the performance of a classification model. The following table shows the possible outcomes for binary classification problems:</p>
 <table>
 <thead>
 <tr class="header">
@@ -304,7 +305,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>where <em>True Positives</em> (<span class="math inline">\(TP\)</span>) and <em>True Negatives</em> (<span class="math inline">\(TN\)</span>) are respectively the number of positive and negative instances correctly classified, <em>False Positives</em> (<span class="math inline">\(FP\)</span>) is the number of negative instances misclassified as positive (also called Type I errors), and <em>False Negatives</em> (<span class="math inline">\(FN\)</span>) is the number of positive instances misclassified as negative (Type II errors).</p>
 <p>From the confusion matrix, we can calculate:</p>
 <ul>
-<li><p><em>True positive rate</em>, or <em>recall </em> (<span class="math inline">\(TP_r = recall = r = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</p></li>
+<li><p><em>True positive rate</em>, <em>recall</em> or <em>sensitivity</em>) (<span class="math inline">\(TP_r = recall = senstivity = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</p></li>
 <li><p><em>False negative rate</em> (<span class="math inline">\(FN_r=FN/TP+FN\)</span>) is the proportion of positive cases misclassified as belonging to the negative class.</p></li>
 <li><p><em>False positive rate</em> (<span class="math inline">\(FP_r=FP/FP+TN\)</span>) is the proportion of negative cases misclassified as belonging to the positive class.</p></li>
 <li><p><em>True negative rate</em> (<span class="math inline">\(TN_r=TN/FP+TN\)</span>) is the proportion of negative cases correctly classified as belonging to the negative class.</p></li>
@@ -314,18 +315,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>to measure performance of classifiers (or the complementary value, the <em>error rate</em> which is defined as <span class="math inline">\(1-accuracy\)</span>)</p>
 <ul>
 <li><p>Precision, fraction of relevant instances among the retrieved instances, <span class="math display">\[\frac{TP}{TP+FP}\]</span></p></li>
-<li><p>Recall$ (<span class="math inline">\(sensitivity\)</span> probability of detection, <span class="math inline">\(PD\)</span>) is the fraction of relevant instances that have been retrieved over total relevant instances, <span class="math inline">\(\frac{TP}{TP+FN}\)</span></p></li>
-<li><p><em>f-measure</em> is the harmonic mean of precision and recall, <span class="math inline">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></li>
-<li><p>G-mean: <span class="math inline">\(\sqrt{PD \times Precision}\)</span></p></li>
-<li><p>G-mean2: <span class="math inline">\(\sqrt{PD \times Specificity}\)</span></p></li>
-<li><p>J coefficient, <span class="math inline">\(j-coeff = sensitivity + specificity - 1 = PD-PF\)</span></p></li>
-</ul>
-<p>(Jiang, Cubic and Ma, 2008 ESE)</p>
-<ul>
-<li>A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew’s Correlation Coefficient (<span class="math inline">\(MCC\)</span>)~:</li>
+<li><p>Recall (<span class="math inline">\(sensitivity\)</span> probability of detection, <span class="math inline">\(PD\)</span>) is the fraction of relevant instances that have been retrieved over total relevant instances, <span class="math inline">\(\frac{TP}{TP+FN}\)</span></p></li>
+<li><p><em>f-measure</em> (f-score or F1) is the harmonic mean of precision and recall, <span class="math inline">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></li>
+<li><p>Geometric mean, <span class="math inline">\(Gmean = \sqrt{Recall \times Precision}\)</span></p></li>
+<li><p>Geometric mean, 2<span class="math inline">\(Gmean_2 = \sqrt{Recall \times Specificity}\)</span></p></li>
+<li><p>J coefficient, <span class="math inline">\(j-coeff = sensitivity + specificity - 1\)</span></p></li>
+<li><p>A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew’s Correlation Coefficient (<span class="math inline">\(MCC\)</span>) <span class="citation">(Matthews <a href="#ref-Matthews1975Comparison">1975</a>)</span>:</p></li>
 </ul>
 <p><span class="math display">\[MCC=\frac{TP\times TN - FP\times FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}\]</span></p>
-<p><span class="math inline">\(MCC\)</span> can also be calculated from the confusion matrix. Its range goes from -1 to +1; the closer to one the better as it indicates perfect prediction whereas a value of 0 means that classification is not better than random prediction and negative values mean that predictions are worst than random.</p>
+<p><span class="math inline">\(MCC\)</span> is also be calculated from the confusion matrix with the advantage that consider all four values (while other measures consider only two or tree). Its range goes from -1 to +1; the closer to one the better as it indicates perfect prediction whereas a value of 0 means that classification is not better than random prediction and negative values mean that predictions are worst than random.</p>
 <div id="prediction-in-probabilistic-classifiers" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> Prediction in probabilistic classifiers</h3>
 <p>A probabilistic classifier estimates the probability of each of the posible class values given the attribute values of the instance <span class="math inline">\(P(c|{x})\)</span>. Then, given a new instance, <span class="math inline">\({x}\)</span>, the class value with the highest a posteriori probability will be assigned to that new instance (the <em>winner takes all</em> approach):</p>
@@ -334,17 +332,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="other-metrics-used-in-software-engineering-with-classification" class="section level2">
 <h2><span class="header-section-number">8.3</span> Other Metrics used in Software Engineering with Classification</h2>
-<p>In the domain of defect prediction and when two classes are considered, it is also customary to refer to the <em>probability of detection</em>, (<span class="math inline">\(pd\)</span>) which corresponds to the True Positive rate (<span class="math inline">\(TP_{rate}\)</span> or ) as a measure of the goodness of the model, and <em>probability of false alarm</em> (<span class="math inline">\(pf\)</span>) as performance measures~.</p>
+<p>In the domain of defect prediction and when two classes are considered, it is also customary to refer to the <em>probability of detection</em>, (<span class="math inline">\(pd\)</span>) which corresponds to the True Positive rate (<span class="math inline">\(TP_{rate}\)</span>, <span class="math inline">\(recall\)</span> or <span class="math inline">\(Sensitivity\)</span>). Also the <em>probability of false alarm</em> (<span class="math inline">\(pf\)</span>) corresponds to the False Positive rate, <span class="math inline">\(FP_r\)</span>, (see <span class="citation">(Menzies, Greenwald, and Frank <a href="#ref-Menzies07">2007</a>)</span>).</p>
 <p>The objective is to find which techniques that maximise <span class="math inline">\(pd\)</span> and minimise <span class="math inline">\(pf\)</span>. As stated by Menzies et al., the balance between these two measures depends on the project characteristics (e.g. real-time systems vs. information management systems) it is formulated as the Euclidean distance from the sweet spot <span class="math inline">\(pf=0\)</span> and <span class="math inline">\(pd=1\)</span> to a pair of <span class="math inline">\((pf,pd)\)</span>.</p>
 <p><span class="math display">\[balance=1-\frac{\sqrt{(0-pf^2)+(1-pd^2)}}{\sqrt{2}}\]</span></p>
 <p>It is normalized by the maximum possible distance across the ROC square (<span class="math inline">\(\sqrt{2}, 2\)</span>), subtracted this value from 1, and expressed it as a percentage.</p>
+<p>However, reporting <span class="math inline">\(pd\)</span> and <span class="math inline">\(pf\)</span> only can be missleading as the discussion on Menzies et al paper <span class="citation">(Menzies, Greenwald, and Frank <a href="#ref-Menzies07">2007</a>)</span> by Zhang and Zhang <span class="citation">(<a href="#ref-Zhang07">2007</a>)</span> comment that their precision is extremely low (just between 2 and 30 per cent) and authors should report also report. This is due to the fact that datasets are quite unbalanced. An analysis of this problem is well described by Gray et al <span class="citation">(<a href="#ref-GrayBDSC2011">2011</a><a href="#ref-GrayBDSC2011">a</a>)</span>. On the other hand, the Menzies et al <span class="citation">(<a href="#ref-Menzies07b">2007</a>)</span> replied to this problem arguing that in defect prediction such high-recall and low-prediction is still useful .</p>
+<p>Some other references:</p>
+<p><span class="citation">(Jiang, Cukic, and Ma <a href="#ref-JiangCM2008">2008</a>)</span> - Techniques for evaluating fault prediction models</p>
 
 </div>
 <div id="graphical-evaluation" class="section level2">
 <h2><span class="header-section-number">8.4</span> Graphical Evaluation</h2>
 <div id="receiver-operating-characteristic-roc" class="section level3">
 <h3><span class="header-section-number">8.4.1</span> Receiver Operating Characteristic (ROC)</h3>
-<p>The <em>Receiver Operating Characteristic</em> (<span class="math inline">\(ROC\)</span>)<span class="citation">(Fawcett <a href="#ref-Fawcett2006">2006</a>)</span> curve which provides a graphical visualisation of the results.</p>
+<p>The <em>Receiver Operating Characteristic</em> (<span class="math inline">\(ROC\)</span>) curve which provides a graphical visualisation of the results <span class="citation">(Fawcett <a href="#ref-Fawcett2006">2006</a>)</span>.</p>
 <div class="figure">
 <img src="figures/roc.png" alt="Receiver Operating Characteristic" />
 <p class="caption">Receiver Operating Characteristic</p>
@@ -354,8 +355,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="precision-recall-curve-prc" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Precision-Recall Curve (PRC)</h3>
-<p>Similarly to ROC, another widely used evaluation technique is the Precision-Recall Curve (PRC), which depicts a trade off between precision and recall and can also be summarised into a single value as the Area Under the Precision-Recall Curve (AUPRC)~.</p>
-<p>%AUPCR is more accurate than the ROC for testing performances when dealing with imbalanced datasets as well as optimising ROC values does not necessarily optimises AUPR values, i.e., a good classifier in AUC space may not be so good in PRC space. %The weighted average uses weights proportional to class frequencies in the data. %The weighted average is computed by weighting the measure of class (TP rate, precision, recall …) by the proportion of instances there are in that class. Computing the average can be sometimes be misleading. For instance, if class 1 has 100 instances and you achieve a recall of 30%, and class 2 has 1 instance and you achieve recall of 100% (you predicted the only instance correctly), then when taking the average (65%) you will inflate the recall score because of the one instance you predicted correctly. Taking the weighted average will give you 30.7%, which is much more realistic measure of the performance of the classifier.</p>
+<p>Similarly to ROC, another widely used evaluation technique is the Precision-Recall Curve (PRC), which depicts a trade off between precision and recall and can also be summarised into a single value as the Area Under the Precision-Recall Curve (AUPRC) <span class="citation">(Davis and Goadrich <a href="#ref-Davis2006">2006</a>)</span>.</p>
+<p>AUPCR can be more accurate than the ROC measure for testing performances when dealing with imbalanced datasets.</p>
+</div>
+<div id="cost-curves" class="section level3">
+<h3><span class="header-section-number">8.4.3</span> Cost Curves</h3>
+<p>This was originaly proposed by Drummond and Holte to visualize classifier performance and the cost of misclassification <span class="citation">(Drummond and Holte <a href="#ref-DrummondH2006">2006</a>)</span>. Cost curves plot the probability cost function on the <span class="math inline">\(x\)</span>-axis and the normalized expected misclassification cost on the <span class="math inline">\(y\)</span>-axis.</p>
+<p>Jiang et al. used cost curves as evaluation measure in defect prediciton <span class="citation">(Jiang, Cukic, and Menzies <a href="#ref-Jiang2008">2008</a>)</span>.</p>
 
 </div>
 </div>
@@ -375,8 +381,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Relative-squared error <span class="math inline">\(\frac{(p_1-a_1)^2 + \ldots +(p_n-a_n)^2}{(a_1-\hat{a})^2 + \ldots + (a_n-\hat{a})^2}\)</span> (<span class="math inline">\(\hat{a}\)</span> is the mean value over the training data)</p>
 <p>Relative Absolut Error</p>
 <p>Correlation Coefficient</p>
-<p>Correlation coefficient between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is defined as <span class="math display">\[\rho(X,Y) = \frac{{\bf
-Cov}(X,Y)}{\sqrt{{\bf Var}(X){\bf Var}(Y)}}.\]</span> The {} <span class="math inline">\(r\)</span> between two samples <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_j\)</span> is defined as <span class="math inline">\(r = S_{xy}/\sqrt{S_{xx}S_{yy}}.\)</span></p>
+<p>Correlation coefficient between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is defined as <span class="math inline">\(\rho(X,Y) = \frac{{\bf Cov}(X,Y)}{\sqrt{{\bf Var}(X){\bf Var}(Y)}}\)</span>. The sample correlation coefficient} <span class="math inline">\(r\)</span> between two samples <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_j\)</span> is vvdefined as <span class="math inline">\(r = S_{xy}/\sqrt{S_{xx}S_{yy}}\)</span></p>
 <p>Example: Is there any linear relationship between the effort estimates (<span class="math inline">\(p_i\)</span>) and actual effort (<span class="math inline">\(a_i\)</span>)?</p>
 <p><span class="math inline">\(a\|39,43,21,64,57,47,28,75,34,52\)</span></p>
 <p><span class="math inline">\(p\|65,78,52,82,92,89,73,98,56,75\)</span></p>
@@ -386,7 +391,6 @@ a&lt;-<span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">78</
 <span class="kw">cor</span>(p,a)</code></pre></div>
 <pre><code>## [1] 0.8397859</code></pre>
 <p><span class="math inline">\(R^2\)</span></p>
-
 
 </div>
 <div id="underfitting-vs.overfitting" class="section level2">
@@ -405,8 +409,35 @@ a&lt;-<span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">78</
 
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-Matthews1975Comparison">
+<p>Matthews, B. W. 1975. “Comparison of the Predicted and Observed Secondary Structure of T4 Phage Lysozyme.” <em>Biochimica et Biophysica Acta</em> 405 (2): 442–51. <a href="http://view.ncbi.nlm.nih.gov/pubmed/1180967" class="uri">http://view.ncbi.nlm.nih.gov/pubmed/1180967</a>.</p>
+</div>
+<div id="ref-Menzies07">
+<p>Menzies, T., J. Greenwald, and A. Frank. 2007. “Data Mining Static Code Attributes to Learn Defect Predictors.” <em>IEEE Transactions on Software Engineering</em>.</p>
+</div>
+<div id="ref-Zhang07">
+<p>Zhang, Hongyu, and Xiuzhen Zhang. 2007. “Comments on ‘Data Mining Static Code Attributes to Learn Defect Predictors’.” <em>IEEE Transactions on Software Engineering</em> 33 (9). Los Alamitos, CA, USA: IEEE Computer Society: 635–37. doi:<a href="https://doi.org/http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70706">http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70706</a>.</p>
+</div>
+<div id="ref-GrayBDSC2011">
+<p>Gray, D., D. Bowes, N. Davey, Y. Sun, and B. Christianson. 2011a. “Further Thoughts on Precision.” In <em>15th Annual Conference on Evaluation Assessment in Software Engineering (Ease 2011)</em>, 129–33. doi:<a href="https://doi.org/10.1049/ic.2011.0016">10.1049/ic.2011.0016</a>.</p>
+</div>
+<div id="ref-Menzies07b">
+<p>Menzies, Tim, Alex Dekhtyar, Justin Distefano, and Jeremy Greenwald. 2007. “Problems with Precision: A Response to Comments on Data Mining Static Code Attributes to Learn Defect Predictors.” <em>IEEE Transactions on Software Engineering</em> 33 (9). Los Alamitos, CA, USA: IEEE Computer Society: 637–40. doi:<a href="https://doi.org/http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70721">http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70721</a>.</p>
+</div>
+<div id="ref-JiangCM2008">
+<p>Jiang, Yue, Bojan Cukic, and Yan Ma. 2008. “Techniques for Evaluating Fault Prediction Models.” <em>Empirical Software Engineering</em> 13 (5): 561–95. doi:<a href="https://doi.org/10.1007/s10664-008-9079-3">10.1007/s10664-008-9079-3</a>.</p>
+</div>
 <div id="ref-Fawcett2006">
 <p>Fawcett, Tom. 2006. “An Introduction to Roc Analysis.” <em>Pattern Recognition Letters</em> 27 (8): 861–74. doi:<a href="https://doi.org/http://dx.doi.org/10.1016/j.patrec.2005.10.010">http://dx.doi.org/10.1016/j.patrec.2005.10.010</a>.</p>
+</div>
+<div id="ref-Davis2006">
+<p>Davis, Jesse, and Mark Goadrich. 2006. “The Relationship Between Precision-Recall and Roc Curves.” In <em>23rd International Conference on Machine Learning</em>, 233–40. ICML’06. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/1143844.1143874">10.1145/1143844.1143874</a>.</p>
+</div>
+<div id="ref-DrummondH2006">
+<p>Drummond, Chris, and Robert C. Holte. 2006. “Cost Curves: An Improved Method for Visualizing Classifier Performance.” <em>Machine Learning</em> 65 (1): 95–130. doi:<a href="https://doi.org/10.1007/s10994-006-8199-5">10.1007/s10994-006-8199-5</a>.</p>
+</div>
+<div id="ref-Jiang2008">
+<p>Jiang, Y., B. Cukic, and T. Menzies. 2008. “Cost Curve Evaluation of Fault Prediction Models.” In <em>19th International Symposium on Software Reliability Engineering (Issre)</em>, 197–206. doi:<a href="https://doi.org/10.1109/ISSRE.2008.54">10.1109/ISSRE.2008.54</a>.</p>
 </div>
 </div>
             </section>

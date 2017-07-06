@@ -3,7 +3,7 @@
 
 ### Receiver Operating Characteristic (ROC)
 
-The *Receiver Operating Characteristic* ($ROC$)[@Fawcett2006] curve which provides a graphical visualisation of the results.
+The *Receiver Operating Characteristic* ($ROC$) curve which provides a graphical visualisation of the results [@Fawcett2006].
 
 
 ![Receiver Operating Characteristic](figures/roc.png)

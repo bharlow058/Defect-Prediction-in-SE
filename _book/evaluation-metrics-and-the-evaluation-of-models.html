@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-07-01">
+<meta name="date" content="2017-07-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -184,6 +184,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
 <li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cost-curves"><i class="fa fa-check"></i><b>8.4.3</b> Cost Curves</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
 <li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
@@ -237,10 +238,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>There is also another controversy regarding the AUC measure, which is widely used to compare classifiers particularly when data is imbalanced. Hand anlysed that the AUC is not a coherent measure and proposed the <span class="math inline">\(H-measure\)</span> <span class="citation">(Hand <a href="#ref-Hand09">2009</a>)</span>.</p>
 <p>Another controversy concerns the use of the <span class="math inline">\(t\)</span>-test for comparison of multiple algorithms and datasets. As this is a parametric test it does not seem to be the most appropriate <span class="citation">(Demšar <a href="#ref-Demsar2006">2006</a>)</span>.</p>
 <p>Also currently there is a tendency to rely less on p-values and more on confidence intervales and Equivalence Hipothesis Testing <span class="citation">(Dolado et al. <a href="#ref-DOLADO2016">2016</a>)</span></p>
-<p>Dicussion:</p>
-<p><span class="citation">(Menzies, Greenwald, and Frank <a href="#ref-Menzies07">2007</a>)</span> Data Mining Static Code Attributes to Learn Defect Predictors</p>
-<p><span class="citation">(Zhang and Zhang <a href="#ref-Zhang07">2007</a>)</span> Comments on “Data Mining Static Code Attributes to Learn Defect Predictors”</p>
-<p><span class="citation">(Menzies et al. <a href="#ref-Menzies07b">2007</a>)</span> Problems with Precision: A Response to Comments on Data Mining Static Code Attributes to Learn Defect Predictors</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
@@ -258,15 +255,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="ref-DOLADO2016">
 <p>Dolado, José Javier, Daniel Rodriguez, Mark Harman, William B. Langdon, and Federica Sarro. 2016. “Evaluation of Estimation Models Using the Minimum Interval of Equivalence.” <em>Applied Soft Computing</em> 49: 956–67. doi:<a href="https://doi.org/http://dx.doi.org/10.1016/j.asoc.2016.03.026">http://dx.doi.org/10.1016/j.asoc.2016.03.026</a>.</p>
-</div>
-<div id="ref-Menzies07">
-<p>Menzies, T., J. Greenwald, and A. Frank. 2007. “Data Mining Static Code Attributes to Learn Defect Predictors.” <em>IEEE Transactions on Software Engineering</em>.</p>
-</div>
-<div id="ref-Zhang07">
-<p>Zhang, Hongyu, and Xiuzhen Zhang. 2007. “Comments on ‘Data Mining Static Code Attributes to Learn Defect Predictors’.” <em>IEEE Transactions on Software Engineering</em> 33 (9). Los Alamitos, CA, USA: IEEE Computer Society: 635–37. doi:<a href="https://doi.org/http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70706">http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70706</a>.</p>
-</div>
-<div id="ref-Menzies07b">
-<p>Menzies, Tim, Alex Dekhtyar, Justin Distefano, and Jeremy Greenwald. 2007. “Problems with Precision: A Response to Comments on Data Mining Static Code Attributes to Learn Defect Predictors.” <em>IEEE Transactions on Software Engineering</em> 33 (9). Los Alamitos, CA, USA: IEEE Computer Society: 637–40. doi:<a href="https://doi.org/http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70721">http://doi.ieeecomputersociety.org/10.1109/TSE.2007.70721</a>.</p>
 </div>
 </div>
             </section>

@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-07-01">
+<meta name="date" content="2017-07-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -184,6 +184,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.4" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#graphical-evaluation"><i class="fa fa-check"></i><b>8.4</b> Graphical Evaluation</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#receiver-operating-characteristic-roc"><i class="fa fa-check"></i><b>8.4.1</b> Receiver Operating Characteristic (ROC)</a></li>
 <li class="chapter" data-level="8.4.2" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#precision-recall-curve-prc"><i class="fa fa-check"></i><b>8.4.2</b> Precision-Recall Curve (PRC)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#cost-curves"><i class="fa fa-check"></i><b>8.4.3</b> Cost Curves</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#numeric-prediction-evaluation"><i class="fa fa-check"></i><b>8.5</b> Numeric Prediction Evaluation</a></li>
 <li class="chapter" data-level="8.6" data-path="evaluation-of-models.html"><a href="evaluation-of-models.html#underfitting-vs.overfitting"><i class="fa fa-check"></i><b>8.6</b> Underfitting vs. Overfitting</a></li>
@@ -256,8 +257,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>There are problems such as different tools report different values for the same metric <span class="citation">(Lincke, Lundberg, and Löwe <a href="#ref-Lincke2008">2008</a>)</span></p>
 <p>It is well-know that the NASA datasets have some problems:</p>
 <ul>
-<li><p><span class="citation">(Gray et al. <a href="#ref-Gray2011">2011</a>)</span> The misuse of the NASA metrics data program data sets for automated software defect prediction</p></li>
+<li><p><span class="citation">(Gray et al. <a href="#ref-Gray2011">2011</a><a href="#ref-Gray2011">b</a>)</span> The misuse of the NASA metrics data program data sets for automated software defect prediction</p></li>
 <li><p><span class="citation">(Shepperd et al. <a href="#ref-Shepperd2013">2013</a>)</span> Data Quality: Some Comments on the NASA Software Defect Datasets</p></li>
+<li><p>Linking information: <span class="citation">(Śliwerski, Zimmermann, and Zeller <a href="#ref-SliwerskiZZ2005">2005</a>)</span><span class="citation">(Kim et al. <a href="#ref-KimZPW2006">2006</a>)</span> SZZ algorithm</p></li>
 </ul>
 
 </div>
@@ -268,10 +270,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Lincke, Rüdiger, Jonas Lundberg, and Welf Löwe. 2008. “Comparing Software Metrics Tools.” In <em>Proceedings of the 2008 International Symposium on Software Testing and Analysis (Issta’08)</em>, 131–42. ISSTA’08. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/1390630.1390648">10.1145/1390630.1390648</a>.</p>
 </div>
 <div id="ref-Gray2011">
-<p>Gray, D., D. Bowes, N. Davey, Y. Sun, and B. Christianson. 2011. “The Misuse of the Nasa Metrics Data Program Data Sets for Automated Software Defect Prediction.” In <em>15th Annual Conference on Evaluation Assessment in Software Engineering (Ease 2011)</em>, 96–103. doi:<a href="https://doi.org/10.1049/ic.2011.0012">10.1049/ic.2011.0012</a>.</p>
+<p>Gray, D., D. Bowes, N. Davey, Y. Sun, and B. Christianson. 2011a. “Further Thoughts on Precision.” In <em>15th Annual Conference on Evaluation Assessment in Software Engineering (Ease 2011)</em>, 129–33. doi:<a href="https://doi.org/10.1049/ic.2011.0016">10.1049/ic.2011.0016</a>.</p> 2011b. “The Misuse of the Nasa Metrics Data Program Data Sets for Automated Software Defect Prediction.” In <em>15th Annual Conference on Evaluation Assessment in Software Engineering (Ease 2011)</em>, 96–103. doi:<a href="https://doi.org/10.1049/ic.2011.0012">10.1049/ic.2011.0012</a>.</p>
 </div>
 <div id="ref-Shepperd2013">
 <p>Shepperd, M., Qinbao Song, Zhongbin Sun, and C. Mair. 2013. “Data Quality: Some Comments on the Nasa Software Defect Datasets.” <em>IEEE Transactions on Software Engineering</em> 39 (9): 1208–15. doi:<a href="https://doi.org/10.1109/TSE.2013.11">10.1109/TSE.2013.11</a>.</p>
+</div>
+<div id="ref-SliwerskiZZ2005">
+<p>Śliwerski, Jacek, Thomas Zimmermann, and Andreas Zeller. 2005. “When Do Changes Induce Fixes?” In <em>Proceedings of the 2005 International Workshop on Mining Software Repositories</em>, 1–5. MSR’05. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/1082983.1083147">10.1145/1082983.1083147</a>.</p>
+</div>
+<div id="ref-KimZPW2006">
+<p>Kim, Sunghun, Thomas Zimmermann, Kai Pan, and E. James Jr. Whitehead. 2006. “Automatic Identification of Bug-Introducing Changes.” In <em>Proceedings of the 21st Ieee/Acm International Conference on Automated Software Engineering</em>, 81–90. ASE’06. Washington, DC, USA: IEEE Computer Society. doi:<a href="https://doi.org/10.1109/ASE.2006.23">10.1109/ASE.2006.23</a>.</p>
 </div>
 </div>
             </section>

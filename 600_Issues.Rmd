@@ -31,10 +31,8 @@ Feature Selection has been applied and studied by the software engineering commu
  
 Futhermore, feature selection algorithms do not perform well with unbalanced datasets (defect prediction datasets tend to be are highly unbalanced), resulting in a selection of metrics that are not adequate for the learning algorithms See [@WangKWN12][@RRCA07]. 
 
-However instance selection that needs further research. For example, the JM1 dataset rom NASA's defect prediction datasets in PROMISE has 8,000 repeated instances
-
-A few exceptions for effort estimation include [@KS02],[@CHPB05]. 
-
+However instance selection that needs further research. For example, the JM1 dataset rom NASA's defect prediction datasets in PROMISE has 8,000 repeated instances.
+s
 
 # Overlapping or class separability
 
@@ -64,15 +62,6 @@ Another controversy concerns the use of the $t$-test for comparison of multiple 
 
 Also currently there is a tendency to rely less on p-values and more on confidence intervales and Equivalence Hipothesis Testing [@DOLADO2016]
 
-
-Dicussion:
-
-[@Menzies07] Data Mining Static Code Attributes to Learn Defect Predictors
-
-[@Zhang07] Comments on "Data Mining Static Code Attributes to Learn Defect Predictors"
-
-[@Menzies07b] Problems with Precision: A Response to Comments on Data Mining Static
-	Code Attributes to Learn Defect Predictors
 
 # Cross project defect prediction
 
