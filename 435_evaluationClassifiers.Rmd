@@ -9,35 +9,37 @@ The confusion matrix (which can be extended to multiclass problems) is a matrix 
 | $Act Neg$ |   $FP$    | $TN$       |
 
 
-where *True Positives* ($TP$) and *True Negatives* ($TN$) are respectively the number of positive and negative instances correctly classified, *False Positives* ($FP$) is the number of negative instances misclassified as positive (also called Type I errors), and *False Negatives* ($FN$) is the number of positive instances misclassified as negative (Type II errors).
+where *True Positives* ($TP$) and *True Negatives* ($TN$) are respectively the number of positive and negative instances correctly classified, *False Positives* ($FP$) is the number of negative instances misclassified as positive (also called *Type I errors*), and *False Negatives* ($FN$) is the number of positive instances misclassified as negative (*Type II errors*).
 
 From the confusion matrix, we can calculate:
 
-   + *True positive rate*, *recall* or *sensitivity*) ($TP_r = recall = senstivity = TP/TP+FN$) is the proportion of positive cases correctly classified as belonging to the positive class.
+   + *True positive rate*, *recall* or *sensitivity* ($TP_r = recall = senstivity = TP/TP+FN$) is the proportion of positive cases correctly classified as belonging to the positive class.
    
    + *False negative rate* ($FN_r=FN/TP+FN$) is the proportion of positive cases misclassified as belonging to the negative class.
    
    + *False positive rate* ($FP_r=FP/FP+TN$) is the proportion of negative cases misclassified as belonging to the positive class.
    
-   + *True negative rate* ($TN_r=TN/FP+TN$) is the proportion of negative cases correctly classified as belonging to the negative class.
+   + *True negative rate*, or *specificity* ($TN_r=TN/FP+TN$) is the proportion of negative cases correctly classified as belonging to the negative class.
 
 
-There is a tradeoff between $FP_r$ and $FN_r$ as the objective is minimize both metrics (or conversely, maximize the true negative and positive rates). It is possible to combine both metrics into a single figure, predictive $accuracy$:
+There is a tradeoff between $FP_r$ and $FN_r$ as the objective is minimize both metrics (or conversely, maximize the true negative $TN_r$ and positive rates $TP_r$). 
 
-$$accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
+   + *Accuracy* is the overall accuracy of the model, 
+   $accuracy = \frac{TP + TN}{TP + TN + FP + FN}$.
 
-to measure performance of classifiers (or the complementary value, the _error rate_ which is defined as $1-accuracy$)
+   + *Error rate* or *misclassification rate*,  
+   $error = 1-accuracy = \frac{FP+FN}{TP + TN + FP + FN}$, as the complementary value to accuracy.
 
-+ Precision, fraction of relevant instances among the retrieved instances, $$\frac{TP}{TP+FP}$$
+   + *Precision*, fraction of true positive instances among all predicted as positive (How many selected items are relevant?), 
+   $precision  = \frac{TP}{TP+FP}$
 
-+ Recall ($sensitivity$ probability of detection, $PD$) is the fraction of relevant instances that have been retrieved over total relevant instances, $\frac{TP}{TP+FN}$
+   + *Recall*, $sensitivity$, or *probability of detection* ($PD$) is the fraction of true positive instances among the actual total of positive instances (How many relevant ites are selected?), $\frac{TP}{TP+FN}$
 
-+ _f-measure_ (f-score or F1) is the harmonic mean of precision and recall, 
-$2 \cdot \frac{precision \cdot recall}{precision + recall}$
+   + _f-measure_ (f-score or F1) is the harmonic mean of precision and recall, $f1 = 2 \cdot \frac{precision \cdot recall}{precision + recall}$
 
 + Geometric mean, $Gmean = \sqrt{Recall \times Precision}$
 
-+ Geometric mean, 2$Gmean_2 = \sqrt{Recall \times Specificity}$
++ Geometric mean 2, $Gmean_2 = \sqrt{Recall \times Specificity}$
 
 + J coefficient, $j-coeff = sensitivity + specificity - 1$
 
