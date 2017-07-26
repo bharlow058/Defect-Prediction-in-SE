@@ -187,18 +187,6 @@
   Url                      = {http://www.sciencedirect.com/science/article/pii/S016412120700235X}
 }
 
-@InProceedings{GBDSC11,
-  Title                    = {The misuse of the NASA Metrics Data Program data sets for automated software defect prediction
-
-Durham, UK, 11-12 April 2011, ISBN: 978-1-84919-509-6},
-  Author                   = {David Gray and David Bowes and Neil Davey and Yi Sun and Bruce Christianson},
-  Booktitle                = {15th Annual Conference on Evaluation \& Assessment in Software Engineering (EASE 2011)},
-  Year                     = {2011},
-  Pages                    = {96--103},
-
-  Url                      = {http://dx.doi.org/10.1049/ic.2011.0012}
-}
-
 @InProceedings{Gray2011,
   Title                    = {The misuse of the NASA metrics data program data sets for automated software defect prediction},
   Author                   = {D. Gray and D. Bowes and N. Davey and Y. Sun and B. Christianson},
@@ -225,6 +213,22 @@ Durham, UK, 11-12 April 2011, ISBN: 978-1-84919-509-6},
   Keywords                 = {data mining;learning (artificial intelligence);data mining;data points;false positive rate classifier;machine learning;metric performance;software defect automation}
 }
 
+@Article{Gupta2017,
+  Title                    = {A set of measures designed to identify overlapped instances in software defect prediction},
+  Author                   = {Gupta, Shivani
+and Gupta, Atul},
+  Journal                  = {Computing},
+  Year                     = {2017},
+
+  Month                    = {Jan},
+
+  Abstract                 = {The performance of the learning models will intensely rely on the characteristics of the training data. The previous outcomes recommend that the overlapping between classes and the presence of noise have the most grounded impact on the performance of learning algorithm, and software defect datasets are no exceptions. The class overlap problem is concerned with the performance of machine learning classifiers critical problem is class overlap in which data samples appear as valid examples of more than one class which may be responsible for the presence of noise in datasets. We aim to investigate how the presence of overlapped instances in a dataset influences the classifier's performance, and how to deal with class overlapping problem. To have a close estimate of class overlapping, we have proposed four different measures namely, nearest enemy ratio, subconcept ratio, likelihood ratio and soft margin ratio. We performed our investigations using 327 binary defect classification datasets obtained from 54 software projects, where we first identified overlapped datasets using three data complexity measures proposed in the literature. We also include treatment effort into the prediction process. Subsequently, we used our proposed measures to find overlapped instances in the identified overlapped datasets. Our results indicated that by training a classifier on a training data free from overlapped instances led to an improved classifier performance on the test data containing overlapped instances. The classifiers perform significantly better when the evaluation measure takes the effort into account.},
+  Day                      = {10},
+  Doi                      = {10.1007/s00607-016-0538-1},
+  ISSN                     = {1436-5057},
+  Url                      = {http://dx.doi.org/10.1007/s00607-016-0538-1}
+}
+
 @Article{HallBBGC2012,
   Title                    = {A Systematic Literature Review on Fault Prediction Performance in Software Engineering},
   Author                   = {T. Hall and S. Beecham and D. Bowes and D. Gray and S. Counsell},
@@ -240,6 +244,42 @@ Durham, UK, 11-12 April 2011, ISBN: 978-1-84919-509-6},
   Doi                      = {10.1109/TSE.2011.103},
   ISSN                     = {0098-5589},
   Keywords                 = {Bayes methods;regression analysis;software fault tolerance;software quality;contextual information;cost reduction;fault prediction models;fault prediction performance;fault prediction study;feature selection;independent variables;logistic regression;methodological information;naive Bayes;predictive performance;reliable methodology;simple modeling techniques;software engineering;software quality;systematic literature review;Analytical models;Context modeling;Data models;Fault diagnosis;Predictive models;Software testing;Systematics;Systematic literature review;software fault prediction}
+}
+
+@Article{He2015,
+  Title                    = {An empirical study on software defect prediction with a simplified metric set},
+  Author                   = {Peng He and Bing Li and Xiao Liu and Jun Chen and Yutao Ma},
+  Journal                  = {Information and Software Technology},
+  Year                     = {2015},
+  Pages                    = {170--190},
+  Volume                   = {59},
+
+  Abstract                 = {Software defect prediction plays a crucial role in estimating the most defect-prone components of software, and a large number of studies have pursued improving prediction accuracy within a project or across projects. However, the rules for making an appropriate decision between within- and cross-project defect prediction when available historical data are insufficient remain unclear. The objective of this work is to validate the feasibility of the predictor built with a simplified metric set for software defect prediction in different scenarios, and to investigate practical guidelines for the choice of training data, classifier and metric subset of a given project. First, based on six typical classifiers, three types of predictors using the size of software metric set were constructed in three scenarios. Then, we validated the acceptable performance of the predictor based on Top-k metrics in terms of statistical methods. Finally, we attempted to minimize the Top-k metric subset by removing redundant metrics, and we tested the stability of such a minimum metric subset with one-way ANOVA tests. The study has been conducted on 34 releases of 10 open-source projects available at the PROMISE repository. The findings indicate that the predictors built with either Top-k metrics or the minimum metric subset can provide an acceptable result compared with benchmark predictors. The guideline for choosing a suitable simplified metric set in different scenarios is presented in Table 12. The experimental results indicate that (1) the choice of training data for defect prediction should depend on the specific requirement of accuracy; (2) the predictor built with a simplified metric set works well and is very useful in case limited resources are supplied; (3) simple classifiers (e.g., Naïve Bayes) also tend to perform well when using a simplified metric set for defect prediction; and (4) in several cases, the minimum metric subset can be identified to facilitate the procedure of general defect prediction with acceptable loss of prediction precision in practice.},
+  Doi                      = {http://dx.doi.org/10.1016/j.infsof.2014.11.006},
+  ISSN                     = {0950-5849},
+  Keywords                 = {Defect prediction},
+  Url                      = {http://www.sciencedirect.com/science/article/pii/S0950584914002523}
+}
+
+@InProceedings{Herbold2013,
+  Title                    = {Training Data Selection for Cross-project Defect Prediction},
+  Author                   = {Herbold, Steffen},
+  Booktitle                = {Proceedings of the 9th International Conference on Predictive Models in Software Engineering (PROMISE'13)},
+  Year                     = {2013},
+
+  Address                  = {New York, NY, USA},
+  Pages                    = {6:1--6:10},
+  Publisher                = {ACM},
+  Series                   = {PROMISE'13},
+
+  Acmid                    = {2499395},
+  Articleno                = {6},
+  Doi                      = {10.1145/2499393.2499395},
+  ISBN                     = {978-1-4503-2016-0},
+  Keywords                 = {cross-project prediction, defect-prediction, machine learning},
+  Location                 = {Baltimore, Maryland, USA},
+  Numpages                 = {10},
+  Url                      = {http://doi.acm.org/10.1145/2499393.2499395}
 }
 
 @Article{Hosseini2017,
@@ -494,6 +534,27 @@ and Zhou, Zhi-Hua},
   Url                      = {http://dx.doi.org/10.1007/s11219-014-9241-7}
 }
 
+@InProceedings{Mahmood2015,
+  Title                    = {What is the Impact of Imbalance on Software Defect Prediction Performance?},
+  Author                   = {Mahmood, Zaheed and Bowes, David and Lane, Peter C. R. and Hall, Tracy},
+  Booktitle                = {Proceedings of the 11th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE'15)},
+  Year                     = {2015},
+
+  Address                  = {New York, NY, USA},
+  Pages                    = {4:1--4:4},
+  Publisher                = {ACM},
+  Series                   = {PROMISE'15},
+
+  Acmid                    = {2810150},
+  Articleno                = {4},
+  Doi                      = {10.1145/2810146.2810150},
+  ISBN                     = {978-1-4503-3715-1},
+  Keywords                 = {Data Imbalance, Defect Prediction, Machine Learning},
+  Location                 = {Beijing, China},
+  Numpages                 = {4},
+  Url                      = {http://doi.acm.org/10.1145/2810146.2810150}
+}
+
 @Article{Menzies07b,
   Title                    = {Problems with Precision: A Response to Comments on Data Mining Static Code Attributes to Learn Defect Predictors},
   Author                   = {Tim Menzies and Alex Dekhtyar and Justin Distefano and Jeremy Greenwald},
@@ -566,14 +627,18 @@ and Zhou, Zhi-Hua},
   Location                 = {San Jose, California, USA}
 }
 
-@InProceedings{NZZH10,
-  Title                    = {Change Bursts as Defect Predictors},
-  Author                   = {Nachiappan Nagappan and Andreas Zeller and Thomas Zimmermann and Kim Herzig and Brendan Murphy},
-  Booktitle                = {Proceedings of the 21st IEEE International Symposium on Software Reliability Engineering (ISSRE 2012)},
-  Year                     = {2010},
-  Month                    = {November},
+@InProceedings{Nam2013,
+  Title                    = {Transfer defect learning},
+  Author                   = {J. Nam and S. J. Pan and S. Kim},
+  Booktitle                = {35th International Conference on Software Engineering (ICSE'2013)},
+  Year                     = {2013},
+  Month                    = {May},
+  Pages                    = {382--391},
 
-  Location                 = {San Jose, California, USA}
+  Abstract                 = {Many software defect prediction approaches have been proposed and most are effective in within-project prediction settings. However, for new projects or projects with limited training data, it is desirable to learn a prediction model by using sufficient training data from existing source projects and then apply the model to some target projects (cross-project defect prediction). Unfortunately, the performance of cross-project defect prediction is generally poor, largely because of feature distribution differences between the source and target projects. In this paper, we apply a state-of-the-art transfer learning approach, TCA, to make feature distributions in source and target projects similar. In addition, we propose a novel transfer defect learning approach, TCA+, by extending TCA. Our experimental results for eight open-source projects show that TCA+ significantly improves cross-project prediction performance.},
+  Doi                      = {10.1109/ICSE.2013.6606584},
+  ISSN                     = {0270-5257},
+  Keywords                 = {learning (artificial intelligence);public domain software;software engineering;TCA+;cross-project defect prediction;feature distributions;open-source projects;software defect prediction approaches;source projects;transfer defect learning;within-project prediction settings;Data models;Measurement;Predictive models;Software;Standards;Training;Vectors;cross-project defect prediction;empirical software engineering;transfer learning}
 }
 
 @InProceedings{Panichella2014,
@@ -599,22 +664,6 @@ and Zhou, Zhi-Hua},
 
   Doi                      = {10.1109/IRI.2007.4296696},
   Keywords                 = {PROMISE repository;attribute selection techniques;automated data collection tools;classifier learning;data mining algorithms;fault module detection;feature selection;project management;software engineering databases;data mining;feature extraction;learning (artificial intelligence);pattern classification;project management;software management;}
-}
-
-@Article{RodriguezEtAlINS12,
-  Title                    = {Searching for rules to detect defective modules: A subgroup discovery approach},
-  Author                   = {D. Rodriguez and R. Ruiz and J.C. Riquelme and J.S. Aguilarâ€“Ruiz},
-  Journal                  = {Information Sciences},
-  Year                     = {2012},
-  Note                     = {<ce:title>Data Mining for Software Trustworthiness</ce:title>},
-  Number                   = {0},
-  Pages                    = {14--30},
-  Volume                   = {191},
-
-  Doi                      = {10.1016/j.ins.2011.01.039},
-  ISSN                     = {0020-0255},
-  Keywords                 = {Defect prediction},
-  Url                      = {http://www.sciencedirect.com/science/article/pii/S0020025511000661}
 }
 
 @Article{Rodriguez2012,
@@ -695,6 +744,23 @@ and Zhou, Zhi-Hua},
   Url                      = {http://dx.doi.org/10.1007/s11219-009-9079-6}
 }
 
+@Article{SongJSYL2011,
+  Title                    = {A General Software Defect-Proneness Prediction Framework},
+  Author                   = {Q. Song and Z. Jia and M. Shepperd and S. Ying and J. Liu},
+  Journal                  = {IEEE Transactions on Software Engineering},
+  Year                     = {2011},
+
+  Month                    = {May},
+  Number                   = {3},
+  Pages                    = {356--370},
+  Volume                   = {37},
+
+  Abstract                 = {BACKGROUND - Predicting defect-prone software components is an economically important activity and so has received a good deal of attention. However, making sense of the many, and sometimes seemingly inconsistent, results is difficult. OBJECTIVE - We propose and evaluate a general framework for software defect prediction that supports 1) unbiased and 2) comprehensive comparison between competing prediction systems. METHOD - The framework is comprised of 1) scheme evaluation and 2) defect prediction components. The scheme evaluation analyzes the prediction performance of competing learning schemes for given historical data sets. The defect predictor builds models according to the evaluated learning scheme and predicts software defects with new data according to the constructed model. In order to demonstrate the performance of the proposed framework, we use both simulation and publicly available software defect data sets. RESULTS - The results show that we should choose different learning schemes for different data sets (i.e., no scheme dominates), that small details in conducting how evaluations are conducted can completely reverse findings, and last, that our proposed framework is more effective and less prone to bias than previous approaches. CONCLUSIONS - Failure to properly or fully evaluate a learning scheme can be misleading; however, these problems may be overcome by our proposed framework.},
+  Doi                      = {10.1109/TSE.2010.90},
+  ISSN                     = {0098-5589},
+  Keywords                 = {learning (artificial intelligence);software fault tolerance;software performance evaluation;competing learning schemes;defect predictor;scheme evaluation;software defect proneness prediction framework;Buildings;Data models;Prediction algorithms;Predictive models;Software;Training;Training data;Software defect prediction;machine learning;scheme evaluation.;software defect-proneness prediction}
+}
+
 @Article{SongTSE96,
   Title                    = {Software defect association mining and defect correction effort prediction},
   Author                   = {Q. Song and M. Shepperd and M. Cartwright and C. Mair},
@@ -709,6 +775,17 @@ and Zhou, Zhi-Hua},
   Doi                      = {10.1109/TSE.2006.1599417},
   ISSN                     = {0098-5589},
   Keywords                 = {Accuracy;Association rules;Data mining;Inspection;Job shop scheduling;Project management;Resource management;Software development management;Software quality;Software systems; data mining; program testing; software process improvement; software quality; SEL defect data; association rule mining; defect correction effort prediction; software defect association prediction; software quality; Software defect prediction; defect association; defect correction effort.; defect isolation effort;}
+}
+
+@Article{tantithamthavorn2017,
+  Title                    = {An Empirical Comparison of Model Validation Techniques for Defect Prediction Models},
+  Author                   = {Tantithamthavorn, Chakkrit and McIntosh, Shane and Hassan, Ahmed E. and Matsumoto, Kenichi},
+  Year                     = {2017},
+  Number                   = {1},
+
+  Booktitle                = {IEEE Transactions on Software Engineering},
+  Page                     = {1--18},
+  Volumn                   = {43}
 }
 
 @Article{TurhanESE12,
@@ -735,16 +812,6 @@ and Zhou, Zhi-Hua},
 
   Address                  = {New York, USA},
   Publisher                = {ACM}
-}
-
-@Article{08MSR,
-  Title                    = {Mining software repositories for comprehensible software fault prediction models},
-  Author                   = {O. Vandecruys and D. Martens and B. Baesens and C. Mues and M. Backer and R. Haesen},
-  Journal                  = {Journal of Systems and Software},
-  Year                     = {2008},
-  Number                   = {5},
-  Pages                    = {823--839},
-  Volume                   = {81}
 }
 
 @Article{Vandecruys2008,

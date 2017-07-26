@@ -25,7 +25,7 @@
 <meta name="author" content="Daniel Rodriguez and Javier Dolado">
 
 
-<meta name="date" content="2017-07-06">
+<meta name="date" content="2017-07-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -301,23 +301,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>where <em>True Positives</em> (<span class="math inline">\(TP\)</span>) and <em>True Negatives</em> (<span class="math inline">\(TN\)</span>) are respectively the number of positive and negative instances correctly classified, <em>False Positives</em> (<span class="math inline">\(FP\)</span>) is the number of negative instances misclassified as positive (also called Type I errors), and <em>False Negatives</em> (<span class="math inline">\(FN\)</span>) is the number of positive instances misclassified as negative (Type II errors).</p>
+<p>where <em>True Positives</em> (<span class="math inline">\(TP\)</span>) and <em>True Negatives</em> (<span class="math inline">\(TN\)</span>) are respectively the number of positive and negative instances correctly classified, <em>False Positives</em> (<span class="math inline">\(FP\)</span>) is the number of negative instances misclassified as positive (also called <em>Type I errors</em>), and <em>False Negatives</em> (<span class="math inline">\(FN\)</span>) is the number of positive instances misclassified as negative (<em>Type II errors</em>).</p>
 <p>From the confusion matrix, we can calculate:</p>
 <ul>
-<li><p><em>True positive rate</em>, <em>recall</em> or <em>sensitivity</em>) (<span class="math inline">\(TP_r = recall = senstivity = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</p></li>
+<li><p><em>True positive rate</em>, <em>recall</em> or <em>sensitivity</em> (<span class="math inline">\(TP_r = recall = senstivity = TP/TP+FN\)</span>) is the proportion of positive cases correctly classified as belonging to the positive class.</p></li>
 <li><p><em>False negative rate</em> (<span class="math inline">\(FN_r=FN/TP+FN\)</span>) is the proportion of positive cases misclassified as belonging to the negative class.</p></li>
 <li><p><em>False positive rate</em> (<span class="math inline">\(FP_r=FP/FP+TN\)</span>) is the proportion of negative cases misclassified as belonging to the positive class.</p></li>
-<li><p><em>True negative rate</em> (<span class="math inline">\(TN_r=TN/FP+TN\)</span>) is the proportion of negative cases correctly classified as belonging to the negative class.</p></li>
+<li><p><em>True negative rate</em>, or <em>specificity</em> (<span class="math inline">\(TN_r=TN/FP+TN\)</span>) is the proportion of negative cases correctly classified as belonging to the negative class.</p></li>
 </ul>
-<p>There is a tradeoff between <span class="math inline">\(FP_r\)</span> and <span class="math inline">\(FN_r\)</span> as the objective is minimize both metrics (or conversely, maximize the true negative and positive rates). It is possible to combine both metrics into a single figure, predictive <span class="math inline">\(accuracy\)</span>:</p>
-<p><span class="math display">\[accuracy = \frac{TP + TN}{TP + TN + FP + FN}\]</span></p>
-<p>to measure performance of classifiers (or the complementary value, the <em>error rate</em> which is defined as <span class="math inline">\(1-accuracy\)</span>)</p>
+<p>There is a tradeoff between <span class="math inline">\(FP_r\)</span> and <span class="math inline">\(FN_r\)</span> as the objective is minimize both metrics (or conversely, maximize the true negative <span class="math inline">\(TN_r\)</span> and positive rates <span class="math inline">\(TP_r\)</span>).</p>
 <ul>
-<li><p>Precision, fraction of relevant instances among the retrieved instances, <span class="math display">\[\frac{TP}{TP+FP}\]</span></p></li>
-<li><p>Recall (<span class="math inline">\(sensitivity\)</span> probability of detection, <span class="math inline">\(PD\)</span>) is the fraction of relevant instances that have been retrieved over total relevant instances, <span class="math inline">\(\frac{TP}{TP+FN}\)</span></p></li>
-<li><p><em>f-measure</em> (f-score or F1) is the harmonic mean of precision and recall, <span class="math inline">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></li>
+<li><p><em>Accuracy</em> is the overall accuracy of the model, <span class="math inline">\(accuracy = \frac{TP + TN}{TP + TN + FP + FN}\)</span>.</p></li>
+<li><p><em>Error rate</em> or <em>misclassification rate</em>,<br />
+<span class="math inline">\(error = 1-accuracy = \frac{FP+FN}{TP + TN + FP + FN}\)</span>, as the complementary value to accuracy.</p></li>
+<li><p><em>Precision</em>, fraction of true positive instances among all predicted as positive (How many selected items are relevant?), <span class="math inline">\(precision = \frac{TP}{TP+FP}\)</span></p></li>
+<li><p><em>Recall</em>, <span class="math inline">\(sensitivity\)</span>, or <em>probability of detection</em> (<span class="math inline">\(PD\)</span>) is the fraction of true positive instances among the actual total of positive instances (How many relevant ites are selected?), <span class="math inline">\(\frac{TP}{TP+FN}\)</span></p></li>
+<li><p><em>f-measure</em> (f-score or F1) is the harmonic mean of precision and recall, <span class="math inline">\(f1 = 2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></li>
 <li><p>Geometric mean, <span class="math inline">\(Gmean = \sqrt{Recall \times Precision}\)</span></p></li>
-<li><p>Geometric mean, 2<span class="math inline">\(Gmean_2 = \sqrt{Recall \times Specificity}\)</span></p></li>
+<li><p>Geometric mean 2, <span class="math inline">\(Gmean_2 = \sqrt{Recall \times Specificity}\)</span></p></li>
 <li><p>J coefficient, <span class="math inline">\(j-coeff = sensitivity + specificity - 1\)</span></p></li>
 <li><p>A suitable and interesting performance metric for binary classification when data are imbalanced is the Matthew’s Correlation Coefficient (<span class="math inline">\(MCC\)</span>) <span class="citation">(Matthews <a href="#ref-Matthews1975Comparison">1975</a>)</span>:</p></li>
 </ul>

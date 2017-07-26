@@ -100,7 +100,7 @@ It is worth noting that we do not cover all examples
 
 ![SD Gen Vs Spc](./figures/SD_GenVsSpc.png)
 
-This has been applied to deal with unbalanced data [@RodriguezEtAlINS12]
+This has been applied to deal with unbalanced data [@Rodriguez2012]
 
 Classical algorithms include the SD, CN2-SD algorithms etc.
 

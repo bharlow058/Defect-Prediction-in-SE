@@ -13,7 +13,7 @@ bibliography: [./references/SEmetrics.bib,
     ./references/RPackages.bib,
     ./references/evaluation.bib,
     ./references/machinelearning.bib,
-    ./references/DefectPrediction.bib]
+    ./references/defectPrediction.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: danrodgar/DefectPredictionSoftEng
@@ -27,9 +27,11 @@ These notes will try to describe the state of the art in software defect predict
 
 **Acknowledgments**
 
-  * TIN2016-76956-C3-1-R
+Projects:
 
-  * TIN2015-71841-REDT
+* BadgePeople: TIN2016-76956-C3
+
+* Network SBSE ([SEBASENet](https://www.uco.es/investigacion/proyectos/SEBASENet/index.php?title=P%C3%A1gina_principal)): TIN2015-71841-REDT
 
 
 Work in progress.
